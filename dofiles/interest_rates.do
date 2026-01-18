@@ -9,6 +9,7 @@ set more off
 
 global lochead "/Users/jar88/Downloads/newtest/claudetest"
 global dirdata "$lochead/data"
+global dirgraphs "$lochead/graphs"
 
 
 cd "$dirdata"
@@ -157,7 +158,7 @@ if $step_0==1 {
 
 	* Replicate Shiller Graph
 	twoway (line dp year if year<=1979) (line pstar year if year<=1979), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_replicate.png" , replace
+	graph export "$dirgraphs/shiller_replicate.png" , replace
 
 	* Get undetrended
 	gen udp = dp * ((growth_rate)^(year-1979))
@@ -165,7 +166,7 @@ if $step_0==1 {
 
 	* Undetrended Shiller
 	twoway (line udp year if year<=1979) (line udps year if year<=1979), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_undetrend.png" , replace
+	graph export "$dirgraphs/shiller_undetrend.png" , replace
 
 
 }
@@ -254,11 +255,11 @@ if $step_0==1 {
 
 	* Replicate Shiller Graph
 	twoway (line dp year if year<=2021) (line pstar year if year<=2021), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_2021.png" , replace
+	graph export "$dirgraphs/shiller_2021.png" , replace
 
 
 	twoway (line dp year if year<=2021) (line epstar year if year<=2021), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/eshiller_2021.png" , replace
+	graph export "$dirgraphs/eshiller_2021.png" , replace
 
 	* Get undetrended
 	gen udp = dp * ((growth_rate)^(year-2021))
@@ -268,10 +269,10 @@ if $step_0==1 {
 
 	* Undetrended Shiller
 	twoway (line udp year if year<=2021) (line udps year if year<=2021), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_undetrend_2021.png" , replace
+	graph export "$dirgraphs/shiller_undetrend_2021.png" , replace
 
 	twoway (line udp year if year<=2021) (line udeps year if year<=2021), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_eundetrend_2021.png" , replace
+	graph export "$dirgraphs/shiller_eundetrend_2021.png" , replace
 
 
 	gen ludp = log(udp)
@@ -281,10 +282,10 @@ if $step_0==1 {
 	gen ludeps = log(udeps)
 
 	twoway (line ludp year if year<=2021) (line ludps year if year<=2021), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_lundetrend_2021.png" , replace
+	graph export "$dirgraphs/shiller_lundetrend_2021.png" , replace
 
 	twoway (line ludp year if year<=2021) (line ludeps year if year<=2021), legend( label(1 "P") label(2 "P*")    )
-	graph export "$dirdata/shiller_elundetrend_2021.png" , replace
+	graph export "$dirgraphs/shiller_elundetrend_2021.png" , replace
 
 
 }
