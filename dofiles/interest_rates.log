@@ -38,6 +38,8 @@ Notes:
 
 . global dirdata "$lochead/data"
 
+. global dirgraphs "$lochead/graphs"
+
 . 
 . 
 . cd "$dirdata"
@@ -80,15 +82,13 @@ Notes:
 .         clear
 . 
 .         insheet using "$dirdata/sp500_ticker_start_end.csv", names
-file
-    /Users/jar88/Downloads/newtest/claudetest/data/sp500_ticker_start_end.csv
-    not found
-r(601);
+(3 vars, 1,230 obs)
 . 
 .         gen sdate  = date(start_date,"YMD")
 .         format sdate %td
 . 
 .         gen edate  = date(end_date,"YMD")
+(503 missing values generated)
 .         format edate %td
 . 
 .         drop start_date end_date
@@ -108,17 +108,856 @@ r(601);
 .                         format `var'_`j' %td
   5.                 }
   6.         }
+(49 missing values generated)
+(1,182 missing values generated)
+(1,229 missing values generated)
+(525 missing values generated)
+(1,209 missing values generated)
+(1,229 missing values generated)
 . 
 .         collapse (mean) sdate_* edate_*, by(ticker)
 . 
 .         rename ticker oftic
 . 
 .         save "$dirdata/sp500_dates", replace
+file /Users/jar88/Downloads/newtest/claudetest/data/sp500_dates.dta saved
 . 
 . 
 . 
 . }
-r(601);
+
+. 
+. if $step_0==1 {
+. 
+.         clear
+. 
+.         import excel using "$dirdata/r_data.xlsx", first
+(16 vars, 46 obs)
+. 
+. 
+.         * Graph Interest Rates Over Time
+. 
+.         save "$dirdata/r_data", replace
+file /Users/jar88/Downloads/newtest/claudetest/data/r_data.dta saved
+. 
+. }
+
+. 
+. 
+. ***************************************************
+. * REPLICATE SHILLER                              **
+. ***************************************************
+. if $step_0==1 {
+. 
+.         clear
+. 
+.         import excel using "$dirdata/shiller_import.xls", first
+(11 vars, 1,859 obs)
+. 
+.         tostring date, replace
+date was double now str7
+.         replace date = date + "0" if substr(date,-2,2)==".1"
+(155 real changes made)
+. 
+.         gen mdate = monthly(date,"YM")
+.         format mdate %tm
+. 
+.         gen month = month(dofm(mdate))
+.         gen year = year(dofm(mdate))
+. 
+.         * Keep only january
+.         keep if month==1
+(1,704 observations deleted)
+. 
+.                 * Get some numbers for returns
+.                 sort year
+.                 tsset year
+
+Time variable: year, 1871 to 2025
+        Delta: 1 unit
+. 
+.                 gen retp_real = F.index_real/index_real
+(1 missing value generated)
+.                 gen totp_real = F.tr_real/tr_real
+(1 missing value generated)
+. 
+.                 sum retp_real totp_real if year>=2002 & year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   retp_real |         20    1.061406    .1640309   .6276087   1.264855
+   totp_real |         20    1.082012    .1674008   .6435044   1.298481
+. 
+.         * Put everything in 1979 terms
+.                 sum cpi_index if year==1979
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   cpi_index |          1        68.3           .       68.3       68.3
+.                 local base = r(mean)
+. 
+.                 gen rp = (sp_index / cpi_index) * `base'
+.                 gen rd = (div_index / cpi_index) * `base'
+. 
+.                 sum rp if year<=1979
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          rp |        109    71.58385    45.28309   22.15964   200.4326
+. 
+.         * Log
+.         gen lrp = log(rp)
+. 
+.         reg lrp year if year<=1979
+
+      Source |       SS           df       MS      Number of obs   =       109
+-------------+----------------------------------   F(1, 107)       =    152.76
+       Model |  19.5391856         1  19.5391856   Prob > F        =    0.0000
+    Residual |  13.6860275       107  .127906799   R-squared       =    0.5881
+-------------+----------------------------------   Adj R-squared   =    0.5842
+       Total |  33.2252131       108  .307640862   Root MSE        =    .35764
+
+------------------------------------------------------------------------------
+         lrp | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        year |   .0134562   .0010887    12.36   0.000     .0112979    .0156145
+       _cons |  -21.79569   2.096065   -10.40   0.000    -25.95089   -17.64048
+------------------------------------------------------------------------------
+. 
+.         local growth_rate = _b[year]
+.         gen growth_rate = exp(`growth_rate')
+. 
+.         * Detrended values
+.         gen dp = rp / ((growth_rate)^(year-1979))
+.         gen dd = rd / ((growth_rate)^(year-1979))
+. 
+.         * Get Shiller gamma
+.         sum dp if year<=1979
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          dp |        109    133.4798    44.70761   55.78109   238.7481
+.         local t1 = r(mean)
+.         sum dd if year<=1979
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          dd |        109    6.116468    1.350965   3.485633    8.95561
+.         local t2 = r(mean)
+. 
+.         gen rbar = `t2'/`t1'
+.         gen gbar = 1/(1+rbar)
+. 
+.         line dp year if year<=1979
+. 
+.         * generate pstar
+.         gen pstar = `t1' if year==1979
+(154 missing values generated)
+.         gsort - year
+.         replace pstar = gbar*(pstar[_n-1] + dd) if year<1979
+(108 real changes made)
+. 
+.         sort year
+. 
+.         * Replicate Shiller Graph
+.         twoway (line dp year if year<=1979) (line pstar year if year<=1979), 
+> legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_replicate.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_replicate.png wri
+> tten in PNG format
+. 
+.         * Get undetrended
+.         gen udp = dp * ((growth_rate)^(year-1979))
+.         gen udps = pstar * ((growth_rate)^(year-1979))
+(46 missing values generated)
+. 
+.         * Undetrended Shiller
+.         twoway (line udp year if year<=1979) (line udps year if year<=1979), 
+> legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_undetrend.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_undetrend.png wri
+> tten in PNG format
+. 
+. 
+. }
+
+. 
+. 
+. ***************************************************
+. * EXTEND SHILLER TO 2021                         **
+. ***************************************************
+. if $step_0==1 {
+. 
+.         clear
+. 
+.         import excel using "$dirdata/shiller_import.xls", first
+(11 vars, 1,859 obs)
+. 
+.         tostring date, replace
+date was double now str7
+.         replace date = date + "0" if substr(date,-2,2)==".1"
+(155 real changes made)
+. 
+.         gen mdate = monthly(date,"YM")
+.         format mdate %tm
+. 
+.         gen month = month(dofm(mdate))
+.         gen year = year(dofm(mdate))
+. 
+.         * Keep only january
+.         keep if month==1
+(1,704 observations deleted)
+. 
+.         keep if  year<=2021
+(4 observations deleted)
+. 
+.         * Put everything in 2021
+.                 sum cpi_index if year==2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   cpi_index |          1     261.582           .    261.582    261.582
+.                 local base = r(mean)
+. 
+.                 gen rp = (sp_index / cpi_index) * `base'
+.                 gen rd = (div_index / cpi_index) * `base'
+.                 gen re = (earn_index/cpi_index) * `base'
+. 
+.                 sum rp if year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          rp |        151    591.7954    696.2958   84.86914   3793.749
+. 
+.         * Log
+.         gen lrp = log(rp)
+.         reg lrp year if year<=2021
+
+      Source |       SS           df       MS      Number of obs   =       151
+-------------+----------------------------------   F(1, 149)       =    576.56
+       Model |   103.20828         1   103.20828   Prob > F        =    0.0000
+    Residual |  26.6718707       149  .179005844   R-squared       =    0.7946
+-------------+----------------------------------   Adj R-squared   =    0.7933
+       Total |  129.880151       150  .865867673   Root MSE        =    .42309
+
+------------------------------------------------------------------------------
+         lrp | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        year |   .0189667   .0007899    24.01   0.000     .0174059    .0205275
+       _cons |  -31.01228   1.537518   -20.17   0.000    -34.05043   -27.97412
+------------------------------------------------------------------------------
+. 
+.         local growth_rate = _b[year]
+.         gen growth_rate = exp(`growth_rate')
+. 
+.         * Detrended values
+.         gen dp = rp / ((growth_rate)^(year-2021))
+.         gen dd = rd / ((growth_rate)^(year-2021))
+.         gen de = re / ((growth_rate)^(year-2021))
+. 
+.         * Get Shiller gamma
+.                 sum dp if year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          dp |        151    1640.995    650.1685   652.2875   3793.749
+.                 local t1 = r(mean)
+.                 sum dd if year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          dd |        151    63.65278    25.30761   32.65026   126.7976
+.                 local t2 = r(mean)
+. 
+.                 gen rbar = `t2'/`t1'
+.                 gen gbar = 1/(1+rbar)
+. 
+. 
+.         * generate pstar
+.         gen pstar = `t1' if year==2021
+(150 missing values generated)
+.         gsort - year
+.         replace pstar = gbar*(pstar[_n-1] + dd) if year<2021
+(150 real changes made)
+. 
+. 
+. 
+.         * Do the same for earnings
+. 
+.                         * Get Shiller gamma
+.                         sum dp if year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          dp |        151    1640.995    650.1685   652.2875   3793.749
+.                         local t1 = r(mean)
+.                         sum de if year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          de |        151    108.4641    35.33774   18.98778   242.5353
+.                         local t2 = r(mean)
+. 
+.                         gen erbar = `t2'/`t1'
+.                         gen egbar = 1/(1+erbar)
+. 
+. 
+.                 * generate pstar
+.                 gen epstar = `t1' if year==2021
+(150 missing values generated)
+.                 gsort - year
+.                 replace epstar = egbar*(epstar[_n-1] + de) if year<2021
+(150 real changes made)
+. 
+.         sort year
+. 
+.         * Replicate Shiller Graph
+.         twoway (line dp year if year<=2021) (line pstar year if year<=2021), 
+> legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_2021.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_2021.png written 
+> in PNG format
+. 
+. 
+.         twoway (line dp year if year<=2021) (line epstar year if year<=2021),
+>  legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/eshiller_2021.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/eshiller_2021.png written
+>  in PNG format
+. 
+.         * Get undetrended
+.         gen udp = dp * ((growth_rate)^(year-2021))
+.         gen udps = pstar * ((growth_rate)^(year-2021))
+. 
+.         gen udeps = epstar * ((growth_rate)^(year-2021))
+. 
+.         * Undetrended Shiller
+.         twoway (line udp year if year<=2021) (line udps year if year<=2021), 
+> legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_undetrend_2021.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_undetrend_2021.pn
+> g written in PNG format
+. 
+.         twoway (line udp year if year<=2021) (line udeps year if year<=2021),
+>  legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_eundetrend_2021.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_eundetrend_2021.p
+> ng written in PNG format
+. 
+. 
+.         gen ludp = log(udp)
+. 
+.         gen ludps = log(udps)
+. 
+.         gen ludeps = log(udeps)
+. 
+.         twoway (line ludp year if year<=2021) (line ludps year if year<=2021)
+> , legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_lundetrend_2021.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_lundetrend_2021.p
+> ng written in PNG format
+. 
+.         twoway (line ludp year if year<=2021) (line ludeps year if year<=2021
+> ), legend( label(1 "P") label(2 "P*")    )
+.         graph export "$dirgraphs/shiller_elundetrend_2021.png" , replace
+file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_elundetrend_2021.
+> png written in PNG format
+. 
+. 
+. }
+
+. 
+. 
+. **************************
+. * CRSP DATA.            **
+. **************************
+. 
+. if $step_1==1 {
+. 
+.         use "$dirdata/dpmlqc5odw3ktraf.dta", replace
+. 
+.         foreach var of varlist _all {
+  2.                 local newname = lower("`var'")
+  3.                 rename `var' `newname'
+  4.         }
+  (all newnames==oldnames)
+. 
+.         gen mdate = mofd(date)
+. 
+.         gen oftic = ticker
+(43,167 missing values generated)
+. 
+.         drop if ticker==""
+(43,167 observations deleted)
+. 
+.         duplicates tag oftic mdate, gen(dup)
+
+Duplicates in terms of oftic mdate
+. 
+.         save "$dirdata/crsp_clean", replace
+file /Users/jar88/Downloads/newtest/claudetest/data/crsp_clean.dta saved
+. 
+. 
+. }
+
+. **************************
+. * CRSP IBES LINK        **
+. **************************
+. 
+. if $step_1==1 {
+. 
+.         use "$dirdata/s6g31vudtfgffgj1.dta", replace
+.         foreach var of varlist _all {
+  2.                 local newname = lower("`var'")
+  3.                 rename `var' `newname'
+  4.         }
+  (all newnames==oldnames)
+  (all newnames==oldnames)
+. 
+. 
+.         save "$dirdata/crsp_ibes", replace
+file /Users/jar88/Downloads/newtest/claudetest/data/crsp_ibes.dta saved
+. 
+. 
+. 
+. }
+
+. 
+. 
+. **************************
+. * Import IBES data.     **
+. **************************
+. 
+. if $step_1==1 {
+. 
+.         use "$dirdata/qukzpspg8a9iqv0i.dta", replace
+. 
+.         foreach var of varlist _all {
+  2.                 local newname = lower("`var'")
+  3.                 rename `var' `newname'
+  4.         }
+. 
+.         * I believe statpers is when the forecast is made, fpedats is the end
+> ing period of the forecast
+. 
+.         sort cusip statpers fpi
+. 
+.         *browse  cusip statpers fpi fpedats numest
+. 
+.         gen m_forecast = month(statpers)
+.         gen y_forecast = year(statpers)
+. 
+.         * Keep May
+. 
+.         keep if m_forecast==6
+(4,197,022 observations deleted)
+. 
+.         * Collapse to firm - year level
+.         foreach var in medest meanest stdev highest lowest actual {
+  2.                 gen `var'_fy1 = `var' if fpi=="1"
+  3.                 gen `var'_fy2 = `var' if fpi=="2"
+  4.                 gen `var'_fy3 = `var' if fpi=="3"
+  5.                 gen `var'_fy4 = `var' if fpi=="4"
+  6.                 gen `var'_fy5 = `var' if fpi=="5"
+  7. 
+.         }
+(257,254 missing values generated)
+(260,889 missing values generated)
+(303,103 missing values generated)
+(338,838 missing values generated)
+(348,867 missing values generated)
+(257,254 missing values generated)
+(260,889 missing values generated)
+(303,104 missing values generated)
+(338,838 missing values generated)
+(348,867 missing values generated)
+(279,232 missing values generated)
+(281,918 missing values generated)
+(327,060 missing values generated)
+(359,124 missing values generated)
+(365,679 missing values generated)
+(257,254 missing values generated)
+(260,886 missing values generated)
+(303,103 missing values generated)
+(338,839 missing values generated)
+(348,864 missing values generated)
+(257,255 missing values generated)
+(260,889 missing values generated)
+(303,106 missing values generated)
+(338,839 missing values generated)
+(348,867 missing values generated)
+(270,013 missing values generated)
+(284,692 missing values generated)
+(324,274 missing values generated)
+(354,040 missing values generated)
+(362,504 missing values generated)
+. 
+.         collapse (mean) medest_* meanest_* stdev_* highest_* lowest_* actual_
+> * (first) m_forecast y_forecast ticker oftic, by(cusip statpers)
+. 
+.         gen year = yofd(statpers)
+. 
+. 
+.         * Get the permno for CRSP match
+. 
+.         joinby ticker using "$dirdata/crsp_ibes",  unmatched(master)
+. 
+.         gen testy = 1 if (statpers>=sdate & statpers < edate)
+(96,973 missing values generated)
+. 
+.         sort ticker statpers
+.         *browse ticker statpers sdate edate testy
+. 
+.         * Generate a variable that says there is no match within the date
+.         bys ticker statpers: egen nonmatch = max(testy)
+(9,076 missing values generated)
+. 
+.         bys ticker statpers: gen nonmatch_num = _n
+. 
+.         keep if _merge==1 | (statpers>=sdate & statpers < edate) | (nonmatch=
+> =. & nonmatch_num==1)
+(91,574 observations deleted)
+. 
+.                 drop _merge nonmatch nonmatch_num sdate edate
+. 
+.                 gen mdate = mofd(statpers)
+. 
+.                 merge m:1 mdate permno using "$dirdata/crsp_clean", keep(mast
+> er match)
+(variable ticker was str6, now str8 to accommodate using data's values)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                        15,342
+        from master                    15,342  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                           105,239  (_merge==3)
+    -----------------------------------------
+. 
+.         * Get S&P 500 constituents
+. 
+.                 merge m:1 oftic using "$dirdata/sp500_dates", keep(master mat
+> ch) nogen
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                       101,351
+        from master                   101,351  
+        from using                          0  
+
+    Matched                            19,230  
+    -----------------------------------------
+. 
+.                 gen sp500 = .
+(120,581 missing values generated)
+.                 forvalues j=1/3 {
+  2. 
+.                         replace sp500 = 1 if statpers>=sdate_`j' & statpers <
+>  edate_`j'
+  3. 
+.                 }
+(11,868 real changes made)
+(355 real changes made)
+(4 real changes made)
+. 
+. 
+.                 keep if sp500==1
+(108,354 observations deleted)
+. 
+. 
+.                 gen mv = prc*shrout
+(514 missing values generated)
+. 
+.                 sum mv if year==2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+          mv |        502    7.55e+07    1.80e+08    3989355   2.27e+09
+.                 di r(sum)/1000000000
+37.919997
+. 
+.                 forvalues j=1/5 {
+  2. 
+.                         gen earn_fy`j' = meanest_fy`j'*shrout
+  3.                 }
+(512 missing values generated)
+(513 missing values generated)
+(1,547 missing values generated)
+(5,224 missing values generated)
+(6,709 missing values generated)
+. 
+.                 gen earn = meanest_fy1*shrout
+(512 missing values generated)
+. 
+.                 sum earn if year==2024
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+        earn |        500     4084407     8808762   -2726400   1.00e+08
+.                 di (r(sum)/1000)/8395.39
+243.25294
+. 
+.                 * Collapse to yearly level to create estimates of FMV
+. 
+.                 collapse (sum) earn_fy*, by(year)
+. 
+.                 merge 1:1 year using "$dirdata/r_data", keep(master match)
+
+    Result                      Number of obs
+    -----------------------------------------
+    Not matched                             1
+        from master                         1  (_merge==1)
+        from using                          0  (_merge==2)
+
+    Matched                                25  (_merge==3)
+    -----------------------------------------
+. 
+.                 save "$dirdata/val_est", replace
+file /Users/jar88/Downloads/newtest/claudetest/data/val_est.dta saved
+. 
+.                 use "$dirdata/val_est", replace
+. 
+.                 * Generate smoothed cleveland fed
+.                         sum r_real_cf if year==2002
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   r_real_cf |          1    2.033603           .   2.033603   2.033603
+.                         local t1 = r(mean)
+. 
+.                         sum r_real_cf if year==2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+   r_real_cf |          1   -.0317604           .  -.0317604  -.0317604
+.                         local t2 = r(mean)
+. 
+.                         gen r_cf_smooth = `t1' + ((`t2'-`t1')/19)*(year-2002)
+. 
+.                         sum pi_cf if year>=2002 & year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+       pi_cf |         20    1.966424    .3573709   1.362184   2.548386
+.                         local t3 = r(mean)
+. 
+.                         replace r_cf_smooth = r_cf_smooth + `t3'
+(26 real changes made)
+. 
+.                 * Generate Laubach & Williams
+.                         sum laubach_williams_rstar if year==2002
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+laubach_wi~r |          1    2.959436           .   2.959436   2.959436
+.                         local t1 = r(mean)
+. 
+.                         sum laubach_williams_rstar if year==2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+laubach_wi~r |          1    1.954427           .   1.954427   1.954427
+.                         local t2 = r(mean)
+. 
+.                         gen r_lw_smooth = `t1' + ((`t2'-`t1')/19)*(year-2002)
+.                         sum pi_cf if year>=2002 & year<=2021
+
+    Variable |        Obs        Mean    Std. dev.       Min        Max
+-------------+---------------------------------------------------------
+       pi_cf |         20    1.966424    .3573709   1.362184   2.548386
+.                         local t3 = r(mean)
+. 
+.                         replace r_lw_smooth = r_lw_smooth + `t3'
+(26 real changes made)
+. 
+.                 * LOOK THROUGH DIFFERENT INTEREST RATES
+. 
+.                 tsset year
+
+Time variable: year, 2000 to 2025
+        Delta: 1 unit
+. 
+.                         * Payout rate, short term, based on average payouts
+.                         gen st_payout = .8914
+. 
+.                         * Return on equity = long term average
+.                         gen roe = .175
+. 
+.                         * Actual interest rate
+.                         gen ra = r_cf_smooth*.01
+. 
+.                         * Change in valuation due to change in interest rate
+.                         gen rb = F.r_cf_smooth*.01
+(1 missing value generated)
+. 
+.                         * LONG RUN GROWTH RATE
+.                                 * In damodaran, equal to tbond rate
+.                                 * May want to think about changing this
+.                                 * For now, we will assume the growth rate smo
+> othly declines by 1 percentage point over the time period
+. 
+.                                 *gen ltga = ra
+.                                 *gen ltgb = rb
+.                                 gen ltga = r_cf_smooth*.01
+.                                 gen ltgb = r_cf_smooth*.01
+.                                 * Long term growth declines by half the decli
+> ne of the interest rate
+.                                 *replace ltgb = ltga + .5*(rb-ra)
+. 
+.                         * Equity risk premium
+.                                 gen erpa = damo_erp
+(1 missing value generated)
+.                                 gen erpb = damo_erp
+(1 missing value generated)
+. 
+.                 foreach j in a b  {
+  2. 
+. 
+. 
+.                         * Generate required return
+.                         gen req_ret`j' = r`j' + erp`j'
+  3. 
+.                         * Earnings growth first year -- from year t to t+1
+.                         gen eg1 = earn_fy2/earn_fy1 - 1
+  4. 
+.                         * From t+1 to t+2
+.                         gen eg2 = ltg`j' + (2*(eg1-ltg`j'))/3
+  5. 
+.                         * From t+2 to t+3
+.                         gen eg3 = ltg`j' + 1*(eg1-ltg`j')/3
+  6. 
+.                         * From t+3 to t+4
+.                         gen eg4 = ltg`j'
+  7. 
+.                         * Payouts
+.                         * Long Term Cash payout = 1 - long run growth rate / 
+> return on equity
+.                         gen lt_payout = 1 - ltg`j'/roe
+  8. 
+.                         gen p1 = st_payout
+  9.                         gen p2 = st_payout - (st_payout-lt_payout)/4
+ 10.                         gen p3 = p2 - (st_payout-lt_payout)/4
+ 11.                         gen p4 = p3 - (st_payout-lt_payout)/4
+ 12.                         gen p5 = p4 - (st_payout-lt_payout)/4
+ 13. 
+.                         gen e1 = earn_fy1
+ 14.                         gen e2 = earn_fy2
+ 15.                         gen e3 = e2*(1+eg2)
+ 16.                         gen e4 = e3*(1+eg3)
+ 17.                         gen e5 = e4*(1+eg4)
+ 18. 
+.                         gen cf1 = e1*p1
+ 19.                         gen cf2 = e2*p2
+ 20.                         gen cf3 = e3*p3
+ 21.                         gen cf4 = e4*p4
+ 22.                         gen cf5 = e5*p5
+ 23. 
+.                         * Valuation of terminal value
+.                         * Implicitly assuming long run growth equal to intere
+> st rate
+.                         gen eterm = (e5*(1+eg4)*lt_payout)/(req_ret`j'-ltg`j'
+> )
+ 24.                         * Value 1 - earnings divided by
+. 
+.                         gen val`j' = cf1/(1+req_ret`j') + cf2/((1+req_ret`j')
+> ^2) + cf3/((1+req_ret`j')^3) + cf4/((1+req_ret`j')^4) + cf5/((1+req_ret`j')^5
+> ) + eterm/((1+req_ret`j')^5)
+ 25. 
+.                         drop eg1 eg2 eg3 eg4 e1 e2 e3 e4 e5 lt_payout req_ret
+> `j' eterm p1 p2 p3 p4 p5 cf1 cf2 cf3 cf4 cf5
+ 26. 
+.                 }
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+. 
+. 
+.                 * Generate interest rate return
+.                 gen ret_int = valb/vala - 1
+(1 missing value generated)
+.                 li year ret_int vala valb ra rb
+
+     +-------------------------------------------------------------+
+     | year    ret_int       vala       valb         ra         rb |
+     |-------------------------------------------------------------|
+  1. | 2000   .0392825   1.91e+10   1.98e+10   .0421743   .0410873 |
+  2. | 2001    .031102   2.02e+10   2.08e+10   .0410873   .0400003 |
+  3. | 2002   .0272898   1.92e+10   1.97e+10   .0400003   .0389132 |
+  4. | 2003    .030311   2.12e+10   2.18e+10   .0389132   .0378262 |
+  5. | 2004   .0306441   2.58e+10   2.65e+10   .0378262   .0367392 |
+     |-------------------------------------------------------------|
+  6. | 2005   .0273134   2.61e+10   2.68e+10   .0367392   .0356521 |
+  7. | 2006   .0267619   3.59e+10   3.69e+10   .0356521   .0345651 |
+  8. | 2007   .0254334   3.71e+10   3.80e+10   .0345651   .0334781 |
+  9. | 2008   .0176289   2.99e+10   3.04e+10   .0334781    .032391 |
+ 10. | 2009   .0259929   2.22e+10   2.28e+10    .032391    .031304 |
+     |-------------------------------------------------------------|
+ 11. | 2010   .0214704   2.42e+10   2.47e+10    .031304    .030217 |
+ 12. | 2011   .0185273   2.19e+10   2.23e+10    .030217   .0291299 |
+ 13. | 2012    .019619   2.27e+10   2.31e+10   .0291299   .0280429 |
+ 14. | 2013   .0226328   2.62e+10   2.68e+10   .0280429   .0269559 |
+ 15. | 2014   .0193114   2.40e+10   2.44e+10   .0269559   .0258688 |
+     |-------------------------------------------------------------|
+ 16. | 2015   .0183076   1.77e+10   1.81e+10   .0258688   .0247818 |
+ 17. | 2016   .0199574   2.19e+10   2.23e+10   .0247818   .0236948 |
+ 18. | 2017    .022125   2.71e+10   2.77e+10   .0236948   .0226077 |
+ 19. | 2018   .0187134   2.22e+10   2.26e+10   .0226077   .0215207 |
+ 20. | 2019   .0215708   2.60e+10   2.66e+10   .0215207   .0204337 |
+     |-------------------------------------------------------------|
+ 21. | 2020   .0242864   2.90e+10   2.97e+10   .0204337   .0193466 |
+ 22. | 2021   .0266159   3.85e+10   3.95e+10   .0193466   .0182596 |
+ 23. | 2022   .0188502   3.11e+10   3.17e+10   .0182596   .0171726 |
+ 24. | 2023    .024512   4.21e+10   4.31e+10   .0171726   .0160855 |
+ 25. | 2024   .0261531   5.36e+10   5.50e+10   .0160855   .0149985 |
+     |-------------------------------------------------------------|
+ 26. | 2025          .          .          .   .0149985          . |
+     +-------------------------------------------------------------+
+. 
+.                 ameans ret_int if year>=2002 & year<=2020, add(1)
+
+    Variable |       Type          Obs        Mean       [95% conf. interval]
+-------------+---------------------------------------------------------------
+     ret_int | Arithmetic           19    1.023047        1.021052   1.025042*
+             |  Geometric           19    1.023039        1.021048   1.025035*
+             |   Harmonic           19    1.023031        1.021043   1.025027*
+-----------------------------------------------------------------------------
+* 1 was added to the variables prior to calculating the results.
+. 
+.                 gen ret_int_index = 1 if year==2002
+(25 missing values generated)
+.                 replace ret_int_index = (L.ret_int_index)*(1 + L.ret_int) if 
+> year>=2003 & year<=2021
+(19 real changes made)
+. 
+.                 browse year ret_int ret_int_index damo_tbond
+command browse is unrecognized
+r(199);
+. 
+.         * Collapse
+. }
+r(199);
 
 end of do-file
-r(601);
+r(199);
