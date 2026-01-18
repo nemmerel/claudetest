@@ -1,0 +1,124 @@
+
+  ___  ____  ____  ____  ____ ©
+ /__    /   ____/   /   ____/      17.0
+___/   /   /___/   /   /___/       MP—Parallel Edition
+
+ Statistics and Data Science       Copyright 1985-2021 StataCorp LLC
+                                   StataCorp
+                                   4905 Lakeway Drive
+                                   College Station, Texas 77845 USA
+                                   800-STATA-PC        https://www.stata.com
+                                   979-696-4600        stata@stata.com
+
+Stata license: Single-user 4-core  perpetual
+Serial number: 501706342412
+  Licensed to: Robbins, Jacob A
+               
+
+Notes:
+      1. Stata is running in batch mode.
+      2. Unicode is supported; see help unicode_advice.
+      3. More than 2 billion observations are allowed; see help obs_advice.
+      4. Maximum number of variables is set to 5,000; see help set_maxvar.
+
+. do interest_rates.do 
+
+. **********************************
+. * Estimate forward looking EPS. **
+. **********************************
+. 
+. 
+. clear all
+
+. 
+. set more off
+
+. 
+. global lochead "/Users/jar88/Downloads/newtest/claudetest"
+
+. global dirdata "$lochead/data"
+
+. 
+. 
+. cd "$dirdata"
+/Users/jar88/Downloads/newtest/claudetest/data
+
+. 
+. 
+. set maxvar 50000
+
+
+. 
+. global step_00 = 0
+
+. global step_0 = 1
+
+. global step_1 = 1
+
+. global step_2 = 0
+
+. global step_3 = 0
+
+. global step_4 = 0
+
+. global step_5 = 0
+
+. global step_6 = 0
+
+. global step_7 = 0
+
+. global step_8 = 0
+
+. 
+. 
+. *****************************************
+. * IMPORT S&P 500 Constituent Data      **
+. *****************************************
+. 
+. if $step_0==1 {
+. 
+.         clear
+. 
+.         insheet using "$dirdata/sp500_ticker_start_end.csv", names
+file
+    /Users/jar88/Downloads/newtest/claudetest/data/sp500_ticker_start_end.csv
+    not found
+r(601);
+. 
+.         gen sdate  = date(start_date,"YMD")
+.         format sdate %td
+. 
+.         gen edate  = date(end_date,"YMD")
+.         format edate %td
+. 
+.         drop start_date end_date
+. 
+. 
+.         * Generate the multiple spans
+.         sort ticker sdate
+. 
+.         bys ticker: gen span = _n
+. 
+.         foreach var in sdate edate {
+  2. 
+.                 forvalues j=1/3 {
+  3. 
+.                         gen `var'_`j' = `var' if span==`j'
+  4. 
+.                         format `var'_`j' %td
+  5.                 }
+  6.         }
+. 
+.         collapse (mean) sdate_* edate_*, by(ticker)
+. 
+.         rename ticker oftic
+. 
+.         save "$dirdata/sp500_dates", replace
+. 
+. 
+. 
+. }
+r(601);
+
+end of do-file
+r(601);
