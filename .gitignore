@@ -3,3 +3,6 @@ data/
 
 # Ignore graphs folder
 graphs/
+
+# Stata log files
+*.log

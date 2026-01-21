@@ -17,8 +17,6 @@ global step_0 = 1
 global step_1 = 1
 global step_2 = 0
 
-
-
 *****************************************
 * IMPORT S&P 500 Constituent Data      **
 *****************************************
@@ -58,8 +56,6 @@ if $step_0==1 {
 	rename ticker oftic
 
 	save "$dirdata/sp500_dates", replace
-
-
 
 }
 *****************************************
@@ -118,7 +114,6 @@ if $step_1==1 {
 	save "$dirdata/crsp_ibes", replace
 
 }
-
 
 **************************
 * Analysis              **
@@ -247,100 +242,124 @@ if $step_1==1 {
 
 			replace r_lw_smooth = r_lw_smooth + `t3'
 
-		* LOOK THROUGH DIFFERENT INTEREST RATES
-
 		tsset year
 
-			* Payout rate, short term, based on average payouts
-			gen st_payout = .8914
+		* Common parameters
+			gen st_payout = .8914    // Short-term payout rate
+			gen roe = .175           // Return on equity
 
-			* Return on equity = long term average
-			gen roe = .175
+		save "$dirdata/val_est_with_rates", replace
 
-			* Actual interest rate
-			gen ra = r_cf_smooth*.01
+		*************************************************************
+		* LOOP THROUGH 6 SCENARIOS                                 **
+		* Rate series: cf (Cleveland Fed), lw (Laubach-Williams)   **
+		* Growth adjustment: 0 (none), 0.5 (half), 1 (full)        **
+		*************************************************************
 
-			* Change in valuation due to change in interest rate
-			gen rb = F.r_cf_smooth*.01
+		foreach rate_series in cf lw {
+			foreach g_adj in 0 0.5 1 {
 
-			* LONG RUN GROWTH RATE
-				* In damodaran, equal to tbond rate
-				* May want to think about changing this
-				* For now, we will assume the growth rate smoothly declines by 1 percentage point over the time period
+				use "$dirdata/val_est_with_rates", replace
 
-				*gen ltga = ra
-				*gen ltgb = rb
-				gen ltga = r_cf_smooth*.01
-				gen ltgb = r_cf_smooth*.01
-				* Long term growth declines by half the decline of the interest rate
-				*replace ltgb = ltga + .5*(rb-ra)
+				* Set up file suffix for saving
+				if `g_adj' == 0 {
+					local g_suffix "nogch"
+				}
+				else if `g_adj' == 0.5 {
+					local g_suffix "halfgch"
+				}
+				else {
+					local g_suffix "fullgch"
+				}
 
-			* Equity risk premium
+				di _n "=============================================="
+				di "Running: `rate_series' rate series, `g_suffix' growth adjustment"
+				di "=============================================="
+
+				* Set interest rates based on series
+				if "`rate_series'" == "cf" {
+					gen ra = r_cf_smooth * .01
+					gen rb = F.r_cf_smooth * .01
+				}
+				else {
+					gen ra = r_lw_smooth * .01
+					gen rb = F.r_lw_smooth * .01
+				}
+
+				* Set long-term growth rates
+				gen ltga = ra
+				gen ltgb = ltga + `g_adj' * (rb - ra)
+
+				* Equity risk premium (same for both scenarios)
 				gen erpa = damo_erp
 				gen erpb = damo_erp
 
-		foreach j in a b  {
+				* Run valuation for scenarios a (current rate) and b (forward rate)
+				foreach j in a b {
 
-			* Generate required return
-			gen req_ret`j' = r`j' + erp`j'
+					* Required return
+					gen req_ret`j' = r`j' + erp`j'
 
-			* Earnings growth first year -- from year t to t+1
-			gen eg1 = earn_fy2/earn_fy1 - 1
+					* Earnings growth transition (3 years to converge to long-term)
+					gen eg1 = earn_fy2/earn_fy1 - 1
+					gen eg2 = ltg`j' + (2*(eg1-ltg`j'))/3
+					gen eg3 = ltg`j' + 1*(eg1-ltg`j')/3
+					gen eg4 = ltg`j'
 
-			* From t+1 to t+2
-			gen eg2 = ltg`j' + (2*(eg1-ltg`j'))/3
+					* Payout ratio transition (5 years to converge to long-term)
+					gen lt_payout = 1 - ltg`j'/roe
+					gen p1 = st_payout
+					gen p2 = st_payout - (st_payout-lt_payout)/4
+					gen p3 = p2 - (st_payout-lt_payout)/4
+					gen p4 = p3 - (st_payout-lt_payout)/4
+					gen p5 = p4 - (st_payout-lt_payout)/4
 
-			* From t+2 to t+3
-			gen eg3 = ltg`j' + 1*(eg1-ltg`j')/3
+					* Earnings projections
+					gen e1 = earn_fy1
+					gen e2 = earn_fy2
+					gen e3 = e2*(1+eg2)
+					gen e4 = e3*(1+eg3)
+					gen e5 = e4*(1+eg4)
 
-			* From t+3 to t+4
-			gen eg4 = ltg`j'
+					* Cash flows
+					gen cf1 = e1*p1
+					gen cf2 = e2*p2
+					gen cf3 = e3*p3
+					gen cf4 = e4*p4
+					gen cf5 = e5*p5
 
-			* Payouts
-			* Long Term Cash payout = 1 - long run growth rate / return on equity
-			gen lt_payout = 1 - ltg`j'/roe
+					* Terminal value (Gordon Growth Model)
+					gen eterm = (e5*(1+eg4)*lt_payout)/(req_ret`j'-ltg`j')
 
-			gen p1 = st_payout
-			gen p2 = st_payout - (st_payout-lt_payout)/4
-			gen p3 = p2 - (st_payout-lt_payout)/4
-			gen p4 = p3 - (st_payout-lt_payout)/4
-			gen p5 = p4 - (st_payout-lt_payout)/4
+					* Present value
+					gen val`j' = cf1/(1+req_ret`j') + cf2/((1+req_ret`j')^2) + cf3/((1+req_ret`j')^3) + cf4/((1+req_ret`j')^4) + cf5/((1+req_ret`j')^5) + eterm/((1+req_ret`j')^5)
 
-			gen e1 = earn_fy1
-			gen e2 = earn_fy2
-			gen e3 = e2*(1+eg2)
-			gen e4 = e3*(1+eg3)
-			gen e5 = e4*(1+eg4)
+					* Clean up intermediate variables
+					drop eg1 eg2 eg3 eg4 e1 e2 e3 e4 e5 lt_payout req_ret`j' eterm p1 p2 p3 p4 p5 cf1 cf2 cf3 cf4 cf5
 
-			gen cf1 = e1*p1
-			gen cf2 = e2*p2
-			gen cf3 = e3*p3
-			gen cf4 = e4*p4
-			gen cf5 = e5*p5
+				}
 
-			* Valuation of terminal value
-			* Implicitly assuming long run growth equal to interest rate
-			gen eterm = (e5*(1+eg4)*lt_payout)/(req_ret`j'-ltg`j')
-			* Value 1 - earnings divided by
+				* Calculate return from interest rate change
+				gen ret_int = valb/vala - 1
+				li year ret_int vala valb ra rb
 
-			gen val`j' = cf1/(1+req_ret`j') + cf2/((1+req_ret`j')^2) + cf3/((1+req_ret`j')^3) + cf4/((1+req_ret`j')^4) + cf5/((1+req_ret`j')^5) + eterm/((1+req_ret`j')^5)
+				ameans ret_int if year>=2002 & year<=2020, add(1)
 
-			drop eg1 eg2 eg3 eg4 e1 e2 e3 e4 e5 lt_payout req_ret`j' eterm p1 p2 p3 p4 p5 cf1 cf2 cf3 cf4 cf5
+				* Build cumulative index
+				gen ret_int_index = 1 if year==2002
+				replace ret_int_index = (L.ret_int_index)*(1 + L.ret_int) if year>=2003 & year<=2021
 
+				* Save results
+				keep year ret_int ret_int_index
+				save "$dirdata/r_save_`rate_series'_`g_suffix'", replace
+
+			}
 		}
 
-		* Generate interest rate return
-		gen ret_int = valb/vala - 1
-		li year ret_int vala valb ra rb
+		di _n "=============================================="
+		di "All 6 scenarios completed"
+		di "=============================================="
 
-		ameans ret_int if year>=2002 & year<=2020, add(1)
-
-		gen ret_int_index = 1 if year==2002
-		replace ret_int_index = (L.ret_int_index)*(1 + L.ret_int) if year>=2003 & year<=2021
-
-		*browse year ret_int ret_int_index damo_tbond
-
-	* Collapse
 }
 
 
