@@ -67,6 +67,15 @@ if $step_0==1 {
 
 	import excel using "$dirdata/r_data.xlsx", first
 
+
+	* Graph interest rates
+	* Replicate Shiller Graph 
+	twoway (connected laubach_williams_rstar year if year>=1980) (connected r_real_cf year if year>=1980), legend( label(1 "Laubach & Williams") label(2 "Cleveland Fed") position(6) )
+	
+	graph export graphs/r_star.png , replace 
+	
+
+
 	save "$dirdata/r_data", replace
 
 }
@@ -350,7 +359,12 @@ if $step_1==1 {
 				replace ret_int_index = (L.ret_int_index)*(1 + L.ret_int) if year>=2003 & year<=2021
 
 				* Save results
-				keep year ret_int ret_int_index
+
+				rename ret_int ret_int`rate_series'_`g_suffix'
+				rename ret_int_index ret_int_index`rate_series'_`g_suffix'
+
+				keep year ret_int`rate_series'_`g_suffix' ret_int_index`rate_series'_`g_suffix'
+
 				save "$dirdata/r_save_`rate_series'_`g_suffix'", replace
 
 			}
@@ -362,4 +376,39 @@ if $step_1==1 {
 
 }
 
+* Combine together the two preferred series 
+if $step2==1 {
 
+	use "$dirdata/r_save_lw_halfgch", replace
+
+	merge 1:1 year using  "$dirdata/r_save_cf_halfgch", nogen 
+
+	* Final Equity R-Return 
+	gen equ_rret = (ret_intcf_halfgch + ret_intlw_halfgch)/2
+
+	* Create different moving averages
+
+	ma_gen equ_rret, timevar(year) periods(5)
+
+	ma_gen equ_rret, timevar(year) periods(10)
+
+	rename equ_rret equ_rret1 
+
+	rename equ_rret_5ma equ_rret5
+
+	rename equ_rret_10ma equ_rret10
+
+	keep year equ_rret* 
+
+	* Replace the 10ma with leads and lags 
+
+	sort year 
+	tsset year 
+	replace equ_rret10 = f.equ_rret10 if equ_rret10==.
+	replace equ_rret10 = f.equ_rret10 if equ_rret10==.
+	replace equ_rret10 = L.equ_rret10 if equ_rret10==.
+	replace equ_rret10 = L.equ_rret10 if equ_rret10==.
+
+	save "$dirdata/ret_export", replace 
+
+}
