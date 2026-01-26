@@ -1,0 +1,24 @@
+Notes on Response to Referees
+
+The year 2021 yielded $16.2 trillion in aggregate capital gains on assets held by households in the United States — 94% of net national income, and an amount larger than wages, dividends, or interest income . While 2021 returns were un-
+usually large, economically signifcant gains have become increasingly common: over the past two decades, real asset appreciation averaged 20% of national income. 
+
+Existing research has explained the rise in asset values by secular changes in earnings and profits, driven by monooly rents, rtained earnings, intangible investment, and a shift in income to the corporate sector. The rise in capital gains in turn has been linked to a number of macroeconomic phenomena: an increase in household leverage prior to the Great Recession in response to elevated housing values, an increase in spending and local employment in response to stock market returns, and an increase in aggregate wealth. 
+
+The goal of this paper is to accurately measure the distribution of capital gains at the individual level, and explore how they are correlated across income, wealth, geography, and demographic groups. Understanding the causes of this increase in 
+
+
+
+
+
+A large body of research has found that capital gains have macroeconomic effects, distributional effects, etc. 
+
+Understanding the causes and consequences of capital gains is important because 
+
+Studying gains are important because 
+    - Consumption and macroeconomic effect of gains --- need to know who gets them! This also has implications for wealth effects of interest rates. 
+    - House price cycles --- who is exposed to these. 
+
+In this paper we study the implications of this rise in capital gain. We characterize the distribution of gains across income, age, and geography.  We compare the taxation of realized gains to unrealized. And finally, we estimate how they contribute towards broad measures of income inequality. 
+
+In this paper we study the `

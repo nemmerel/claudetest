@@ -1,0 +1,17 @@
+Review of QJE 42684-1
+
+Paper provides important evidence of the extent to which accounting for both realized and unrealized capital gains materially influences estimates of the income distribution.
+
+I recommend accepting the paper for publication QJE subject to revisions below.
+
+Formatting: The Appendix labeling and cross-references from the text need a thorough editing. Important detail in the Appendix not referenced in the text. Appendix B (Additional Figures) continues to label the figures as if the Figures as if they were part of Appendix A.  I request a review of the Appendix material to determine what is needed for the narrative and then a reference to that material from the appropriate place in the narrative.
+
+Tone: I request review for a more professional tone in a few places.  Modifiers like “massive” in the p.1 introduction are distracting in the setting of an academic journal.  Similar reaction to “…tangled together in an immense ownership web” on p.2. Might make sense to add the modifier “often” to the beginning of that same sentence “Business and real estate wealth is shrouded through opaque ownership structures…”. Sometimes they are and sometimes not. Future tense references to policies of the 2024 presidential candidates on pp.3-4 immediately date the paper and distract a current reader. 
+
+Content: 
+p.2 “…less than 20% of that was reported on tax returns” and p.10 “Figure 3: Primary tax forms estimating wealth and capital gains tax” – How should we think about capital gains in Trusts and Private Foundations in this context? Are they reflected here? Should they be?
+p.2 “We successfully trace 90% of total partnership assets to their ultimate holders”. This is an important contribution.  It would be helpful to the reader to see more on the methodology and supporting evidence here. I recommend adding material on this, even if only in the Appendix.
+p.3 “…while imposing homogeneous returns for owner and tenant occupied real estate, private equity, and pension wealth.” Please clarify – do you mean one single rate of return for all of these as a group or specific single rates of return for each of these components?
+p.37 “2. Capital gains contribute substantially to income inequality.” This statement needs to be tightened up in the context of the paper.  I believe you are making the point that “Accounting for both realized and unrealized capital gains materially increases estimates of income inequality.” 
+p. A.1 “2. Private corporate equities” – Does foreign asset reporting through the FATCA and FBAR regimes provide an opportunity to cross-validate the SZZ capitalization methods for these assets? See Johannesen et al (2023) “The Offshore World According to FATCA: New Evidence on Foreign Wealth in US Households” NBER Tax Policy & the Economy Vol. 38.
+

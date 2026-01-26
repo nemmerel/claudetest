@@ -1,0 +1,20 @@
+This is a very interesting paper that provides an in-depth analysis of the distribution of (realized and unrealized) capital gains in the United States. It touches on several timely issues, including the level of U.S. income inequality, returns heterogeneity, and the progressivity of the tax system, while improving upon earlier approaches. 
+
+The main contribution relative to prior work—most notably Larrimore et al.’s 2021 JPE paper—is the use of internal IRS data to refine estimates of unrealized gains by income group, leading to higher measured levels of Haig-Simons income inequality.
+
+I believe it is valuable to construct inequality measures that account for the large flow of “pure” capital gains (i.e., those in excess of corporate retained earnings). Before the 1980s, these gains were relatively small—sometimes slightly positive, sometimes slightly negative—so omitting them was not particularly consequential. Since then, however, they have become substantial, making their exclusion from national income a more serious limitation, at least for certain purposes.
+
+At the same time, the current draft lacks focus. It includes 26 exhibits, many with multiple panels, and a variety of different computations. A more streamlined version, focused on comparing national income inequality with Haig-Simons income inequality, could have a much greater impact. 
+
+The main limitation of the analysis is the lack of systematic data on how unrealized capital gains rates vary with income within asset classes. As a result, the construction of Haig-Simons income relies on strong assumptions. 
+
+Below, I outline three major areas for improvement:
+
+1) Refocus the paper on Haig-Simons income distributions. Other computations—such as those related to tax rates and returns heterogeneity—could be placed in an appendix or included as a final “applications” section that illustrates how Haig-Simons income alters perspectives on key issues.
+
+2) Strengthen the support for the assumption of homogeneous capital gains rates within asset classes. The credibility of the estimates depends on this assumption, and the authors should do much more to validate it. Perhaps data from the SCF could be used to test this hypothesis. The authors need to be creative here. There is also a need for more sensitivity analysis on this key issue. How do the results change with different assumptions on the rate of unrealized capital gains within asset class? 
+
+3) Clarify the differences from Larrimore et al. (JPE 2021) and reconcile the findings. The authors have access to much more and better data, including internal IRS data on businesses linked to individual owners. They should explain how this allows them to address limitations in the earlier study.
+
+4) A minor point: referring to the ratio of capital gains to wealth as “yield” (in equation 5) is confusing, as yield typically refers to flow returns, such as dividends/equity wealth.
+

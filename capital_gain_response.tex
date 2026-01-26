@@ -1,0 +1,292 @@
+\documentclass[12pt]{article}
+\newcommand{\eco}{econom\'\i a}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[left=1.6in,right=1.6in, top=1in,bottom=1in]{geometry}
+\usepackage{float}
+\usepackage{times}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{breqn}
+\usepackage{stackengine}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{pdflscape}
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+\pagestyle{fancy}   
+
+%\chead{\sc{\textcolor{red}{PRELIMINARY: DO NOT DISTRIBUTE}}}   
+\rhead{}
+\lhead{}
+
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\large\bfseries\sffamily}
+\titleformat*{\paragraph}{\bfseries\sffamily}
+\titleformat*{\subparagraph}{\bfseries\sffamily}
+
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+
+\begin{document}
+\title{ \sc{Haig-Simons Income\footnote{\baselineskip=11pt Many thanks to Many People.}}}
+%
+\author {Jacob A. Robbins\footnote{\baselineskip=11pt University of Illinois at Chicago, e-mail: jake.a.robbins@gmail.com}  }
+
+\date{\today}
+ \maketitle
+\thispagestyle{empty}
+ 
+
+ \begin{abstract}  
+TBD
+
+%Using internal IRS return data on the near universe of private business sales, this paper estimates the value and distribution of private businesses in the United States.  The aggregate value of private businesses is large: \$5 T for S-corps, \$10 T for partnerships, \$3 T for sole props, and \$5 T for private C corps. It is highly concentrated: about 50\% is owned by the top 1\%, 90\% by the top 10\%. Private business are valued at a discount to public corporations. There is significant heterogeneity in business value and returns across individuals. 
+
+\end{abstract}
+
+\vspace{50pt}
+%\vspace{90pt}
+Keywords: Business, inequality
+
+\vspace{0pt}
+JEL Classification: E12, E21, E52
+\vspace{10pt}
+
+\pagebreak
+\addtocounter{page}{-1}
+
+\newpage
+ 
+ \thispagestyle{fancy}
+ 
+  
+ \section{Capital gains and double counting}
+The Canberra group’s 2001 report\footnote{\citet{CanberraGroup2001}.} on the measurement of income in national accounts raises an important concern about whether the capital gains double count income. They write:
+ 
+ \begin{quote}
+ If the value of a share increases because of the increased performance of the company concerned, the increase in the share will be related to the increase in dividends expected in the coming years. To count both as income would be to count the same income flow in two periods.
+ \end{quote}
+This analysis, however, overlooks the fact that paying out dividends reduces the market value of the shares approximately one-to-one with payouts \citep{allen2003payout}. This is exactly the reason why stock prices fall on ex-dividend dates. The fact that dividend payments subtract from capital gains ensure there is no double counting of income: any future payout of dividends will be properly subtracted from future Haig-Simons income since shares prices decline on the ex-dividend date.\footnote{A similar argument to this was made in  \citet{larrimore2021recent}.} 
+
+To see this, consider following numerical example. There is a Lucas Tree that grows 1 fruit per year for five years, and no fruit afterwards. Each fruit will sell (with no uncertainty) for a market price of \$1, and the risk free real interest rate is 0\%. Given these assumptions, the no arbitrage price of the tree $P_t$ is \$5, the present discounted value of the fruit dividends. In addition, assuming no other income sources, the Haig-Simons income of whoever owns the tree is \textit{zero} every year, since the real interest rate is 0.\footnote{Haig-Simons income in this case equals dividends + capital gains. Every year the dividend is 1, and the capital gain is -1 since the value of the fruit tree declines ex-dividend date.} 
+
+\begin{table}[h!]
+    \centering
+    \caption{Haig-Simons Income from Lucas Tree: Base Case vs. Productivity Shock ($r=0$)}
+    \label{tab:lucas_tree_hs}
+    \begin{tabular}{l | c c c c c | c}
+        \hline
+        \textbf{Component} & \textbf{1} & \textbf{2} & \textbf{3} & \textbf{4} & \textbf{5} & \textbf{Total} \\
+        \\
+        \hline
+        \multicolumn{7}{c}{\textbf{Panel A: Base Case (1 Fruit/Year)}} \\
+        \hline 
+        \\
+        Dividends ($D_t$) & \$1 & \$1 & \$1 & \$1 & \$1 & \$5 \\
+        Capital Gains ($\Delta P_t$) & - \$1 & - \$1 & - \$1 & - \$1 & - \$1 & - \$5 \\
+ 
+         \\
+        \textbf{Haig-Simons Income ($D_t + \Delta P_t$)} & \textbf{\$0} & \textbf{\$0} & \textbf{\$0} & \textbf{\$0} & \textbf{\$0} & \textbf{\$0} \\
+        \hline 
+        \\
+          \multicolumn{7}{c}{\textbf{Panel B: Productivity Shock Case (2 Fruits/Year)}} \\
+        \hline
+        \\
+        Dividends ($D_t$) & \$2 & \$2 & \$2 & \$2 & \$2 & \$10 \\
+        Capital Gains ($\Delta P_t$) & + \$3 & - \$2 & - \$2 & - \$2 & - \$2 & - \$5 \\
+        \\
+        \textbf{Haig-Simons Income ($D_t + \Delta P_t$)} & \textbf{\$5} & \textbf{\$0} & \textbf{\$0} & \textbf{\$0} & \textbf{\$0} & \textbf{\$5} \\
+        \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Now assume there is an increase in fruit productivity, such that the tree produces \textit{two} fruits per year. Over the tree’s life, a total of 5 additional fruit will be produced, which will engender over the tree's life an increase in consumption of \$5. Does the Haig-Simons concept double count this income? 
+
+Haig-Simons income in year 1 equals current dividend income (\$2 from the fruit) plus the change in value of the tree, which increases from 5 at the beginning of the year to 8 at the end of the year. Total Haig-Simons income is thus \$5. In year’s 2-3, Haig-Simons income is 0: positive \$2 from fruit dividends, and minus \$2 from a decline in the tree’s value.  The total Haig-Simons income from increase in fruit productivity over the five years is thus exactly \$5. 
+
+\section{The secular decline of interest rates}
+
+Real interest rates have declined substantially since the 1980s, both in the United States \citep{eggertsson2019model} and globally \citep{rachel2019secular}, although they have recovered somewhat since Covid-19 \citep{carvalho2025underlying}. Lower interest rates generate higher asset prices (and positive capital gains), since future dividends are discounted at lower rates. 
+
+Capital gains driven by interest rate changes are potentially problematic to measures of Haig-Simons income that aim to capture changes in welfare, since asset owners are not necessarily better off with lower rates even if their asset values increase. A rentier owning a consul that yields a real income stream of \$100 per annum, who does not plan to sell, is neither better nor worse off if a decline in interest rates increases the security’s market value \citep{krugman2021pride,cochrane2020wealth}. Given the well documented secular decline in interest rates, it is open question to what extent the large magnitude of capital gains documented in CRW are due to this factor. 
+
+%Auclert (2019) shows that for a temporary change in interest rates, the welfare effect is proportional to a household’s unhedged interest rate exposure. It is thus important to quantify the effects of changes in long-term real interest rates on our results. 
+
+To begin to quantify this magnitude, Figure \ref{fig:r_star} shows the time series for two measures of real interest rates: the real interest rate on 10-year treasuries, using expected inflation from the Cleveland Fed, and the estimated natural rate of interest from \citet{holston2023measuring}. Both have decline precipitously since the 1980s. We note, however, that the majority of this decline occurred in the 1980s and 1990s, prior to the beginning in our sample period of 2002. From 2002-2021, the 10-year real treasury rate declined by 2.1\%, while the natural rate of interest declined by 1.0\%. 
+
+
+\begin{figure}[h]
+\centerfloat
+ \caption{Real interest rates}\label{fig:r_star}
+    \includegraphics[width=1\textwidth]{graphs/r_star.png}
+      \caption*{\footnotesize \textit{Notes:} Data from the Cleveland Fed and Laubach \& Williams. }
+\end{figure}
+
+%both the 10 year treasury yield, the estimated natural rate of interest from Laubach \& Williams, and the Federal Funds rate have declined precipitously since the 1980s. We note, however, the majority of this decline occurred in the 1980s and 1990s, prior to the beginning of our sample period in 2002. From 2002-2021, the 10-year treasury yield declined by 2.3\%, and the Laubach \& Williams estimate of the natural rate declined by 1.0\%. 
+
+%Capital gains driven by interest rate changes are potentially problematic to a Haig-Simons income measure, 
+
+%A second important concern about the use of capital gains as the part of the income measure is there has been a substantial decline in interest rates in the United States and globally since the 1980s, which in turn has contributed a dramatic rise in asset prices. 
+
+
+%The effect of interest rate changes on welfare, however, is not necessarily proportionate to the change in asset prices. A rentier owning a consul that yields a real income stream of \$100 per annum, who does not plan to sell, is neither better nor worse off if a decline in interest rates increases the security’s market value. \citet{auclert2019monetary} shows that for a temporary change in interest rates, the welfare effect is proportional to a household’s unhedged interest rate exposure. Fagereng et al. (2024) show for the general case that the change in welfare from an interest rate change is proportional to the present value of an individual’s net asset sales. If all changes in asset prices were from changes in expected returns, it would not be appropriate to include capital gains as part of the income measure.
+
+%The focus on this paper is on long-run movements in asset prices, and not short term fluctuations due to market movements. All estimates use five year moving averages of returns. It is an open question the extent to which these long-run movements in asset prices are driven by changes in earnings versus shifts in interest rates. 
+
+We  quantify the effects of the observed decline in interest rates on capital gains in equity markets through a discounted cash flow model of equity prices, through which declines in interest rates affect equity valuations through lower discount rates on future profits. By feeding in observed changes in interest rates into the valuation model, we can quantify the degree to which they have driven observed changes in valuations. 
+
+We model equity prices of the S\&P 500 using a multi-stage free-cash-flow to equity model in the spirit of \citet{damodaran2020equity} and Panigirtzoglou and Leoys (2005). Cash flows are defined as dividends plus net share repurchases, and are estimated for the five years using analysts’ earnings forecasts from I.B.E.S. 
+\begin{align}
+P_t(r^f_t) = \sum_{j=1}^{5} \frac{CF_{t+j}}{(1 + r^f_{t} + ERP_{t})^{j}} + \frac{\text{Terminal Value}_{t+5}}{(1 + r^f_{t} + ERP_{t})^{5}}
+\end{align}
+To estimate capital gains from interest rate changes, we calculate
+\begin{align}
+\text{Interest rate return}_t = \frac{P_t(r^f_{t+1})}{P_t(r^f_t)} - 1.
+\end{align}
+
+Table 2 shows the results of this exercise. From 2002-2001, the S\&P 500 index grew an average of 1.6\% per year due to declines in real interest rates. This growth rate is about one fourth the size of the average revaluation return of 6.14\% over the time period. In other words, interest rate changes were responsible for 25\% of aggregate capital gains in the stock market. This is similar in magnitude to the estimates of \citet{eeckhout2024value}, who estimate that in the US changes in dividends can explain 80\% of the rise in capital gains, while discount rate changes explain 20\%. 
+
+\begin{table}[h!]
+    \centering
+    \caption{Summary of S\&P 500 Growth and Revaluation Returns (2002-2021)}
+    \label{tab:results_three_col}
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Metric} & \textbf{Annual Value} & \textbf{\% S\&P 500 Growth} \\
+        \hline
+        \\
+          \multicolumn{3}{c}{\textbf{Panel A: $\Delta g = \frac{1}{2}\Delta r$}} \\
+        \hline
+        S\&P 500 Real Price Growth & $6.14\%$ & $ 100\%$ \\
+        Index Interest Rate Growth (C. Fed) & $1.58\%$ & $26\%$ \\
+        Index Interest Rate Growth (L\&Ws) & .77\% & $13\%$ \\
+        \\
+          \multicolumn{3}{c}{\textbf{Panel B: $\Delta g = 0$}} \\
+        \hline
+        Index Interest Rate Growth (C. Fed) & $2.3\%$ & $37\%$ \\
+        Index Interest Rate Growth (L\&Ws) & 1.1\% & $18\%$ \\
+        \\
+        \hline
+    \end{tabular}
+\end{table}
+
+\section{Discount rate changes}
+
+
+ %We then estimate the change in the value of the index every year that is due to the change in the risk free interest rate, measured as in Damodaran as the 10 year Treasury yield. The return on the index in year t, the interest rate revaluation return, equals 
+
+%These declines in the discount rate can only explain a small proportion of the variation of  
+%While a number of authors hav e
+
+%Fagareng shows that changes in discount rate may also be related to welfare.
+
+%In the case of Norway, where most capital gains are driven by housing, and which house prices have exploded, this is a problem. 
+
+%The finance literature shows that short and medium term asset prices are driven by discount rate changes. But they also show all long-term capital gains are driven by dividends, because they assume a stationary P/D ratio. Since real P is not stationary, it must then be the case that changes in D drive all changes in P. 
+
+More generally than interest rate changes, asset prices may be driven by variations in \textit{discount rates}, defined as anything that changes the price of an asset without affecting its present or future cash flow. In a series of papers, \citet{fagereng2025asset} and \citet{aguiar2024putting} show that discount rates affect welfare both through capital gains as well as changing  effective future returns. Under a number of strict assumptions\footnote{Such as: asset price changes are infitesimally small and thus do not affect asset allocations, asset price changes do not relax borrowing constraints, there is no change in the underlying risk of the asset, and wealth does not appear in the utility function.} the change in welfare from a discount rate change is proportional to the present value of an individual’s net asset sales, rather than their capital gains. 
+
+If discount rate changes were driving the majority of long-run revaluations, it would be inappropriate to include capital gains as part of an income measure. A historical example that comes close to this extreme case is Norway from 1994-2019. As documented in \citet{fagereng2025asset}, the majority of Norwegian wealth is held in real estate and fixed income, with public and private equities comprising only a modest share. Capital gains during the period were driven by a \textit{fourfold} increase in house prices while rents were constant. If individuals did not respond to the increase in house prices to invest in other assets or increase consumption, their change in welfare can be approximated by a net asset sale formula. 
+
+Given these theoretical results, it is important to determine the extent to which capital gains in the US driven by discount rate changes versus changes in earnings. The answer to this question in term depends on the time-horizon considered. We will argue that nearly \textit{all} long-run changes in asset values are driven by earnings changes, whereas most short term changes are driven by discount rate variation. Our application in this section will focus on public equity wealth, however similar reasoning can be applied to private business and housing assets.  
+
+The argument for the long-run dominance of earnings is straightforward.   Writing stock prices $P_t$ as the $P/E$ ratio times earnings,  since $P$ is non-stationary, while $P/E$ is stationary, it must be the case that variation in earnings has driven the long-run increase in $P$. Figure \ref{fig:shiller} shows long-run data on stock prices ($P$) and the present discounted value of earnings ($P^*$), updating the analysis of \citet{shiller1981stock} to the present day.\footnote{In this figure we use earnings, but the results are similar for dividends.} Figure \ref{fig:shiller} (b), which uses un-demeaned data, shows that the short and medium deviations of prices from earnings, while significant, pale in comparison to the common trend.  Over the entire time period, real prices increased by a factor of 22, driven by an 11 fold increase in earnings and a 2 fold increase in the price to earnings ratio.  
+
+% May want to do this with earnings 
+
+Figure \ref{fig:shiller} (a) replicates the original \citet{shiller1981stock} de-trended data, revealing the familiar excess volatility finding for short and medium term fluctuations: stock prices move around their long-term averages much more than an average of their ex-post realized future earnings, P*. 
+
+\begin{figure}[!tbp]
+\centerfloat
+  \subfloat[]{\includegraphics[width=.5\textwidth]{graphs/eshiller_2021.png}\label{fig:}}
+  \hfill
+  \subfloat[]{\includegraphics[width=.5\textwidth]{graphs/shiller_elundetrend_2021.png}\label{fig:nf}}
+  \caption{ Replication of \citet{shiller1981stock} (a)  Original detrended series (b)  Series with trend added back }\label{fig:shiller}
+\end{figure}
+
+In their empirical application, \citet{fagereng2025asset} are careful to study asset prices demeaned around a constant price to dividend ratio, correctly noting that the finance literature has shown the majority of these short and medium term deviations are due to discount rate changes. Elsewhere, however, they implicitly and explicitly claim that the majority of \textit{all} capital gains, inclusive of long-run changes, are driven by discount rate changes rather than earnings.\footnote{For example, ``...discount rate shocks account for most asset-price fluctuations''. ``“both at high frequencies and over long time horizons”.} They cite in support of this assertion the classic results of \citet{shiller1981stock} and \citet{campbell1988dividend}, however as noted above these sources use detrended data, and therefore have nothing to say about long-term price changes and discount rates. If anything, their assumption of a stationary $P/D$ ratio supports the notion that all long-run are due to earnings change. Other references cited in support of their argument of long-run discount rate supremacy also lack support. In particular,\footnote{Footnote 24 of \citet{aguiar2024putting}.} the citation of \citet{greenwald2025wealth} is misplaced because this work in fact shows that 70\% of long run changes in stock prices are due to cash flows and only 30\% due to discount rate changes. This finding is similar to that of \citet{eeckhout2024value}, who finds 80\% of the rise of US stock market value is due to earnings, and only 20\% due to changes in the discount rate. 
+
+When studying inequality, to ignore earnings-driven capital gains by asserting they are merely discount changes is to ignore the largest source of income for the top of the distribution. Nearly all of the members at the Forbes Billionaires list made their fortunes through capital gains versus accumulated labor and capital income. In addition, as shown in \citet{campbell2025value}, the rise in private business wealth was also driven by capital gains  
+
+%The existence of earnings-driven capital gains are particularly evident in an examination of the Forbes Billionaires list
+%Capital gains are 
+
+
+%Going beyond aggregates, an examination of the Forbes 400 reveals that the majority of major fortunes 
+
+
+%Norway during this period is unique in that the majority of \textit{long-run} capital gains were driven by changes in discount rates.  Generally the reverse will be true: since 
+
+%Given these facts, the correlation of welfare changes from discount rate changes and revaluations is only .2.\footnote{Technically the correlation is taken from demeaned revaluations, where price changes are driven only by discount rate changes.}
+
+%public equity comprises only 3\% of household wealth, and capital gains are driven by a large increase in house prices unrelated to changes in rents. The correlation of welfare changes from discount rate changes and capital gains is only .2. 
+
+%If in the future the valuations reverse, the capital losses will be reflected in measured income at the time, again this will not overturn the secular trend. 
+
+% in particular  In particular, Footnote 24 of \citet{aguiar2024putting} cites two sources that show either the exact opposite of their claims or are unrelated. In particular, the citation of \citet{greenwald2025wealth} is misplaced because they in fact show that 70\% of long run changes in stock prices are due to cash flows and only ~30\% due to discount rate changes. This result is similar to that of \citet{eeckhout2024value}, who finds 80\% of the rise of US stock market value is due to earnings, and only 20\% due to changes in the discount rate. Their citation of \citet{van2020duration} is also misplaced; this paper says nothing about the 
+
+%n support their arguments, however, two of the cited works are unrelated or show exactly the opposite. 
+
+%In addition, in citing references supporting that long-horizon asset price changes are driven by discount rates in footnote 24,  the cited works are unrelated or show exactly the opposite. In particular, he cites Greenwald et al., who shows that 70\% of long run changes in stock prices are due to cash flows and only  ~30\% due to discount rate changes. This finding similar to Eeckhout finds 80\% of the rise of US stock market value is due to earnings, and only 20\% due to changes in the discount rate. Fagarent also cite in the same context van Binsbergetn (2025), however this paper does not provide 
+
+%But as noted above, this literature \textit{does not} say anything about the long-run changes as it uses demeaned data.   
+
+%A more extreme version of this is elucidated in Fagareng. Beginning from the well-supported premise in the finance literature that the vast majority of changes in asset prices are due to changes in discount rates, they argue that capital gains due to changes in earnings are “knife edge cases”, and it is inappropriate to use a Haig-Simons income concept. 
+
+%In response, I will show that (i) Fagareng mis-apply the findings from the finance literature,  which demeans their data to eliminate the effects of long-run changes in cash flows (ii) the vast majority of long-run capital gains in US history have been due to changes in earnings, and not discount rates, since P/E ratios are stationary while earnings are not. 
+%In order to argue that changes in earnings can be largely ignored, Fagareng cite the standard finance results from Shiller (1981) and Campbell and Shiller (1988) that discount rates account for most asset price fluctuations. In Figure 1 (a) I replicate Shiller (1981)’s finding of excess volatility: stock prices P move around their long-term averages much more than an average of their ex-post realized future dividends, P*. Figure 1 is an exact replication of Figure 1 of Shiller (1981) --- and importantly, both P and P* are detrended by the average real growth of stock prices over the period. In other words, Shiller is implicitly excluding from his analysis long-run changes in stock prices and cash flows. He shows that stationary fluctuations in the price-dividend ratio around its long-run mean are primarily discount-rate news, and not that long-run changes in price levels are due to discount rate changes.  It is empirically invalid to apply these results to explain the secular level shifts in asset prices.  
+%In Figure (b), I extend Shiller’s analysis to 2021, and in addition add-back the constant growth trend. The figure shows that the short and medium deviations of prices from dividends, while significant, pale in comparison to the common stochastic trend.  Over the entire time period, real prices increased by a factor of 22, driven by an 11 fold increase in earnings and a 2 fold increase in the price to earnings ratio.  That is not to say that there are not extended periods of heightened valuations; in recent years PE ratios have risen to double their long run averages. If in the future the valuations reverse, the capital losses will be reflected in measured income at the time, again this will not overturn the secular trend. 
+
+
+
+\clearpage 
+
+\bibliographystyle{aea}
+\bibliography{References}
+
+
+\newpage
+\appendix
+
+\renewcommand{\theequation}{A.\arabic{equation}}
+\setcounter{equation}{0}
+\renewcommand*\thepage{A.\arabic{page}}
+\setcounter{page}{1}
+\renewcommand*\thetable{A.\arabic{table}}
+\setcounter{table}{0}
+\renewcommand*\thefigure{A.\arabic{figure}}
+\setcounter{figure}{0}
+
+\begin{center}
+	{\Large {\bf Online Appendix for  \\[1ex]  {\em The value of Private Business}}}
+	\vspace*{1cm}
+
+	{\large  Cole Campbell and Jacob A. Robbins }
+\end{center}
+
+
+\section{Capital gains and double counting}
+
+
+
+
+
+\end{document} 

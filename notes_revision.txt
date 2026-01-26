@@ -1,0 +1,136 @@
+Notes on Response to Referees
+
+## Literature on How Capital Gains Affect Individuals
+
+### Consumption out of Capital Gains
+
+**Di Maggio, Marco, Amir Kermani, and Kaveh Majlesi (2020).** "Stock Market Returns and Consumption." *Journal of Finance*, 75(6): 3175-3219.
+- Uses Swedish administrative data on household stock holdings
+- MPC out of capital gains: **23% for bottom 50%** of wealth distribution, **~3% for top 30%**
+- Buffer-stock households (financial wealth < 6 months income): MPC of **~40%**
+- Key finding: MPCs out of capital gains are significantly smaller than MPCs out of dividends
+
+**Baker, Malcolm, Stefan Nagel, and Jeffrey Wurgler (2007).** "The Effect of Dividends on Consumption." *Brookings Papers on Economic Activity*, 2007(1): 231-276.
+- MPC out of dividends: **75%**
+- MPC out of capital gains: **0-2%** (not significantly different from zero)
+- Explanation: Mental accounting - investors treat dividends and capital gains differently
+- Investors are far more likely to consume from dividends than capital gains
+
+**Chodorow-Reich, Gabriel, Plamen T. Nenov, and Alp Simsek (2021).** "Stock Market Wealth and the Real Economy: A Local Labor Market Approach." *American Economic Review*, 111(5): 1613-57.
+- Uses local labor market variation to identify stock wealth effects
+- MPC out of stock wealth: **3.2 cents per dollar per year**
+- Stock wealth gains increase employment/payroll in nontradable industries
+- A 20% increase in stock valuations increases aggregate labor bill by at least 1.7%
+
+### Saving Behavior and Capital Gains
+
+**Fagereng, Andreas, Martin Blomhoff Holm, Benjamin Moll, and Gisle Natvik (2019).** "Saving Behavior Across the Wealth Distribution: The Importance of Capital Gains." NBER Working Paper No. 26588.
+- Uses Norwegian administrative panel data
+- Net saving rates (excluding capital gains): approximately **constant across wealth distribution**
+- Gross saving rates (including capital gains): **increase markedly with wealth**
+- Key mechanism: "Saving by holding" - wealthy hold assets with persistent capital gains rather than selling to consume
+- Capital gains account for up to **80%** of Norway's rise in wealth-to-income ratio (1995-2015)
+- Challenges canonical models; consistent with portfolio adjustment frictions
+
+### Capital Gains and Retirement/Labor Supply
+
+**Hurd, Michael D. and Susann Rohwedder (2009).** "The Effect of Large Capital Gains or Losses on Retirement." In *Developments in the Economics of Aging*, University of Chicago Press.
+- Directly examines how capital gains/losses affect retirement timing
+
+**Coile, Courtney C. and Phillip B. Levine (2006).** "Bulls, Bears, and Retirement Behavior." *ILR Review*, 59(3): 408-429.
+- Stock market boom 1995-2000 significantly increased early retirement
+- Capital gains enabled workers to retire earlier than planned
+
+### Capital Gains and Entrepreneurship
+
+**Chodorow-Reich, Gabriel, Plamen Nenov, Vitor Santos, and Alp Simsek (2023).** "Stock Market Wealth and Entrepreneurship." SSRN Working Paper.
+- Stock market capital gains increase propensity to start firms
+- Mechanism: relaxing financial constraints
+- Effect concentrated in households with moderate financial wealth (not very wealthy)
+
+### Housing Capital Gains
+
+**Guren, Adam M., Alisdair McKay, Emi Nakamura, and Jón Steinsson (2021).** "Housing Wealth Effects: The Long View." *Review of Economic Studies*, 88(2): 669-707.
+- New time-varying estimates of housing wealth effect back to the 1980s
+- MPC out of housing wealth: **~2.7 cents per dollar**
+- Key finding: housing wealth elasticities were **not particularly large in the 2000s** — the housing boom/bust was driven by larger price movements, not a higher sensitivity of consumption to house prices
+- No significant boom-bust asymmetry in the housing wealth elasticity
+- Contradicts narrative that lax lending standards elevated the wealth effect in the 2000s
+
+**Aladangady, Amir (2017).** "Housing Wealth and Consumption: Evidence from Geographically-Linked Microdata." *American Economic Review*, 107(11): 3415-46.
+- $1 increase in home values → **$0.047 increase in spending** for homeowners
+- Negligible response for renters
+- Mechanism: loosened borrowing constraints (collateral channel)
+- Large responses concentrated among credit-constrained households
+
+**Case, Karl E., John M. Quigley, and Robert J. Shiller (2005, 2013).** "Comparing Wealth Effects: The Stock Market versus the Housing Market." *Advances in Macroeconomics* (2005); updated in *Economics Letters* (2013).
+- Estimated MPC out of housing wealth: **3-4 cents per dollar**
+- Housing wealth effects larger and more robust than stock wealth effects
+
+### Housing Capital Gains and the Great Financial Crisis
+
+**Mian, Atif and Amir Sufi (2011).** "House Prices, Home Equity-Based Borrowing, and the US Household Leverage Crisis." *American Economic Review*, 101(5): 2132-56.
+- Homeowners extracted **25 cents for every dollar increase in home equity**
+- Home equity-based borrowing added **$1.25 trillion** in household debt (2002-2008)
+- Borrowing strongest among younger and low credit score households
+- Borrowed funds used for real outlays (consumption)
+
+**Mian, Atif, Kamalesh Rao, and Amir Sufi (2013).** "Household Balance Sheets, Consumption, and the Economic Slump." *Quarterly Journal of Economics*, 128(4): 1687-1726.
+- Elasticity of consumption to housing net worth: **0.6 to 0.8**
+- Average MPC out of housing wealth: **5-7 cents per dollar**
+- Strong heterogeneity: poorer, more leveraged zip codes had significantly higher MPC
+- Consumer spending dropped sharply **before** the September 2008 banking crisis
+
+**Mian, Atif and Amir Sufi (2014).** *House of Debt: How They (and You) Caused the Great Recession.* University of Chicago Press.
+- Household debt doubled from 2000-2007 to $14 trillion
+- Home equity extraction rose from 2.3-3.8% of GDP (1993-97) to **11.5% of GDP** by 2005
+- When house prices fell, consumption financing disappeared → spending collapse → job losses
+- Argues failure to write down household debt was "the biggest policy mistake of the Great Recession"
+
+### Capital Gains Lock-in and Realization
+
+**Hines, James R. (2023).** "Capital Gains Realizations." NBER Working Paper No. 31059.
+- Higher tax rates encourage investors to defer capital gains realizations
+- Lock-in effect distorts investment decisions
+
+**Dammon, Robert M., Chester S. Spatt, and Harold H. Zhang (2001).** "Optimal Consumption and Investment with Capital Gains Taxes." *Review of Financial Studies*, 14(3): 583-616.
+- Capital gains taxes create trade-off between tax costs and diversification
+- Optimal equity allocation increases with age due to tax basis reset at death
+
+### Capital Gains and Wealth Inequality
+
+**Saez, Emmanuel and Gabriel Zucman (2016).** "Wealth Inequality in the United States since 1913." *Quarterly Journal of Economics*, 131(2): 519-578.
+- Capital gains are major driver of rising wealth inequality
+- ~27% of all wealth and ~41% of top 1% wealth is unrealized capital gains
+
+---
+
+## Key Summary: MPC out of Capital Gains
+
+| Study | Asset | Data | MPC out of Capital Gains |
+|-------|-------|------|--------------------------|
+| Baker, Nagel & Wurgler (2007) | Stock | US CEX/Brokerage | 0-2% |
+| Di Maggio et al. (2020) | Stock | Sweden | 3% (top 30%) to 23% (bottom 50%) |
+| Chodorow-Reich et al. (2021) | Stock | US regional | 3.2 cents/$ |
+| Fagereng et al. (2019) | All | Norway | Near zero (wealthy hold, don't consume) |
+| Guren et al. (2021) | Housing | US regional | ~2.7 cents/$ |
+| Aladangady (2017) | Housing | US micro | 4.7 cents/$ (homeowners) |
+| Case, Quigley & Shiller (2005) | Housing | US states | 3-4 cents/$ |
+| Mian, Rao & Sufi (2013) | Housing | US zip codes | 5-7 cents/$ |
+| Mian & Sufi (2011) | Housing | US counties | 25 cents/$ extracted as debt |
+
+---
+
+## Key Themes for Paper Revision
+
+1. **MPC out of capital gains is low** (0-5%), much lower than out of dividends or labor income
+2. **Strong heterogeneity**: Low-wealth/buffer-stock households have much higher MPC (~20-40%)
+3. **"Saving by holding"**: Wealthy accumulate through unrealized gains they don't consume
+4. **Mental accounting**: Households treat capital gains differently from dividends
+5. **Capital gains affect retirement timing**: Large gains enable early retirement
+6. **Capital gains relax financial constraints**: Enable entrepreneurship for moderate-wealth households
+7. **Lock-in effects**: Tax treatment discourages realization and distorts portfolios
+8. **Inequality driver**: Unrealized capital gains are major source of wealth concentration
+9. **Housing capital gains and borrowing**: Home equity gains enabled massive debt-financed consumption (25 cents per dollar extracted)
+10. **GFC mechanism**: Collapse in housing capital gains removed consumption financing → spending collapse → recession
+11. **Housing wealth effect is stable**: Guren et al. find the 2000s crisis was about larger price swings, not a larger wealth effect

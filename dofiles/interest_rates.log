@@ -23,55 +23,50 @@ Notes:
 
 . do interest_rates.do 
 
-. **********************************
-. * Estimate forward looking EPS. **
-. **********************************
+. *************************************************************
+. * Estimate Interest Rate Effects on Stock Price Valuations **
+. *************************************************************
 . 
 . 
 . clear all
 
-. 
 . set more off
 
 . 
-. global lochead "/Users/jar88/Downloads/newtest/claudetest"
+. * Load project paths
+. do "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/dofil
+> es/paths.do"
+
+. * paths.do - Define all project paths
+. * Run this at the start of each analysis do-file
+. 
+. global lochead "/Users/jar88/Dropbox/research_projects/revision_analysis/clau
+> detest"
 
 . global dirdata "$lochead/data"
 
 . global dirgraphs "$lochead/graphs"
 
-. 
-. 
-. cd "$dirdata"
-/Users/jar88/Downloads/newtest/claudetest/data
+. global dirdofiles "$lochead/dofiles"
 
 . 
+end of do-file
+
+. cd "$dirdata"
+/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data
+
 . 
 . set maxvar 50000
 
 
 . 
-. global step_00 = 0
-
+. 
 . global step_0 = 1
 
 . global step_1 = 1
 
 . global step_2 = 0
 
-. global step_3 = 0
-
-. global step_4 = 0
-
-. global step_5 = 0
-
-. global step_6 = 0
-
-. global step_7 = 0
-
-. global step_8 = 0
-
-. 
 . 
 . *****************************************
 . * IMPORT S&P 500 Constituent Data      **
@@ -120,13 +115,15 @@ Notes:
 .         rename ticker oftic
 . 
 .         save "$dirdata/sp500_dates", replace
-file /Users/jar88/Downloads/newtest/claudetest/data/sp500_dates.dta saved
-. 
-. 
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > sp500_dates.dta saved
 . 
 . }
 
-. 
+. *****************************************
+. * IMPORT r data                        **
+. *****************************************
 . if $step_0==1 {
 . 
 .         clear
@@ -134,342 +131,18 @@ file /Users/jar88/Downloads/newtest/claudetest/data/sp500_dates.dta saved
 .         import excel using "$dirdata/r_data.xlsx", first
 (16 vars, 46 obs)
 . 
-. 
-.         * Graph Interest Rates Over Time
-. 
 .         save "$dirdata/r_data", replace
-file /Users/jar88/Downloads/newtest/claudetest/data/r_data.dta saved
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_data.dta saved
 . 
 . }
 
 . 
-. 
-. ***************************************************
-. * REPLICATE SHILLER                              **
-. ***************************************************
-. if $step_0==1 {
-. 
-.         clear
-. 
-.         import excel using "$dirdata/shiller_import.xls", first
-(11 vars, 1,859 obs)
-. 
-.         tostring date, replace
-date was double now str7
-.         replace date = date + "0" if substr(date,-2,2)==".1"
-(155 real changes made)
-. 
-.         gen mdate = monthly(date,"YM")
-.         format mdate %tm
-. 
-.         gen month = month(dofm(mdate))
-.         gen year = year(dofm(mdate))
-. 
-.         * Keep only january
-.         keep if month==1
-(1,704 observations deleted)
-. 
-.                 * Get some numbers for returns
-.                 sort year
-.                 tsset year
-
-Time variable: year, 1871 to 2025
-        Delta: 1 unit
-. 
-.                 gen retp_real = F.index_real/index_real
-(1 missing value generated)
-.                 gen totp_real = F.tr_real/tr_real
-(1 missing value generated)
-. 
-.                 sum retp_real totp_real if year>=2002 & year<=2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-   retp_real |         20    1.061406    .1640309   .6276087   1.264855
-   totp_real |         20    1.082012    .1674008   .6435044   1.298481
-. 
-.         * Put everything in 1979 terms
-.                 sum cpi_index if year==1979
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-   cpi_index |          1        68.3           .       68.3       68.3
-.                 local base = r(mean)
-. 
-.                 gen rp = (sp_index / cpi_index) * `base'
-.                 gen rd = (div_index / cpi_index) * `base'
-. 
-.                 sum rp if year<=1979
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          rp |        109    71.58385    45.28309   22.15964   200.4326
-. 
-.         * Log
-.         gen lrp = log(rp)
-. 
-.         reg lrp year if year<=1979
-
-      Source |       SS           df       MS      Number of obs   =       109
--------------+----------------------------------   F(1, 107)       =    152.76
-       Model |  19.5391856         1  19.5391856   Prob > F        =    0.0000
-    Residual |  13.6860275       107  .127906799   R-squared       =    0.5881
--------------+----------------------------------   Adj R-squared   =    0.5842
-       Total |  33.2252131       108  .307640862   Root MSE        =    .35764
-
-------------------------------------------------------------------------------
-         lrp | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-        year |   .0134562   .0010887    12.36   0.000     .0112979    .0156145
-       _cons |  -21.79569   2.096065   -10.40   0.000    -25.95089   -17.64048
-------------------------------------------------------------------------------
-. 
-.         local growth_rate = _b[year]
-.         gen growth_rate = exp(`growth_rate')
-. 
-.         * Detrended values
-.         gen dp = rp / ((growth_rate)^(year-1979))
-.         gen dd = rd / ((growth_rate)^(year-1979))
-. 
-.         * Get Shiller gamma
-.         sum dp if year<=1979
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          dp |        109    133.4798    44.70761   55.78109   238.7481
-.         local t1 = r(mean)
-.         sum dd if year<=1979
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          dd |        109    6.116468    1.350965   3.485633    8.95561
-.         local t2 = r(mean)
-. 
-.         gen rbar = `t2'/`t1'
-.         gen gbar = 1/(1+rbar)
-. 
-.         line dp year if year<=1979
-. 
-.         * generate pstar
-.         gen pstar = `t1' if year==1979
-(154 missing values generated)
-.         gsort - year
-.         replace pstar = gbar*(pstar[_n-1] + dd) if year<1979
-(108 real changes made)
-. 
-.         sort year
-. 
-.         * Replicate Shiller Graph
-.         twoway (line dp year if year<=1979) (line pstar year if year<=1979), 
-> legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_replicate.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_replicate.png wri
-> tten in PNG format
-. 
-.         * Get undetrended
-.         gen udp = dp * ((growth_rate)^(year-1979))
-.         gen udps = pstar * ((growth_rate)^(year-1979))
-(46 missing values generated)
-. 
-.         * Undetrended Shiller
-.         twoway (line udp year if year<=1979) (line udps year if year<=1979), 
-> legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_undetrend.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_undetrend.png wri
-> tten in PNG format
-. 
-. 
-. }
-
-. 
-. 
-. ***************************************************
-. * EXTEND SHILLER TO 2021                         **
-. ***************************************************
-. if $step_0==1 {
-. 
-.         clear
-. 
-.         import excel using "$dirdata/shiller_import.xls", first
-(11 vars, 1,859 obs)
-. 
-.         tostring date, replace
-date was double now str7
-.         replace date = date + "0" if substr(date,-2,2)==".1"
-(155 real changes made)
-. 
-.         gen mdate = monthly(date,"YM")
-.         format mdate %tm
-. 
-.         gen month = month(dofm(mdate))
-.         gen year = year(dofm(mdate))
-. 
-.         * Keep only january
-.         keep if month==1
-(1,704 observations deleted)
-. 
-.         keep if  year<=2021
-(4 observations deleted)
-. 
-.         * Put everything in 2021
-.                 sum cpi_index if year==2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-   cpi_index |          1     261.582           .    261.582    261.582
-.                 local base = r(mean)
-. 
-.                 gen rp = (sp_index / cpi_index) * `base'
-.                 gen rd = (div_index / cpi_index) * `base'
-.                 gen re = (earn_index/cpi_index) * `base'
-. 
-.                 sum rp if year<=2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          rp |        151    591.7954    696.2958   84.86914   3793.749
-. 
-.         * Log
-.         gen lrp = log(rp)
-.         reg lrp year if year<=2021
-
-      Source |       SS           df       MS      Number of obs   =       151
--------------+----------------------------------   F(1, 149)       =    576.56
-       Model |   103.20828         1   103.20828   Prob > F        =    0.0000
-    Residual |  26.6718707       149  .179005844   R-squared       =    0.7946
--------------+----------------------------------   Adj R-squared   =    0.7933
-       Total |  129.880151       150  .865867673   Root MSE        =    .42309
-
-------------------------------------------------------------------------------
-         lrp | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
--------------+----------------------------------------------------------------
-        year |   .0189667   .0007899    24.01   0.000     .0174059    .0205275
-       _cons |  -31.01228   1.537518   -20.17   0.000    -34.05043   -27.97412
-------------------------------------------------------------------------------
-. 
-.         local growth_rate = _b[year]
-.         gen growth_rate = exp(`growth_rate')
-. 
-.         * Detrended values
-.         gen dp = rp / ((growth_rate)^(year-2021))
-.         gen dd = rd / ((growth_rate)^(year-2021))
-.         gen de = re / ((growth_rate)^(year-2021))
-. 
-.         * Get Shiller gamma
-.                 sum dp if year<=2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          dp |        151    1640.995    650.1685   652.2875   3793.749
-.                 local t1 = r(mean)
-.                 sum dd if year<=2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          dd |        151    63.65278    25.30761   32.65026   126.7976
-.                 local t2 = r(mean)
-. 
-.                 gen rbar = `t2'/`t1'
-.                 gen gbar = 1/(1+rbar)
-. 
-. 
-.         * generate pstar
-.         gen pstar = `t1' if year==2021
-(150 missing values generated)
-.         gsort - year
-.         replace pstar = gbar*(pstar[_n-1] + dd) if year<2021
-(150 real changes made)
-. 
-. 
-. 
-.         * Do the same for earnings
-. 
-.                         * Get Shiller gamma
-.                         sum dp if year<=2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          dp |        151    1640.995    650.1685   652.2875   3793.749
-.                         local t1 = r(mean)
-.                         sum de if year<=2021
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-          de |        151    108.4641    35.33774   18.98778   242.5353
-.                         local t2 = r(mean)
-. 
-.                         gen erbar = `t2'/`t1'
-.                         gen egbar = 1/(1+erbar)
-. 
-. 
-.                 * generate pstar
-.                 gen epstar = `t1' if year==2021
-(150 missing values generated)
-.                 gsort - year
-.                 replace epstar = egbar*(epstar[_n-1] + de) if year<2021
-(150 real changes made)
-. 
-.         sort year
-. 
-.         * Replicate Shiller Graph
-.         twoway (line dp year if year<=2021) (line pstar year if year<=2021), 
-> legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_2021.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_2021.png written 
-> in PNG format
-. 
-. 
-.         twoway (line dp year if year<=2021) (line epstar year if year<=2021),
->  legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/eshiller_2021.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/eshiller_2021.png written
->  in PNG format
-. 
-.         * Get undetrended
-.         gen udp = dp * ((growth_rate)^(year-2021))
-.         gen udps = pstar * ((growth_rate)^(year-2021))
-. 
-.         gen udeps = epstar * ((growth_rate)^(year-2021))
-. 
-.         * Undetrended Shiller
-.         twoway (line udp year if year<=2021) (line udps year if year<=2021), 
-> legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_undetrend_2021.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_undetrend_2021.pn
-> g written in PNG format
-. 
-.         twoway (line udp year if year<=2021) (line udeps year if year<=2021),
->  legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_eundetrend_2021.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_eundetrend_2021.p
-> ng written in PNG format
-. 
-. 
-.         gen ludp = log(udp)
-. 
-.         gen ludps = log(udps)
-. 
-.         gen ludeps = log(udeps)
-. 
-.         twoway (line ludp year if year<=2021) (line ludps year if year<=2021)
-> , legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_lundetrend_2021.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_lundetrend_2021.p
-> ng written in PNG format
-. 
-.         twoway (line ludp year if year<=2021) (line ludeps year if year<=2021
-> ), legend( label(1 "P") label(2 "P*")    )
-.         graph export "$dirgraphs/shiller_elundetrend_2021.png" , replace
-file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_elundetrend_2021.
-> png written in PNG format
-. 
-. 
-. }
-
 . 
 . 
 . **************************
-. * CRSP DATA.            **
+. * IMPORT CRSP           **
 . **************************
 . 
 . if $step_1==1 {
@@ -495,7 +168,9 @@ file /Users/jar88/Downloads/newtest/claudetest/graphs/shiller_elundetrend_2021.
 Duplicates in terms of oftic mdate
 . 
 .         save "$dirdata/crsp_clean", replace
-file /Users/jar88/Downloads/newtest/claudetest/data/crsp_clean.dta saved
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > crsp_clean.dta saved
 . 
 . 
 . }
@@ -516,16 +191,15 @@ file /Users/jar88/Downloads/newtest/claudetest/data/crsp_clean.dta saved
 . 
 . 
 .         save "$dirdata/crsp_ibes", replace
-file /Users/jar88/Downloads/newtest/claudetest/data/crsp_ibes.dta saved
-. 
-. 
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > crsp_ibes.dta saved
 . 
 . }
 
 . 
-. 
 . **************************
-. * Import IBES data.     **
+. * Analysis              **
 . **************************
 . 
 . if $step_1==1 {
@@ -597,7 +271,6 @@ file /Users/jar88/Downloads/newtest/claudetest/data/crsp_ibes.dta saved
 . 
 .         gen year = yofd(statpers)
 . 
-. 
 .         * Get the permno for CRSP match
 . 
 .         joinby ticker using "$dirdata/crsp_ibes",  unmatched(master)
@@ -628,11 +301,11 @@ file /Users/jar88/Downloads/newtest/claudetest/data/crsp_ibes.dta saved
 
     Result                      Number of obs
     -----------------------------------------
-    Not matched                        15,342
-        from master                    15,342  (_merge==1)
+    Not matched                        15,344
+        from master                    15,344  (_merge==1)
         from using                          0  (_merge==2)
 
-    Matched                           105,239  (_merge==3)
+    Matched                           105,237  (_merge==3)
     -----------------------------------------
 . 
 .         * Get S&P 500 constituents
@@ -661,10 +334,8 @@ file /Users/jar88/Downloads/newtest/claudetest/data/crsp_ibes.dta saved
 (355 real changes made)
 (4 real changes made)
 . 
-. 
 .                 keep if sp500==1
 (108,354 observations deleted)
-. 
 . 
 .                 gen mv = prc*shrout
 (514 missing values generated)
@@ -714,7 +385,9 @@ file /Users/jar88/Downloads/newtest/claudetest/data/crsp_ibes.dta saved
     -----------------------------------------
 . 
 .                 save "$dirdata/val_est", replace
-file /Users/jar88/Downloads/newtest/claudetest/data/val_est.dta saved
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > val_est.dta saved
 . 
 .                 use "$dirdata/val_est", replace
 . 
@@ -771,103 +444,153 @@ laubach_wi~r |          1    1.954427           .   1.954427   1.954427
 .                         replace r_lw_smooth = r_lw_smooth + `t3'
 (26 real changes made)
 . 
-.                 * LOOK THROUGH DIFFERENT INTEREST RATES
-. 
 .                 tsset year
 
 Time variable: year, 2000 to 2025
         Delta: 1 unit
 . 
-.                         * Payout rate, short term, based on average payouts
-.                         gen st_payout = .8914
+.                 * Common parameters
+.                         gen st_payout = .8914    // Short-term payout rate
+.                         gen roe = .175           // Return on equity
 . 
-.                         * Return on equity = long term average
-.                         gen roe = .175
+.                 save "$dirdata/val_est_with_rates", replace
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > val_est_with_rates.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > val_est_with_rates.dta saved
 . 
-.                         * Actual interest rate
-.                         gen ra = r_cf_smooth*.01
+.                 *************************************************************
+.                 * LOOP THROUGH 6 SCENARIOS                                 **
+.                 * Rate series: cf (Cleveland Fed), lw (Laubach-Williams)   **
+.                 * Growth adjustment: 0 (none), 0.5 (half), 1 (full)        **
+.                 *************************************************************
 . 
-.                         * Change in valuation due to change in interest rate
-.                         gen rb = F.r_cf_smooth*.01
-(1 missing value generated)
-. 
-.                         * LONG RUN GROWTH RATE
-.                                 * In damodaran, equal to tbond rate
-.                                 * May want to think about changing this
-.                                 * For now, we will assume the growth rate smo
-> othly declines by 1 percentage point over the time period
-. 
-.                                 *gen ltga = ra
-.                                 *gen ltgb = rb
-.                                 gen ltga = r_cf_smooth*.01
-.                                 gen ltgb = r_cf_smooth*.01
-.                                 * Long term growth declines by half the decli
-> ne of the interest rate
-.                                 *replace ltgb = ltga + .5*(rb-ra)
-. 
-.                         * Equity risk premium
-.                                 gen erpa = damo_erp
-(1 missing value generated)
-.                                 gen erpb = damo_erp
-(1 missing value generated)
-. 
-.                 foreach j in a b  {
-  2. 
-. 
-. 
-.                         * Generate required return
-.                         gen req_ret`j' = r`j' + erp`j'
+.                 foreach rate_series in cf lw {
+  2.                         foreach g_adj in 0 0.5 1 {
   3. 
-.                         * Earnings growth first year -- from year t to t+1
-.                         gen eg1 = earn_fy2/earn_fy1 - 1
+.                                 use "$dirdata/val_est_with_rates", replace
   4. 
-.                         * From t+1 to t+2
-.                         gen eg2 = ltg`j' + (2*(eg1-ltg`j'))/3
-  5. 
-.                         * From t+2 to t+3
-.                         gen eg3 = ltg`j' + 1*(eg1-ltg`j')/3
-  6. 
-.                         * From t+3 to t+4
-.                         gen eg4 = ltg`j'
-  7. 
-.                         * Payouts
-.                         * Long Term Cash payout = 1 - long run growth rate / 
-> return on equity
-.                         gen lt_payout = 1 - ltg`j'/roe
-  8. 
-.                         gen p1 = st_payout
-  9.                         gen p2 = st_payout - (st_payout-lt_payout)/4
- 10.                         gen p3 = p2 - (st_payout-lt_payout)/4
- 11.                         gen p4 = p3 - (st_payout-lt_payout)/4
- 12.                         gen p5 = p4 - (st_payout-lt_payout)/4
+.                                 * Set up file suffix for saving
+.                                 if `g_adj' == 0 {
+  5.                                         local g_suffix "nogch"
+  6.                                 }
+  7.                                 else if `g_adj' == 0.5 {
+  8.                                         local g_suffix "halfgch"
+  9.                                 }
+ 10.                                 else {
+ 11.                                         local g_suffix "fullgch"
+ 12.                                 }
  13. 
-.                         gen e1 = earn_fy1
- 14.                         gen e2 = earn_fy2
- 15.                         gen e3 = e2*(1+eg2)
- 16.                         gen e4 = e3*(1+eg3)
- 17.                         gen e5 = e4*(1+eg4)
- 18. 
-.                         gen cf1 = e1*p1
- 19.                         gen cf2 = e2*p2
- 20.                         gen cf3 = e3*p3
- 21.                         gen cf4 = e4*p4
- 22.                         gen cf5 = e5*p5
- 23. 
-.                         * Valuation of terminal value
-.                         * Implicitly assuming long run growth equal to intere
-> st rate
-.                         gen eterm = (e5*(1+eg4)*lt_payout)/(req_ret`j'-ltg`j'
-> )
- 24.                         * Value 1 - earnings divided by
-. 
-.                         gen val`j' = cf1/(1+req_ret`j') + cf2/((1+req_ret`j')
-> ^2) + cf3/((1+req_ret`j')^3) + cf4/((1+req_ret`j')^4) + cf5/((1+req_ret`j')^5
-> ) + eterm/((1+req_ret`j')^5)
- 25. 
-.                         drop eg1 eg2 eg3 eg4 e1 e2 e3 e4 e5 lt_payout req_ret
-> `j' eterm p1 p2 p3 p4 p5 cf1 cf2 cf3 cf4 cf5
+.                                 di _n "======================================
+> ========"
+ 14.                                 di "Running: `rate_series' rate series, `g
+> _suffix' growth adjustment"
+ 15.                                 di "======================================
+> ========"
+ 16. 
+.                                 * Set interest rates based on series
+.                                 if "`rate_series'" == "cf" {
+ 17.                                         gen ra = r_cf_smooth * .01
+ 18.                                         gen rb = F.r_cf_smooth * .01
+ 19.                                 }
+ 20.                                 else {
+ 21.                                         gen ra = r_lw_smooth * .01
+ 22.                                         gen rb = F.r_lw_smooth * .01
+ 23.                                 }
+ 24. 
+.                                 * Set long-term growth rates
+.                                 gen ltga = ra
+ 25.                                 gen ltgb = ltga + `g_adj' * (rb - ra)
  26. 
-.                 }
+.                                 * Equity risk premium (same for both scenario
+> s)
+.                                 gen erpa = damo_erp
+ 27.                                 gen erpb = damo_erp
+ 28. 
+.                                 * Run valuation for scenarios a (current rate
+> ) and b (forward rate)
+.                                 foreach j in a b {
+ 29. 
+.                                         * Required return
+.                                         gen req_ret`j' = r`j' + erp`j'
+ 30. 
+.                                         * Earnings growth transition (3 years
+>  to converge to long-term)
+.                                         gen eg1 = earn_fy2/earn_fy1 - 1
+ 31.                                         gen eg2 = ltg`j' + (2*(eg1-ltg`j')
+> )/3
+ 32.                                         gen eg3 = ltg`j' + 1*(eg1-ltg`j')/
+> 3
+ 33.                                         gen eg4 = ltg`j'
+ 34. 
+.                                         * Payout ratio transition (5 years to
+>  converge to long-term)
+.                                         gen lt_payout = 1 - ltg`j'/roe
+ 35.                                         gen p1 = st_payout
+ 36.                                         gen p2 = st_payout - (st_payout-lt
+> _payout)/4
+ 37.                                         gen p3 = p2 - (st_payout-lt_payout
+> )/4
+ 38.                                         gen p4 = p3 - (st_payout-lt_payout
+> )/4
+ 39.                                         gen p5 = p4 - (st_payout-lt_payout
+> )/4
+ 40. 
+.                                         * Earnings projections
+.                                         gen e1 = earn_fy1
+ 41.                                         gen e2 = earn_fy2
+ 42.                                         gen e3 = e2*(1+eg2)
+ 43.                                         gen e4 = e3*(1+eg3)
+ 44.                                         gen e5 = e4*(1+eg4)
+ 45. 
+.                                         * Cash flows
+.                                         gen cf1 = e1*p1
+ 46.                                         gen cf2 = e2*p2
+ 47.                                         gen cf3 = e3*p3
+ 48.                                         gen cf4 = e4*p4
+ 49.                                         gen cf5 = e5*p5
+ 50. 
+.                                         * Terminal value (Gordon Growth Model
+> )
+.                                         gen eterm = (e5*(1+eg4)*lt_payout)/(r
+> eq_ret`j'-ltg`j')
+ 51. 
+.                                         * Present value
+.                                         gen val`j' = cf1/(1+req_ret`j') + cf2
+> /((1+req_ret`j')^2) + cf3/((1+req_ret`j')^3) + cf4/((1+req_ret`j')^4) + cf5/(
+> (1+req_ret`j')^5) + eterm/((1+req_ret`j')^5)
+ 52. 
+.                                         * Clean up intermediate variables
+.                                         drop eg1 eg2 eg3 eg4 e1 e2 e3 e4 e5 l
+> t_payout req_ret`j' eterm p1 p2 p3 p4 p5 cf1 cf2 cf3 cf4 cf5
+ 53. 
+.                                 }
+ 54. 
+.                                 * Calculate return from interest rate change
+.                                 gen ret_int = valb/vala - 1
+ 55.                                 li year ret_int vala valb ra rb
+ 56. 
+.                                 ameans ret_int if year>=2002 & year<=2020, ad
+> d(1)
+ 57. 
+.                                 * Build cumulative index
+.                                 gen ret_int_index = 1 if year==2002
+ 58.                                 replace ret_int_index = (L.ret_int_index)*
+> (1 + L.ret_int) if year>=2003 & year<=2021
+ 59. 
+.                                 * Save results
+.                                 keep year ret_int ret_int_index
+ 60.                                 save "$dirdata/r_save_`rate_series'_`g_suf
+> fix'", replace
+ 61. 
+.                         }
+ 62.                 }
+
+==============================================
+Running: cf rate series, nogch growth adjustment
+==============================================
 (1 missing value generated)
 (1 missing value generated)
 (1 missing value generated)
@@ -892,12 +615,18 @@ Time variable: year, 2000 to 2025
 (1 missing value generated)
 (1 missing value generated)
 (1 missing value generated)
-. 
-. 
-.                 * Generate interest rate return
-.                 gen ret_int = valb/vala - 1
 (1 missing value generated)
-.                 li year ret_int vala valb ra rb
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
 
      +-------------------------------------------------------------+
      | year    ret_int       vala       valb         ra         rb |
@@ -934,8 +663,6 @@ Time variable: year, 2000 to 2025
      |-------------------------------------------------------------|
  26. | 2025          .          .          .   .0149985          . |
      +-------------------------------------------------------------+
-. 
-.                 ameans ret_int if year>=2002 & year<=2020, add(1)
 
     Variable |       Type          Obs        Mean       [95% conf. interval]
 -------------+---------------------------------------------------------------
@@ -944,20 +671,486 @@ Time variable: year, 2000 to 2025
              |   Harmonic           19    1.023031        1.021043   1.025027*
 -----------------------------------------------------------------------------
 * 1 was added to the variables prior to calculating the results.
-. 
-.                 gen ret_int_index = 1 if year==2002
 (25 missing values generated)
-.                 replace ret_int_index = (L.ret_int_index)*(1 + L.ret_int) if 
-> year>=2003 & year<=2021
 (19 real changes made)
-. 
-.                 browse year ret_int ret_int_index damo_tbond
-command browse is unrecognized
-r(199);
-. 
-.         * Collapse
-. }
-r(199);
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_cf_nogch.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_cf_nogch.dta saved
 
+==============================================
+Running: cf rate series, halfgch growth adjustment
+==============================================
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+
+     +-------------------------------------------------------------+
+     | year    ret_int       vala       valb         ra         rb |
+     |-------------------------------------------------------------|
+  1. | 2000   .0241967   1.91e+10   1.95e+10   .0421743   .0410873 |
+  2. | 2001   .0201588   2.02e+10   2.06e+10   .0410873   .0400003 |
+  3. | 2002   .0182017   1.92e+10   1.96e+10   .0400003   .0389132 |
+  4. | 2003   .0196687   2.12e+10   2.16e+10   .0389132   .0378262 |
+  5. | 2004   .0198036   2.58e+10   2.63e+10   .0378262   .0367392 |
+     |-------------------------------------------------------------|
+  6. | 2005   .0181033   2.61e+10   2.66e+10   .0367392   .0356521 |
+  7. | 2006   .0177948   3.59e+10   3.65e+10   .0356521   .0345651 |
+  8. | 2007   .0170943   3.71e+10   3.77e+10   .0345651   .0334781 |
+  9. | 2008   .0131733   2.99e+10   3.03e+10   .0334781    .032391 |
+ 10. | 2009   .0174207   2.22e+10   2.26e+10    .032391    .031304 |
+     |-------------------------------------------------------------|
+ 11. | 2010   .0150347   2.42e+10   2.46e+10    .031304    .030217 |
+ 12. | 2011   .0134863   2.19e+10   2.22e+10    .030217   .0291299 |
+ 13. | 2012   .0141056   2.27e+10   2.30e+10   .0291299   .0280429 |
+ 14. | 2013   .0155742   2.62e+10   2.66e+10   .0280429   .0269559 |
+ 15. | 2014   .0138274   2.40e+10   2.43e+10   .0269559   .0258688 |
+     |-------------------------------------------------------------|
+ 16. | 2015   .0133009   1.77e+10   1.80e+10   .0258688   .0247818 |
+ 17. | 2016   .0141877   2.19e+10   2.22e+10   .0247818   .0236948 |
+ 18. | 2017   .0152247   2.71e+10   2.75e+10   .0236948   .0226077 |
+ 19. | 2018   .0134219   2.22e+10   2.25e+10   .0226077   .0215207 |
+ 20. | 2019   .0148871   2.60e+10   2.64e+10   .0215207   .0204337 |
+     |-------------------------------------------------------------|
+ 21. | 2020    .016344   2.90e+10   2.95e+10   .0204337   .0193466 |
+ 22. | 2021   .0174107   3.85e+10   3.91e+10   .0193466   .0182596 |
+ 23. | 2022     .01342   3.11e+10   3.15e+10   .0182596   .0171726 |
+ 24. | 2023   .0163081   4.21e+10   4.28e+10   .0171726   .0160855 |
+ 25. | 2024   .0171299   5.36e+10   5.46e+10   .0160855   .0149985 |
+     |-------------------------------------------------------------|
+ 26. | 2025          .          .          .   .0149985          . |
+     +-------------------------------------------------------------+
+
+    Variable |       Type          Obs        Mean       [95% conf. interval]
+-------------+---------------------------------------------------------------
+     ret_int | Arithmetic           19    1.015824        1.014771   1.016877*
+             |  Geometric           19    1.015822         1.01477   1.016875*
+             |   Harmonic           19    1.015819        1.014768   1.016873*
+-----------------------------------------------------------------------------
+* 1 was added to the variables prior to calculating the results.
+(25 missing values generated)
+(19 real changes made)
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_cf_halfgch.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_cf_halfgch.dta saved
+
+==============================================
+Running: cf rate series, fullgch growth adjustment
+==============================================
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+
+     +-------------------------------------------------------------+
+     | year    ret_int       vala       valb         ra         rb |
+     |-------------------------------------------------------------|
+  1. | 2000   .0096801   1.91e+10   1.93e+10   .0421743   .0410873 |
+  2. | 2001   .0095423   2.02e+10   2.04e+10   .0410873   .0400003 |
+  3. | 2002   .0093527   1.92e+10   1.94e+10   .0400003   .0389132 |
+  4. | 2003   .0093381   2.12e+10   2.14e+10   .0389132   .0378262 |
+  5. | 2004    .009284   2.58e+10   2.60e+10   .0378262   .0367392 |
+     |-------------------------------------------------------------|
+  6. | 2005   .0091369   2.61e+10   2.63e+10   .0367392   .0356521 |
+  7. | 2006   .0090602   3.59e+10   3.62e+10   .0356521   .0345651 |
+  8. | 2007   .0089609   3.71e+10   3.74e+10   .0345651   .0334781 |
+  9. | 2008   .0087914   2.99e+10   3.02e+10   .0334781    .032391 |
+ 10. | 2009   .0090604   2.22e+10   2.24e+10    .032391    .031304 |
+     |-------------------------------------------------------------|
+ 11. | 2010   .0087317   2.42e+10   2.44e+10    .031304    .030217 |
+ 12. | 2011   .0085348   2.19e+10   2.21e+10    .030217   .0291299 |
+ 13. | 2012   .0086941   2.27e+10   2.29e+10   .0291299   .0280429 |
+ 14. | 2013   .0086686   2.62e+10   2.65e+10   .0280429   .0269559 |
+ 15. | 2014    .008445   2.40e+10   2.42e+10   .0269559   .0258688 |
+     |-------------------------------------------------------------|
+ 16. | 2015   .0083815   1.77e+10   1.79e+10   .0258688   .0247818 |
+ 17. | 2016   .0085267   2.19e+10   2.21e+10   .0247818   .0236948 |
+ 18. | 2017   .0084704   2.71e+10   2.73e+10   .0236948   .0226077 |
+ 19. | 2018   .0082252   2.22e+10   2.24e+10   .0226077   .0215207 |
+ 20. | 2019   .0083416   2.60e+10   2.62e+10   .0215207   .0204337 |
+     |-------------------------------------------------------------|
+ 21. | 2020   .0085829   2.90e+10   2.93e+10   .0204337   .0193466 |
+ 22. | 2021   .0084398   3.85e+10   3.88e+10   .0193466   .0182596 |
+ 23. | 2022   .0080875   3.11e+10   3.13e+10   .0182596   .0171726 |
+ 24. | 2023   .0082965   4.21e+10   4.24e+10   .0171726   .0160855 |
+ 25. | 2024   .0083314   5.36e+10   5.41e+10   .0160855   .0149985 |
+     |-------------------------------------------------------------|
+ 26. | 2025          .          .          .   .0149985          . |
+     +-------------------------------------------------------------+
+
+    Variable |       Type          Obs        Mean       [95% conf. interval]
+-------------+---------------------------------------------------------------
+     ret_int | Arithmetic           19    1.008768        1.008597   1.008939*
+             |  Geometric           19    1.008768        1.008597   1.008938*
+             |   Harmonic           19    1.008768        1.008597   1.008938*
+-----------------------------------------------------------------------------
+* 1 was added to the variables prior to calculating the results.
+(25 missing values generated)
+(19 real changes made)
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_cf_fullgch.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_cf_fullgch.dta saved
+
+==============================================
+Running: lw rate series, nogch growth adjustment
+==============================================
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+
+     +-------------------------------------------------------------+
+     | year    ret_int       vala       valb         ra         rb |
+     |-------------------------------------------------------------|
+  1. | 2000   .0186451   1.77e+10   1.80e+10   .0503165   .0497875 |
+  2. | 2001   .0148091   1.86e+10   1.89e+10   .0497875   .0492586 |
+  3. | 2002    .013002   1.77e+10   1.79e+10   .0492586   .0487296 |
+  4. | 2003   .0144191   1.94e+10   1.97e+10   .0487296   .0482007 |
+  5. | 2004   .0145699   2.35e+10   2.39e+10   .0482007   .0476717 |
+     |-------------------------------------------------------------|
+  6. | 2005   .0129928   2.37e+10   2.40e+10   .0476717   .0471428 |
+  7. | 2006   .0127267   3.25e+10   3.30e+10   .0471428   .0466138 |
+  8. | 2007   .0120926   3.35e+10   3.39e+10   .0466138   .0460849 |
+  9. | 2008    .008399   2.69e+10   2.72e+10   .0460849   .0455559 |
+ 10. | 2009    .012367   1.98e+10   2.01e+10   .0455559    .045027 |
+     |-------------------------------------------------------------|
+ 11. | 2010   .0102062   2.16e+10   2.18e+10    .045027    .044498 |
+ 12. | 2011   .0088018   1.95e+10   1.97e+10    .044498   .0439691 |
+ 13. | 2012   .0093307   2.01e+10   2.02e+10   .0439691   .0434401 |
+ 14. | 2013   .0107482   2.31e+10   2.33e+10   .0434401   .0429112 |
+ 15. | 2014   .0091624   2.11e+10   2.13e+10   .0429112   .0423822 |
+     |-------------------------------------------------------------|
+ 16. | 2015   .0086843   1.55e+10   1.57e+10   .0423822   .0418533 |
+ 17. | 2016   .0094761   1.91e+10   1.93e+10   .0418533   .0413243 |
+ 18. | 2017   .0104908   2.35e+10   2.37e+10   .0413243   .0407954 |
+ 19. | 2018   .0088603   1.93e+10   1.94e+10   .0407954   .0402664 |
+ 20. | 2019   .0102171   2.24e+10   2.26e+10   .0402664   .0397375 |
+     |-------------------------------------------------------------|
+ 21. | 2020   .0115264   2.48e+10   2.50e+10   .0397375   .0392085 |
+ 22. | 2021   .0126019   3.27e+10   3.32e+10   .0392085   .0386796 |
+ 23. | 2022   .0089117   2.65e+10   2.68e+10   .0386796   .0381506 |
+ 24. | 2023   .0115986   3.56e+10   3.60e+10   .0381506   .0376217 |
+ 25. | 2024    .012376   4.51e+10   4.57e+10   .0376217   .0370927 |
+     |-------------------------------------------------------------|
+ 26. | 2025          .          .          .   .0370927          . |
+     +-------------------------------------------------------------+
+
+    Variable |       Type          Obs        Mean       [95% conf. interval]
+-------------+---------------------------------------------------------------
+     ret_int | Arithmetic           19    1.010951        1.009999   1.011904*
+             |  Geometric           19    1.010949        1.009998   1.011902*
+             |   Harmonic           19    1.010948        1.009997     1.0119*
+-----------------------------------------------------------------------------
+* 1 was added to the variables prior to calculating the results.
+(25 missing values generated)
+(19 real changes made)
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_lw_nogch.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_lw_nogch.dta saved
+
+==============================================
+Running: lw rate series, halfgch growth adjustment
+==============================================
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+
+     +-------------------------------------------------------------+
+     | year    ret_int       vala       valb         ra         rb |
+     |-------------------------------------------------------------|
+  1. | 2000   .0117193   1.77e+10   1.79e+10   .0503165   .0497875 |
+  2. | 2001   .0097981   1.86e+10   1.88e+10   .0497875   .0492586 |
+  3. | 2002   .0088606   1.77e+10   1.79e+10   .0492586   .0487296 |
+  4. | 2003   .0095644   1.94e+10   1.96e+10   .0487296   .0482007 |
+  5. | 2004   .0096309   2.35e+10   2.37e+10   .0482007   .0476717 |
+     |-------------------------------------------------------------|
+  6. | 2005   .0088174   2.37e+10   2.39e+10   .0476717   .0471428 |
+  7. | 2006   .0086713   3.25e+10   3.28e+10   .0471428   .0466138 |
+  8. | 2007   .0083361   3.35e+10   3.38e+10   .0466138   .0460849 |
+  9. | 2008   .0064613   2.69e+10   2.71e+10   .0460849   .0455559 |
+ 10. | 2009   .0085112   1.98e+10   2.00e+10   .0455559    .045027 |
+     |-------------------------------------------------------------|
+ 11. | 2010   .0073547   2.16e+10   2.18e+10    .045027    .044498 |
+ 12. | 2011   .0066079   1.95e+10   1.97e+10    .044498   .0439691 |
+ 13. | 2012   .0069205   2.01e+10   2.02e+10   .0439691   .0434401 |
+ 14. | 2013    .007623   2.31e+10   2.33e+10   .0434401   .0429112 |
+ 15. | 2014   .0067779   2.11e+10   2.12e+10   .0429112   .0423822 |
+     |-------------------------------------------------------------|
+ 16. | 2015   .0065274   1.55e+10   1.56e+10   .0423822   .0418533 |
+ 17. | 2016   .0069673   1.91e+10   1.92e+10   .0418533   .0413243 |
+ 18. | 2017   .0074609   2.35e+10   2.36e+10   .0413243   .0407954 |
+ 19. | 2018    .006586   1.93e+10   1.94e+10   .0407954   .0402664 |
+ 20. | 2019   .0072985   2.24e+10   2.26e+10   .0402664   .0397375 |
+     |-------------------------------------------------------------|
+ 21. | 2020    .008022   2.48e+10   2.50e+10   .0397375   .0392085 |
+ 22. | 2021   .0085197   3.27e+10   3.30e+10   .0392085   .0386796 |
+ 23. | 2022   .0065911   2.65e+10   2.67e+10   .0386796   .0381506 |
+ 24. | 2023   .0079912   3.56e+10   3.59e+10   .0381506   .0376217 |
+ 25. | 2024   .0083914   4.51e+10   4.55e+10   .0376217   .0370927 |
+     |-------------------------------------------------------------|
+ 26. | 2025          .          .          .   .0370927          . |
+     +-------------------------------------------------------------+
+
+    Variable |       Type          Obs        Mean       [95% conf. interval]
+-------------+---------------------------------------------------------------
+     ret_int | Arithmetic           19    1.007737        1.007234   1.008239*
+             |  Geometric           19    1.007736        1.007234   1.008239*
+             |   Harmonic           19    1.007736        1.007234   1.008238*
+-----------------------------------------------------------------------------
+* 1 was added to the variables prior to calculating the results.
+(25 missing values generated)
+(19 real changes made)
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_lw_halfgch.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_lw_halfgch.dta saved
+
+==============================================
+Running: lw rate series, fullgch growth adjustment
+==============================================
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+(1 missing value generated)
+
+     +-------------------------------------------------------------+
+     | year    ret_int       vala       valb         ra         rb |
+     |-------------------------------------------------------------|
+  1. | 2000   .0049207   1.77e+10   1.78e+10   .0503165   .0497875 |
+  2. | 2001     .00486   1.86e+10   1.87e+10   .0497875   .0492586 |
+  3. | 2002   .0047723   1.77e+10   1.78e+10   .0492586   .0487296 |
+  4. | 2003   .0047788   1.94e+10   1.95e+10   .0487296   .0482007 |
+  5. | 2004   .0047631   2.35e+10   2.36e+10   .0482007   .0476717 |
+     |-------------------------------------------------------------|
+  6. | 2005   .0046956   2.37e+10   2.39e+10   .0476717   .0471428 |
+  7. | 2006   .0046669   3.25e+10   3.27e+10   .0471428   .0466138 |
+  8. | 2007   .0046246   3.35e+10   3.36e+10   .0466138   .0460849 |
+  9. | 2008    .004539   2.69e+10   2.71e+10   .0460849   .0455559 |
+ 10. | 2009   .0047018   1.98e+10   1.99e+10   .0455559    .045027 |
+     |-------------------------------------------------------------|
+ 11. | 2010    .004532   2.16e+10   2.17e+10    .045027    .044498 |
+ 12. | 2011   .0044328   1.95e+10   1.96e+10    .044498   .0439691 |
+ 13. | 2012   .0045319   2.01e+10   2.02e+10   .0439691   .0434401 |
+ 14. | 2013   .0045309   2.31e+10   2.32e+10   .0434401   .0429112 |
+ 15. | 2014   .0044149   2.11e+10   2.12e+10   .0429112   .0423822 |
+     |-------------------------------------------------------------|
+ 16. | 2015    .004389   1.55e+10   1.56e+10   .0423822   .0418533 |
+ 17. | 2016   .0044812   1.91e+10   1.92e+10   .0418533   .0413243 |
+ 18. | 2017   .0044621   2.35e+10   2.36e+10   .0413243   .0407954 |
+ 19. | 2018   .0043315   1.93e+10   1.93e+10   .0407954   .0402664 |
+ 20. | 2019   .0044092   2.24e+10   2.25e+10   .0402664   .0397375 |
+     |-------------------------------------------------------------|
+ 21. | 2020   .0045565   2.48e+10   2.49e+10   .0397375   .0392085 |
+ 22. | 2021   .0044883   3.27e+10   3.29e+10   .0392085   .0386796 |
+ 23. | 2022   .0042908   2.65e+10   2.66e+10   .0386796   .0381506 |
+ 24. | 2023   .0044248   3.56e+10   3.57e+10   .0381506   .0376217 |
+ 25. | 2024   .0044551   4.51e+10   4.53e+10   .0376217   .0370927 |
+     |-------------------------------------------------------------|
+ 26. | 2025          .          .          .   .0370927          . |
+     +-------------------------------------------------------------+
+
+    Variable |       Type          Obs        Mean       [95% conf. interval]
+-------------+---------------------------------------------------------------
+     ret_int | Arithmetic           19    1.004559        1.004492   1.004626*
+             |  Geometric           19    1.004559        1.004492   1.004626*
+             |   Harmonic           19    1.004559        1.004492   1.004626*
+-----------------------------------------------------------------------------
+* 1 was added to the variables prior to calculating the results.
+(25 missing values generated)
+(19 real changes made)
+(file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_lw_fullgch.dta not found)
+file
+    /Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/data/
+    > r_save_lw_fullgch.dta saved
+. 
+.                 di _n "=============================================="
+
+==============================================
+.                 di "All 6 scenarios completed"
+All 6 scenarios completed
+.                 di "=============================================="
+==============================================
+. 
+. }
+
+. 
+. 
+. 
 end of do-file
-r(199);

@@ -1,0 +1,26 @@
+I think this paper could be a valuable contribution but it isn't very convincing in it's current form. I've organized this report with 3 paragraphs describing what I see as the biggest issue, followed by 5 more minor comments. 
+
+The one big issue:
+
+The authors estimate total capital gains with a three-step procedure. As far as I can tell, setps 1 and 2 pretty closely follow the existing literature, including the authors' prior paper on private business valuation. Most of the value add is in step 3, when they multiply estimated wealth by asset class specific returns. My read of the paper and the appendix is that there is a significant effort to convince us that they've adequately done steps 1 and 2, but they've provided very little evidence to support their methods for step 3. 
+
+The best available methods for estimating the distribution of wealth are very noisy. The tax data doesn't provide details of anyone's stock and bond portfolio, the value of private businesses they own, and for C-corps and partnerships, we don't know their ownership shares of those businesses. Estimating wealth involves very strong assumptions about the relationship between observed capital income flows, capital asset value, and individual ownership shares. This exercise essentially takes these noisey estimates of wealth and multiplies them by coarse(?) noisey(?) estimates of asset class specific returns. For this reason, I would like to see much more sensitivity analysis: how much would the results change with different capitalization factors or different asset-class specific returns? 
+
+I would also like to see a comparison of the assumed rate of return and the year over year change in wealth by asset category. E.g. if the real housing price index grows by 5% for a specific zipcode, then how does that relate to the inflation adjusted property tax assessed values in that zipcode? I'm particularly interested in ways you can shed light on the assumption of homogenous returns for private business: across the income distribution and across capitalization rates, what is the relationship between the change in estimated value of business holdings from t to t+1 and the assumed rate of return at t? Then summing across wealth categories, what is the implied savings rate given the change in wealth and the assumed rates of return? How does the implied variation in the savings rate across the income distribution compare with published estimates? 
+
+Smaller issues:
+
+Related to the request above for examining assumed rates of return for private business, I'd like to see more discussion of the combined assumptions of heterogeneous capitalization rates and homogenous returns for private business. If I have assets with very different PE ratios, should I expect their returns to be equal? 
+
+Section 2.3.5 is incomplete. It describes how partnership values are determined, but it doesn't explain how that is mapped to ownership by individuals. Do you use pro-rata profit/loss? Do you follow one of Michael Love's methods?  
+
+The appendix figures provide almost no documentation and use unfamiliar abbreviations. I have no idea what I'm looking at. Figure A.20 and A.21 each have two figures that seem to show the same thing with different lists of industries. Why are services excluded from the top figure in each? 
+
+What do you do with partnerships that just hold financial assets and only report flow through income on schedule K? Do you value the passthrough, or the capital income flows reported by the individual? If you value the passthrough, do you subtract the capital income flows on the k-1 from amounts reported on the f1040? 
+
+The authors defense of including capital gains in Haig-Simons income is a bit under-baked. One issue that the authors don't address is double-counting. The Canberra report (2001, linked below) sums up the issue well: “If the value of a share increases because of the increased performance of the company concerned, the increase in the share will be related to the increase in dividends expected in the coming years. To count both as income would be to count the same income flow in two periods.” The authors don't address this issue, instead focusing on arguments that capital gains may not be driven by interest rates, ignoring other concerns. 
+
+Canberra Report:
+https://www.lisdatacenter.org/wp-content/uploads/canberra_report.pdf
+David Splinter brings up the same concern here:
+https://www.davidsplinter.com/BillionaireTaxRate.pdf
