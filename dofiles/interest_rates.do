@@ -72,7 +72,7 @@ if $step_0==1 {
 	* Replicate Shiller Graph 
 	twoway (connected laubach_williams_rstar year if year>=1980) (connected r_real_cf year if year>=1980), legend( label(1 "Laubach & Williams") label(2 "Cleveland Fed") position(6) )
 	
-	graph export "$dirgraphs/r_star.png" , replace
+	graph export "$dirgraphs/r_star.png" , replace 
 	
 
 
@@ -377,7 +377,7 @@ if $step_1==1 {
 }
 
 * Combine together the two preferred series 
-if $step_2==1 {
+if $step2==1 {
 
 	use "$dirdata/r_save_lw_halfgch", replace
 
