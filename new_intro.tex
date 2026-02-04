@@ -1,0 +1,176 @@
+\documentclass[12pt]{article}
+\newcommand{\eco}{econom\'\i a}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[left=1.6in,right=1.6in, top=1in,bottom=1in]{geometry}
+\usepackage{float}
+\usepackage{times}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{breqn}
+\usepackage{stackengine}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{pdflscape}
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+\pagestyle{fancy}   
+
+%\chead{\sc{\textcolor{red}{PRELIMINARY: DO NOT DISTRIBUTE}}}   
+\rhead{}
+\lhead{}
+
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\large\bfseries\sffamily}
+\titleformat*{\paragraph}{\bfseries\sffamily}
+\titleformat*{\subparagraph}{\bfseries\sffamily}
+
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{lemma}{Lemma}
+
+
+\begin{document}
+\title{ \sc{Haig-Simons Income\footnote{\baselineskip=11pt Many thanks to Many People.}}}
+%
+\author {Jacob A. Robbins\footnote{\baselineskip=11pt University of Illinois at Chicago, e-mail: jake.a.robbins@gmail.com}  }
+
+\date{\today}
+ \maketitle
+\thispagestyle{empty}
+ 
+
+ \begin{abstract}  
+TBD
+
+%Using internal IRS return data on the near universe of private business sales, this paper estimates the value and distribution of private businesses in the United States.  The aggregate value of private businesses is large: \$5 T for S-corps, \$10 T for partnerships, \$3 T for sole props, and \$5 T for private C corps. It is highly concentrated: about 50\% is owned by the top 1\%, 90\% by the top 10\%. Private business are valued at a discount to public corporations. There is significant heterogeneity in business value and returns across individuals. 
+
+\end{abstract}
+
+\vspace{50pt}
+%\vspace{90pt}
+Keywords: Business, inequality
+
+\vspace{0pt}
+JEL Classification: E12, E21, E52
+\vspace{10pt}
+
+\pagebreak
+\addtocounter{page}{-1}
+
+\newpage
+ 
+ \thispagestyle{fancy}
+ 
+  
+ \section{Introduction}
+
+The year 2021 yielded \$16.2 trillion in aggregate capital gains on assets held by households in the United States — 94\% of net national income, and an amount larger than wages, dividends, or interest income. While 2021 returns were unusually large, economically signifcant gains have become increasingly common: over the past two decades, real asset appreciation averaged 20\% of national income. The rise of capital gains presents challenges for both  macroeconomic accounting, where capital gains are not included in national income, and taxation, where capital gains are uniquely subject to a realization rule (they are taxed only when assets are sold). Capital gains are particularly prevelant amoung the wealthy, and have been the subject of numerous recent policy proposals.\footnote{These include recent Republican proposals to exempt owner-occupied housing from gains and index gains to inflation, as well as Democratic proposals to tax unrealized capital gains and eliminated the step-up basis at death.}
+
+Recent scholarship has explained the rise in asset values by secular changes in earnings and profits \citep{atkeson2025reconciling}, driven by monopoly rents \citep{eeckhout2024value,eggertsson2018kaldor}, retained earnings, intangible investment \citep{corrado2022intangible}, a shift in income to the corporate sector \citep{greenwald2025wealth}, and a rise in free-cash flow relative to earnings \citep{atkeson2026macroeconomic}. The rise in capital gains have in turn been linked to widespread macroeconomic consequences: higher spending and local employment in response to stock market returns \citep{chodorow2021stock}, greater household wealth \citep{saez2016wealth}, and elevated leverage prior to the Great Recession \citep{mian2022house}. Less is known, however, on \textit{who} receives the gains--- which shapes not only the strength of such aggregate effects but also directly affects measures of the income and wealth distribution.  
+
+% We note that most measures of income inequality, including the DINAs, do not include capital gains as part of their income measure.
+
+The primary goal of this paper is to estimate the distribution of capital gains by asset class at the individual level, and quantify their relationship with income, wealth, realized capital gains, and demographic groups. We then apply our new estimates to three key policy-relevant questions: how capital gains affect measures of income inequality, the effective tax rate on capital gains and comprehensive income, and the impact of gains on wealth inequality. 
+
+%We will then study how capital gains affect measures of income inequality, tax progressivity, and wealth inequality. 
+
+We do so using internal tax data from 2002-2021. The advantage of tax data is its comprehensiveness, spanning the entire income and wealth distribution. The disadvantage is that only realized sales of assets directly show up on tax forms, which are only a small fraction of total appreciation (the sum of unrealized and realized). Prior research has found only about 1/3rd of the stock of capital gains have been realized.\footnote{See \citet{msall2025never} for Norway, \citet{fox2025role} and \citet{sabelhaus2025taxing} for the United States.}
+
+To estimate total (unrealized and realized) gains at the individual level, we use a three step procedure: (i) link individuals to their specific portfolio holdings (ii) capitalize income (using heterogenoeus capitalization factors when available) to estimate wealth (iii) estimate capital appreciation by multiplying wealth by asset class specific returns (using heterogeneous returns when available). In doing so, we exploit never before used tax forms, new data sources, and improved estimation techniques to provide the most accurate available measures of wealth and capital gains at the individual level. We highlight three innovations here: (i) we use techniques from the network economic literature to better track partnership wealth through network chains of ownership, which allows us to trace 90\% of partnership assets to their ultimate owners (ii) we use never before used tax forms to link 100\% of rental real estate assets to their ultimate owner, which allows for a more accurate estimate of real estate wealth and capital gains (iii) we use a new data source on private business sales to better estimate business valuations and capital gains. 
+
+We document several new empirical facts. First, comparing taxable realized gains and aggregate revaluations, we find less than 20\% of total gains were subject to taxation. This low rate is driven primarily by individuals delaying realization, as well as a growing share of assets held in tax exempt accounts. The correlation of capital gains and tax realizations is only XXX. Demographically, capital gains concentrated amongst the elderly, with gains rising linearly in age. As the population ages across our sample period, so does the concentration of capital gains in the aged. Amongst individual filers, men have substantially higher gains than women. Across geography, [states that have high KGs]. Their correlation with labor income, capital income, wealth, etc. 
+
+The distribution of capital gains is right-skewed, with higher concentration than any other form of income: the top 1\% of the distribution received 45\% of gains over the sample period. They are concentrated amongst the upper tails of the income and wealth distribution: the top 1\% (10\%) received 45.3\% (75.7\%) of total revaluations over our sample period. The wealthiest 1\% received 90\% of capital gains, while holding only 60\% of wealth. 
+
+We estimate the distribution of a comprehensive measure of Haig-Simons income that is inclusive of capital gains. Because capital gains are highly concentrated, they increase measured income inequality. The top 1\% (10\%) of individuals received 21.0\% (47.9\%) of Haig-Simons income; their share without capital gains is 18\% (45\%). Capital gains on public and private equity are the main driver of the increased concentration, while housing and pension capital gains lead to a more equal distribution of income. 
+
+We estimate the effective tax rate on aggregate capital gains and Haig-Simons ncome. Althought the average marginal statutory tax rate on realized gains was 18\%, due to low realization rates the the average effective nominal tax rate on total gains was just 3\% and 5\% for real gains.  Low tax rates on capital gains in turn lower the tax rate on Haig-Simons income. Surprisingly, high income and wealth groups realize gains at a someone higher rate, and this combined with higher statutory rates lead to higher tax rates on total capital gains. However, since high income and wealth groups have a larger share of gains, their Haig-Simons tax rate is pulled down.  As a result, the tax-system is substantially less progressive when measured by Haig-Simons income, with tax rates roughly flat across the income distribution. 
+
+Our results on the effects of income concentration and tax progressivity are robust to a variety of alternative assumptions about the allocation of labor and capital income, as well as the incidence of taxes and government spending. While the \textit{level} of income concentration depends on whether we distribute non-capital gain income according to \citet{piketty2016distributional} or \citet{auten2024income}, capital gains always substantially raises measured income inequality. Our results are also robust to a variety of alternative measurement assumptions for capitalization rates, returns, and unmeasured income.
+
+
+%While the primary contribution of this paper is to study the distribution of capital gains, our distributional measures are affected by our assumptions about the allocation of labor and capital income, as well as the incidence of taxes and government spending.  Overall, our results on income concetration and tax progressivity are robust to a variety of assumptions of alternative measurement assumptions for cap rates, heterogeneous returns, and unmeasured income. While the level of income contration may change (sometimes substantially), the effect of adding capital gains always substantially raises measured inequality. 
+
+Finally, we show that the secular increases in stock prices, business values, and housing prices substantially increased the welfare of asset holders over our time period. A long-standing criticism of Haig-Simons income is that when asset price changes are caused by declining interest rates and/or changes in discount rates, individual welfare cannot be computed from the change in asset prices, since in addition to the endowment effect of higher asset values there is an offsetting effect of future lower returns. In a series of robustness exercises, we show, consistent with prior research, the majority of long-run capital gains over the sample period were caused by changes in dividend flows rather than interest rate changes and/or discount rate changes. In addition, we construct capital gains series purged of interest rate and discount rate variation, and show that the resulting distributional series are largely unchanged.
+
+
+\section{The Demographics of Capital Gains}
+
+This section documents the demographic distribution of capital gains. We focus on age, which emerges as a key determinant of capital gains receipt, and briefly discuss gender and geography.
+
+\subsection{Age}
+
+Capital gains are concentrated among older individuals, reflecting the cumulative nature of asset accumulation over the life cycle. Figure~\ref{fig:kg_age} displays average capital gains by age, which rise steadily from young adulthood through retirement. The age-gains profile is approximately linear through working ages before leveling off after age 70. Notably, capital gains do not decline substantially among the oldest age groups, consistent with the well-documented failure of wealth to decumulate in retirement as predicted by standard life-cycle models \citep{denardi2004wealth}. Bequest motives, precautionary saving against health and longevity risk, and the concentration of wealth among households with low marginal propensities to consume all contribute to the persistence of wealth---and hence capital gains---into advanced ages. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{graphs/kg_age_profile.png}
+\caption{Average Capital Gains by Age}
+\label{fig:kg_age}
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\textit{Notes:} Figure displays average annual capital gains by 5-year age bracket, pooled over 2002--2021. Capital gains include unrealized and realized appreciation on equities, housing, pensions, and private businesses. Shaded area indicates 95\% confidence interval. Sample restricted to tax units with positive wealth.
+\end{minipage}
+\end{figure}
+
+Table~\ref{tab:kg_age} summarizes the distribution of capital gains across three broad age groups. Individuals aged 65 and over received [XX]\% of total capital gains while comprising only [YY]\% of the adult population---a concentration ratio of [Z.ZZ]. The prime working-age population (45--64) received [XX]\% of gains, roughly proportional to their population share. In contrast, younger adults aged 20--44 received just [XX]\% of capital gains despite representing [YY]\% of the population, yielding a concentration ratio well below one. These patterns are broadly consistent with the age distribution of wealth documented by \citet{saez2016wealth}.
+
+\begin{table}[H]
+\centering
+\caption{Distribution of Capital Gains by Age Group}
+\label{tab:kg_age}
+\begin{tabular}{lccc}
+\toprule
+Age Group & Mean Capital Gains & Share of & Share of \\
+          & (\$)               & Total Gains & Population \\
+\midrule
+20--44    & [XX]  & [XX.X]\% & [XX.X]\% \\
+45--64    & [XX]  & [XX.X]\% & [XX.X]\% \\
+65+       & [XX]  & [XX.X]\% & [XX.X]\% \\
+\midrule
+All Ages  & [XX]  & 100\%    & 100\% \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports the distribution of capital gains across three age groups, pooled over 2002--2021. Capital gains include unrealized and realized appreciation on all asset classes.
+\end{minipage}
+\end{table}
+
+The concentration of capital gains among the elderly intensifies at higher percentiles of the distribution. The average age of individuals in the top 1\% of capital gains recipients is [XX] years, compared to [YY] years for the median recipient. Among the top 0.1\%, the average age rises further to [XX] years. This age gradient is steeper for equity and private business gains than for housing gains, consistent with the greater concentration of financial assets among older, wealthier households documented by \citet{bricker2016measuring}.
+
+The aging of the U.S. population has contributed to increased concentration of capital gains among the elderly over our sample period. Between 2002 and 2021, the share of capital gains received by individuals aged 65 and over rose from 23\% to 37\%, tracking the growth in this age group's share of total wealth. This demographic shift has implications for both the aggregate consumption response to asset price changes---as older households have lower marginal propensities to consume---and the design of capital gains taxation, particularly provisions such as the step-up in basis at death.
+
+\subsection{Gender}
+
+Among individual tax filers, men receive substantially more capital gains than women. The average male filer received [XX] in capital gains compared to [YY] for female filers---a ratio of [Z.Z] to one. This gap reflects well-documented gender differences in asset ownership and portfolio composition \citep{sierminska2010wealth}. The gender gap in capital gains is larger than the gender gap in labor income but smaller than the gender gap in business income.
+
+\subsection{Geography}
+
+Capital gains are geographically concentrated in states with large financial sectors, high-growth technology industries, and appreciating housing markets. [State analysis to be added.] The geographic concentration of capital gains has implications for state tax revenues, which in many states include capital gains as ordinary income.
+
+
+\clearpage 
+
+\bibliographystyle{aea}
+\bibliography{References}
+
+
+
+\end{document} 
