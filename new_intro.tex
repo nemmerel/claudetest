@@ -111,10 +111,6 @@ Finally, we show that the secular increases in stock prices, business values, an
 
 \section{The Demographics of Capital Gains}
 
-This section documents the demographic distribution of capital gains. We focus on age, which emerges as a key determinant of capital gains receipt, and briefly discuss gender and geography.
-
-\subsection{Age}
-
 Capital gains are concentrated among older individuals, reflecting the cumulative nature of asset accumulation over the life cycle. Figure~\ref{fig:kg_age} displays average capital gains by age, which rise steadily from young adulthood through retirement. The age-gains profile is approximately linear through working ages before leveling off after age 70. Notably, capital gains do not decline substantially among the oldest age groups, consistent with the well-documented failure of wealth to decumulate in retirement as predicted by standard life-cycle models \citep{denardi2004wealth}. Bequest motives, precautionary saving against health and longevity risk, and the concentration of wealth among households with low marginal propensities to consume all contribute to the persistence of wealth---and hence capital gains---into advanced ages. 
 
 \begin{figure}[H]
@@ -128,42 +124,300 @@ Capital gains are concentrated among older individuals, reflecting the cumulativ
 \end{minipage}
 \end{figure}
 
-Table~\ref{tab:kg_age} summarizes the distribution of capital gains across three broad age groups. Individuals aged 65 and over received [XX]\% of total capital gains while comprising only [YY]\% of the adult population---a concentration ratio of [Z.ZZ]. The prime working-age population (45--64) received [XX]\% of gains, roughly proportional to their population share. In contrast, younger adults aged 20--44 received just [XX]\% of capital gains despite representing [YY]\% of the population, yielding a concentration ratio well below one. These patterns are broadly consistent with the age distribution of wealth documented by \citet{saez2016wealth}.
+Table~\ref{tab:kg_age} summarizes the distribution of capital gains across three broad age groups. Given the strong age-relationship documented above, capital gains are concentrated amongst retirees: individuals aged 65 and over received 36\% of total capital gains while comprising only 18\% of the adult population. Individuals aged 20-44 comprise 48\% of the population, but received only 20\% of the gains. The average age of individuals in the top 1\% of capital gains recipients is [XX] years, compared to [YY] years for the median recipient. Among the top 0.1\%, the average age rises further to [XX] years. The concentration of capital gains among the elderly is driven primarily by stock market wealth. Individuals aged 65 and over received 45\% of stock gains---far exceeding their [XX]\% population share. By contrast, the elderly are only modestly overrepresented amongst real estate and private business gains. 
 
 \begin{table}[H]
 \centering
 \caption{Distribution of Capital Gains by Age Group}
 \label{tab:kg_age}
-\begin{tabular}{lccc}
+\small
+\begin{tabular}{lcccccc}
 \toprule
-Age Group & Mean Capital Gains & Share of & Share of \\
-          & (\$)               & Total Gains & Population \\
+Age & Mean KG & Share of & \multicolumn{3}{c}{Share of Gains by Asset} & Share of \\
+\cmidrule(lr){4-6}
+Group & (\$) & Gains & Stock & Business & Housing & Pop. \\
 \midrule
-20--44    & [XX]  & [XX.X]\% & [XX.X]\% \\
-45--64    & [XX]  & [XX.X]\% & [XX.X]\% \\
-65+       & [XX]  & [XX.X]\% & [XX.X]\% \\
+20--44    & [XX]  & [XX]\% & [XX]\% & [XX]\% & [XX]\% & [XX]\% \\
+45--64    & [XX]  & [XX]\% & [XX]\% & [XX]\% & [XX]\% & [XX]\% \\
+65+       & [XX]  & [XX]\% & [XX]\% & [XX]\% & [XX]\% & [XX]\% \\
 \midrule
-All Ages  & [XX]  & 100\%    & 100\% \\
+All       & [XX]  & 100\%  & 100\%  & 100\%  & 100\%  & 100\% \\
 \bottomrule
 \end{tabular}
 \begin{minipage}{0.9\textwidth}
 \vspace{0.5em}
 \footnotesize
-\textit{Notes:} Table reports the distribution of capital gains across three age groups, pooled over 2002--2021. Capital gains include unrealized and realized appreciation on all asset classes.
+\textit{Notes:} Distribution of capital gains by age group, 2002--2021. Stock includes public equity and mutual funds. Business includes partnerships, S-corps, and private C-corps. Housing includes owner-occupied and rental real estate.
 \end{minipage}
 \end{table}
 
-The concentration of capital gains among the elderly intensifies at higher percentiles of the distribution. The average age of individuals in the top 1\% of capital gains recipients is [XX] years, compared to [YY] years for the median recipient. Among the top 0.1\%, the average age rises further to [XX] years. This age gradient is steeper for equity and private business gains than for housing gains, consistent with the greater concentration of financial assets among older, wealthier households documented by \citet{bricker2016measuring}.
+Table~\ref{tab:kg_percentile} reports the average age and capital gains for individuals at different points in the capital gains distribution. Average age rises monotonically with capital gains: the top 10\% of capital gains recipients are [XX] years old on average, compared to [XX] years for the top 0.01\%. This pattern reflects both life-cycle wealth accumulation and cohort effects in stock market participation.
+
+\begin{table}[H]
+\centering
+\caption{Characteristics of Top Capital Gains Recipients}
+\label{tab:kg_percentile}
+\small
+\begin{tabular}{lcc}
+\toprule
+Percentile Group & Average Age & Average Capital Gains (\$) \\
+\midrule
+Top 10\%   & [XX] & [XX] \\
+Top 1\%    & [XX] & [XX] \\
+Top 0.1\%  & [XX] & [XX] \\
+Top 0.01\% & [XX] & [XX] \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports average age and capital gains for individuals in each percentile group, pooled over 2002--2021. Percentiles based on annual capital gains.
+\end{minipage}
+\end{table}
 
 The aging of the U.S. population has contributed to increased concentration of capital gains among the elderly over our sample period. Between 2002 and 2021, the share of capital gains received by individuals aged 65 and over rose from 23\% to 37\%, tracking the growth in this age group's share of total wealth. This demographic shift has implications for both the aggregate consumption response to asset price changes---as older households have lower marginal propensities to consume---and the design of capital gains taxation, particularly provisions such as the step-up in basis at death.
 
-\subsection{Gender}
 
-Among individual tax filers, men receive substantially more capital gains than women. The average male filer received [XX] in capital gains compared to [YY] for female filers---a ratio of [Z.Z] to one. This gap reflects well-documented gender differences in asset ownership and portfolio composition \citep{sierminska2010wealth}. The gender gap in capital gains is larger than the gender gap in labor income but smaller than the gender gap in business income.
+Table~\ref{tab:kg_gender} shows the breakdown of gains for married versus unmarried filers, and amongst the unmarried, female versus male. Average capital gains are substantially higher for married filers than for unmarried filers, reflecting large differences in income and wealth. Among unmarried filers, men have moderately higher average capital gains than women, again reflecting differences in wealth: [XX] compared to [YY]. The largest differences in gains between men and women concern private businesses, with average male capital gains double that of females. This pattern reflects the well-documented gender gap in entrepreneurship: men are roughly twice as likely as women to start and own businesses \citep{kacperczyk2019gender}.
+
+\begin{table}[H]
+\centering
+\caption{Income, Wealth, and Capital Gains by Filing Status and Gender}
+\label{tab:kg_gender}
+\small
+\begin{tabular}{lccc}
+\toprule
+Group & Income (\$) & Wealth (\$) & Capital Gains (\$) \\
+\midrule
+Married          & [XX] & [XX] & [XX] \\
+Unmarried Male   & [XX] & [XX] & [XX] \\
+Unmarried Female & [XX] & [XX] & [XX] \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports average income, wealth, and capital gains by filing status and gender, pooled over 2002--2021. Married includes all joint filers. Unmarried includes single, head of household, and married filing separately.
+\end{minipage}
+\end{table}
 
 \subsection{Geography}
 
-Capital gains are geographically concentrated in states with large financial sectors, high-growth technology industries, and appreciating housing markets. [State analysis to be added.] The geographic concentration of capital gains has implications for state tax revenues, which in many states include capital gains as ordinary income.
+Capital gains are geographically concentrated in states with concentrations of stock wealth and appreciating housing markets. Figure~\ref{fig:kg_map_total} displays capital gains per capita by state, averaged over 2002--2021. The geographic distribution is highly uneven: residents of the District of Columbia received an average of \$[19,500] in annual capital gains -- more than double the national average -- while residents of West Virginia received just \$3,500. 
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{graphs/kg_map_total.png}
+\caption{Capital Gains Per Capita by State}
+\label{fig:kg_map_total}
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\textit{Notes:} Figure displays average annual capital gains per capita by state, pooled over 2002--2021. Capital gains include unrealized and realized appreciation on equities, housing, pensions, and private businesses. States grouped into quintiles.
+\end{minipage}
+\end{figure}
+
+Table~\ref{tab:kg_state} ranks states/territories by capital gains per capita. The top five states---the U.S. Virgin Islands, the District of Columbia, California, New York, and Florida---account for [XX]\% of total capital gains while comprising only [YY]\% of the population. These states combine high concentrations of financial wealth (New York), technology sector equity (California), appreciated housing markets (California, New York, Florida), and favorable tax treatment (the Virgin Islands, Florida). The bottom five states---[Mississippi, West Virginia, Arkansas, New Mexico, and Kentucky]---share characteristics of lower household wealth, lower homeownership rates, and smaller concentrations of publicly traded equity.
+
+\begin{table}[H]
+\centering
+\caption{Top and Bottom States for Capital Gains Per Capita}
+\label{tab:kg_state}
+\small
+\begin{tabular}{clc@{\hskip 1.5cm}clc}
+\toprule
+\multicolumn{3}{c}{Top 5 States} & \multicolumn{3}{c}{Bottom 5 States} \\
+\cmidrule(lr){1-3} \cmidrule(lr){4-6}
+Rank & State & KG/Capita (\$) & Rank & State & KG/Capita (\$) \\
+\midrule
+1 & Virgin Islands & [XX,XXX] & 1 & [State] & [X,XXX] \\
+2 & District of Columbia & [XX,XXX] & 2 & [State] & [X,XXX] \\
+3 & California & [XX,XXX] & 3 & [State] & [X,XXX] \\
+4 & New York & [XX,XXX] & 4 & [State] & [X,XXX] \\
+5 & Florida & [XX,XXX] & 5 & [State] & [X,XXX] \\
+\midrule
+\multicolumn{3}{l}{National Average:} & \multicolumn{3}{r}{[XX,XXX]} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports states and territories with highest and lowest average capital gains per capita, pooled over 2002--2021.
+\end{minipage}
+\end{table}
+
+The composition of capital gains varies substantially across states. Figure~\ref{fig:kg_map_realestate} displays real estate capital gains per capita. Coastal states with constrained housing supply---California, Hawaii, Florida, and the Northeast corridor---dominate real estate gains. Table~\ref{tab:kg_state_asset} reports the top and bottom states by asset class. Stock market gains are most concentrated in states with large financial sectors (Connecticut, Massachusetts) and technology hubs (Washington, California). Private business gains are highest in states with significant pass-through business activity, including [Wyoming, South Dakota, and Florida], which have favorable state tax treatment of business income.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.95\textwidth]{graphs/kg_map_realestate.png}
+\caption{Real Estate Capital Gains Per Capita by State}
+\label{fig:kg_map_realestate}
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\textit{Notes:} Figure displays average annual real estate capital gains per capita by state, pooled over 2002--2021. Includes owner-occupied housing and rental real estate. States grouped into quintiles.
+\end{minipage}
+\end{figure}
+
+\begin{table}[H]
+\centering
+\caption{Top and Bottom States by Asset Class}
+\label{tab:kg_state_asset}
+\small
+\begin{tabular}{clcclc}
+\toprule
+& \multicolumn{2}{c}{Top 5} & & \multicolumn{2}{c}{Bottom 5} \\
+\cmidrule(lr){2-3} \cmidrule(lr){5-6}
+Rank & State & KG/Cap (\$) & & State & KG/Cap (\$) \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel A: Stock Market Gains}} \\
+1 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+2 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+3 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+4 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+5 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel B: Real Estate Gains}} \\
+1 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+2 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+3 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+4 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+5 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+\midrule
+\multicolumn{6}{l}{\textit{Panel C: Private Business Gains}} \\
+1 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+2 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+3 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+4 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+5 & [State] & [XX,XXX] & & [State] & [X,XXX] \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports states with highest and lowest capital gains per capita by asset class, pooled over 2002--2021. Stock includes public equity and mutual funds. Real estate includes owner-occupied and rental property. Private business includes partnerships, S-corps, and private C-corps.
+\end{minipage}
+\end{table}
+
+The geographic distribution of capital gains has shifted modestly over our sample period. Table~\ref{tab:kg_state_time} compares state rankings between the early period (2002--2006) and the late period (2017--2021). [California's/Washington's] share of total gains increased substantially, reflecting the growth of technology sector wealth, while [State X's] share declined. The correlation between early and late period rankings is [0.XX], indicating [high/moderate] persistence in geographic concentration.
+
+\begin{table}[H]
+\centering
+\caption{Top States for Capital Gains: Early vs. Late Period}
+\label{tab:kg_state_time}
+\small
+\begin{tabular}{clcclc}
+\toprule
+& \multicolumn{2}{c}{2002--2006} & & \multicolumn{2}{c}{2017--2021} \\
+\cmidrule(lr){2-3} \cmidrule(lr){5-6}
+Rank & State & Share (\%) & & State & Share (\%) \\
+\midrule
+1 & [State] & [XX.X] & & [State] & [XX.X] \\
+2 & [State] & [XX.X] & & [State] & [XX.X] \\
+3 & [State] & [XX.X] & & [State] & [XX.X] \\
+4 & [State] & [XX.X] & & [State] & [XX.X] \\
+5 & [State] & [XX.X] & & [State] & [XX.X] \\
+\midrule
+\multicolumn{3}{l}{Top 5 Total:} & & \multicolumn{2}{l}{[XX.X]\% vs [XX.X]\%} \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports top 5 states by share of total capital gains in early (2002--2006) and late (2017--2021) periods. DC excluded.
+\end{minipage}
+\end{table}
+
+The geographic concentration of capital gains has important implications for state tax revenues. [XX] states tax capital gains as ordinary income, while [YY] states provide preferential rates or exclusions. States with high capital gains concentration---particularly California and New York---experience significant revenue volatility tied to asset market performance \citep{seegert2018taxing}. The concentration of gains in high-tax states also affects the behavioral response to federal tax changes, as documented by \citet{bakija2006federal}.
+
+\subsubsection{Urban versus Rural}
+
+Capital gains are overwhelmingly concentrated in metropolitan areas. Figure~\ref{fig:kg_urban_rural} displays average capital gains per capita by urban-rural classification. Residents of large metropolitan areas received average annual capital gains of \$[XX,XXX]---[X.X] times the gains received by residents of non-metropolitan counties (\$[X,XXX]). This urban-rural gap exceeds the corresponding gaps in wages and total income, reflecting the concentration of financial assets and appreciated housing in urban centers.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{graphs/kg_urban_rural.png}
+\caption{Capital Gains Per Capita by Urban-Rural Classification}
+\label{fig:kg_urban_rural}
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\textit{Notes:} Figure displays average annual capital gains per capita by USDA Rural-Urban Continuum Code, pooled over 2002--2021. Large metro: counties in metro areas with population $\geq$ 1 million. Small metro: counties in metro areas with population $<$ 1 million. Non-metro: all non-metropolitan counties.
+\end{minipage}
+\end{figure}
+
+Table~\ref{tab:kg_urban_rural} decomposes urban-rural differences by asset class. The urban advantage is largest for stock market gains, where large metro residents received [X.X] times the per capita gains of non-metro residents. This pattern reflects higher stock market participation rates in urban areas---ranging from [XX]\% in large metros to [XX]\% in rural counties---as well as higher average holdings conditional on participation \citep{chien2017stock}. Real estate gains show a smaller but still substantial urban premium, driven by housing supply constraints in productive metropolitan areas \citep{gyourko2013superstar}. Private business gains exhibit a more modest urban-rural gradient, consistent with the prevalence of pass-through businesses in both urban and rural economies.
+
+\begin{table}[H]
+\centering
+\caption{Capital Gains by Urban-Rural Classification and Asset Class}
+\label{tab:kg_urban_rural}
+\small
+\begin{tabular}{lccccc}
+\toprule
+& \multicolumn{3}{c}{KG Per Capita (\$)} & \multicolumn{2}{c}{Urban/Rural Ratio} \\
+\cmidrule(lr){2-4} \cmidrule(lr){5-6}
+Classification & Total & Stock & Real Estate & Total & Stock \\
+\midrule
+Large Metro ($\geq$1M)   & [XX,XXX] & [XX,XXX] & [XX,XXX] & --- & --- \\
+Small Metro ($<$1M)      & [XX,XXX] & [XX,XXX] & [XX,XXX] & [X.X] & [X.X] \\
+Non-Metro Adjacent       & [X,XXX]  & [X,XXX]  & [X,XXX]  & [X.X] & [X.X] \\
+Non-Metro Non-Adjacent   & [X,XXX]  & [X,XXX]  & [X,XXX]  & [X.X] & [X.X] \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports average capital gains per capita by USDA Rural-Urban Continuum Code, pooled over 2002--2021. Urban/Rural Ratio compares each category to non-metro non-adjacent counties.
+\end{minipage}
+\end{table}
+
+The urban-rural capital gains gap has widened over our sample period. Between 2002 and 2021, the ratio of large metro to non-metro capital gains per capita increased from [X.X] to [X.X]. This divergence reflects broader trends in regional economic inequality: the concentration of high-skill jobs in ``superstar cities'' \citep{gyourko2013superstar}, the stagnation of housing values in declining rural areas, and the geographic sorting of college-educated workers into productive metropolitan areas \citep{moretti2012new, ganong2017regional}. Within-county inequality has also increased more rapidly in metropolitan areas, though rural residents remain more exposed to high-inequality local contexts due to smaller population bases \citep{thiede2018rural}.
+
+\subsubsection{Real Estate Capital Gains Over Time}
+
+Real estate capital gains exhibit pronounced cyclical variation tied to the housing market. Figure~\ref{fig:kg_realestate_time} displays aggregate real estate capital gains from 2002--2021, divided into three periods: the pre-crisis boom (2002--2006), the crisis and recovery (2007--2012), and the post-crisis expansion (2013--2021). The housing boom generated \$[X.X] trillion in cumulative real estate gains through 2006. The subsequent bust erased \$[X.X] trillion in housing wealth between 2007 and 2011, before a sustained recovery that ultimately exceeded pre-crisis peaks.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.85\textwidth]{graphs/kg_realestate_time.png}
+\caption{Real Estate Capital Gains Over Time}
+\label{fig:kg_realestate_time}
+\begin{minipage}{0.9\textwidth}
+\footnotesize
+\textit{Notes:} Figure displays aggregate real estate capital gains by year, 2002--2021. Includes owner-occupied housing and rental real estate. Shaded regions indicate pre-crisis (2002--2006), crisis (2007--2012), and post-crisis (2013--2021) periods.
+\end{minipage}
+\end{figure}
+
+The geographic distribution of real estate gains shifted dramatically across these periods. Table~\ref{tab:kg_realestate_periods} compares the top states for real estate capital gains in each period. During the boom, gains were concentrated in states with rapid price appreciation---[Arizona, Florida, Nevada, and California]---many of which experienced the sharpest subsequent declines. The post-crisis recovery, by contrast, concentrated gains in supply-constrained coastal markets: California, Washington, and the Northeast corridor. The correlation between state-level gains in the boom period (2002--2006) and the recovery period (2013--2021) is only [0.XX], indicating substantial reshuffling in the geographic distribution of housing wealth.
+
+\begin{table}[H]
+\centering
+\caption{Top States for Real Estate Capital Gains by Period}
+\label{tab:kg_realestate_periods}
+\small
+\begin{tabular}{clcclcclc}
+\toprule
+& \multicolumn{2}{c}{Pre-Crisis} & & \multicolumn{2}{c}{Crisis} & & \multicolumn{2}{c}{Post-Crisis} \\
+& \multicolumn{2}{c}{(2002--2006)} & & \multicolumn{2}{c}{(2007--2012)} & & \multicolumn{2}{c}{(2013--2021)} \\
+\cmidrule(lr){2-3} \cmidrule(lr){5-6} \cmidrule(lr){8-9}
+Rank & State & Share & & State & Share & & State & Share \\
+\midrule
+1 & [State] & [XX]\% & & [State] & [XX]\% & & [State] & [XX]\% \\
+2 & [State] & [XX]\% & & [State] & [XX]\% & & [State] & [XX]\% \\
+3 & [State] & [XX]\% & & [State] & [XX]\% & & [State] & [XX]\% \\
+4 & [State] & [XX]\% & & [State] & [XX]\% & & [State] & [XX]\% \\
+5 & [State] & [XX]\% & & [State] & [XX]\% & & [State] & [XX]\% \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports top 5 states by share of total real estate capital gains in each period. Crisis period includes years with negative aggregate real estate gains.
+\end{minipage}
+\end{table}
+
+The post-crisis rebound in housing prices---which by 2021 exceeded pre-crisis peaks in most markets---raises the question of whether the 2000s housing ``bubble'' reflected irrational exuberance or fundamental value. \citet{chodorowreich2024housing} argue for a ``Neo-Kindlebergerian'' interpretation: the boom-bust-rebound cycle was driven primarily by fundamentals, with prices temporarily overshooting due to diagnostic expectations (extrapolation of recent trends) before undershooting during the bust due to a price-foreclosure spiral. In their framework, the cities with the largest cycles---San Francisco, Seattle, San Diego, Boston---were ``superstar cities'' with constrained supply, growing industries, and rising incomes. The subsequent recovery vindicated these fundamentals: by 2020, prices had converged to levels consistent with long-run income and amenity growth.
+
+Our data are consistent with this interpretation. The states with the largest post-crisis real estate gains---[California, Washington, Colorado]---are precisely those with strong fundamentals: inelastic housing supply, high-productivity industries, and sustained population inflows. By contrast, states that experienced large boom-period gains without corresponding fundamentals---[Nevada, Arizona, Florida]---saw more modest recoveries. The correlation between 2002--2006 real estate gains and 2017--2021 gains is [0.XX] for ``superstar'' metros versus [0.XX] for other areas, suggesting that fundamentals-driven appreciation has proven more durable than speculation-driven appreciation.
 
 
 \clearpage 
