@@ -1,0 +1,120 @@
+Plan for Capital Gains Demographic Analysis
+============================================
+
+This plan responds to Moll's request for "careful empirical documentation of the
+distribution of capital gains" and how they "correlate with various income sources
+and demographics." Available demographic variables: age, geographic location, gender.
+
+
+1. AGE ANALYSIS
+---------------
+
+Core Statistics to Generate:
+- Mean and median capital gains by 5-year age brackets (20-24, 25-29, ... 80+)
+- Capital gains concentration by age decile (what share of total gains goes to each age group)
+- Capital gains per capita by age group (controlling for population size)
+- Breakdown by asset class: For each age group, show composition (equities, housing, pensions, private business)
+
+Life-Cycle Patterns:
+- Age-gains profiles conditional on income percentile (do high-income young people have different gain patterns than high-income elderly?)
+- Cohort analysis: track birth cohorts over time to see if the relationship between age and gains is changing
+- Ratio of capital gains to labor income by age (shows shift from wages to asset appreciation over lifecycle)
+
+Time Trends:
+- How has the age distribution of capital gains changed 2002-2021?
+- Has concentration in elderly increased over time as noted in revised text?
+
+
+2. GEOGRAPHIC ANALYSIS
+----------------------
+
+State-Level:
+- Total capital gains by state, both levels and per capita
+- Capital gains as share of state income
+- Ranking of states by capital gains concentration
+- Decomposition: which asset classes drive state-level variation (California = tech equity vs. Texas = real estate/energy?)
+
+Finer Geographic Detail (if available):
+- MSA-level analysis for major metros
+- Urban vs. rural decomposition
+- Correlation with local housing price appreciation, presence of corporate headquarters, financial sector employment
+
+Regional Patterns:
+- Regional breakdown (Northeast, South, Midwest, West)
+- Coastal vs. interior
+- Correlation with income levels, educational attainment, industry composition
+
+
+3. GENDER ANALYSIS
+------------------
+
+Basic Statistics:
+- Mean/median capital gains by gender
+- Share of total capital gains received by men vs. women
+- Gender gap in capital gains by income percentile (is the gap larger at the top?)
+
+Asset Class Decomposition:
+- Do men and women have different asset class compositions of gains?
+- Housing gains vs. equity gains by gender
+
+Conditional Analysis:
+- Gender gap controlling for age and income
+- Gender gap among tax filers vs. accounting for joint filers
+
+
+4. CROSS-DEMOGRAPHIC ANALYSIS
+-----------------------------
+
+Intersectional Tables:
+- Age x Gender: Capital gains by age-gender cells
+- Age x Geography: Are elderly gains more concentrated in certain states (Florida, Arizona)?
+- Income x Demographics: How do demographic patterns vary across the income distribution?
+
+Correlations:
+- Present correlation matrix: capital gains with labor income, capital income, wealth, realized gains, age, etc.
+- Regression decomposition: What share of variation in capital gains is explained by age vs. income vs. geography?
+
+
+5. SUGGESTED FIGURES AND TABLES
+-------------------------------
+
+For Age Section:
+- Figure: Bar chart of mean capital gains by age group with asset class stacking
+- Figure: Line graph showing share of total gains by age group over time (2002-2021)
+- Table: Capital gains statistics by age decile (mean, median, share of total, N)
+
+For Geography Section:
+- Figure: Choropleth map of per-capita capital gains by state
+- Table: Top 10 and bottom 10 states by capital gains measures
+- Figure: Scatter plot of state capital gains vs. income levels
+
+For Gender Section:
+- Table: Capital gains by gender, overall and by income quintile
+- Figure: Gender gap in capital gains by asset class
+
+Summary Table:
+- Comprehensive demographic breakdown showing means, medians, and concentration measures across all three dimensions
+
+
+6. FILLING IN REVISED TEXT PLACEHOLDERS
+---------------------------------------
+
+Current placeholders in revised_text.txt to fill:
+- "average 65 year old has XXX in capital gains, compared with YYY for a 25 year old"
+- "[states that have high KGs]"
+
+The analysis above will generate the specific numbers for these.
+
+
+7. RESPONDING TO MOLL'S FRAMING
+-------------------------------
+
+This analysis directly addresses Moll's request by:
+1. Documenting "key facts" about capital gains distribution
+2. Showing "how capital gains correlate with various income sources and demographics"
+3. Avoiding Haig-Simons income calculations or tax rate implications in the demographic sections
+4. Presenting descriptive facts rather than normative claims about income measurement
+
+The demographic analysis can stand as its own findings section focused purely on
+"who receives capital gains" rather than "what this implies for income inequality
+measurement."

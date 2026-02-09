@@ -5,3 +5,5 @@ global lochead "/Users/jar88/Dropbox/research_projects/revision_analysis/claudet
 global dirdata "$lochead/data"
 global dirgraphs "$lochead/graphs"
 global dirdofiles "$lochead/dofiles"
+
+global sharedata "/Users/jar88/Library/CloudStorage/Box-Box/inequality_real_estate/revision_analysis/data"

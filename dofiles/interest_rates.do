@@ -233,6 +233,7 @@ if $step_1==1 {
 
 			gen r_cf_smooth = `t1' + ((`t2'-`t1')/19)*(year-2002)
 
+			* Converting to nominal rates
 			sum pi_cf if year>=2002 & year<=2021
 			local t3 = r(mean)
 
@@ -258,6 +259,8 @@ if $step_1==1 {
 			gen roe = .175           // Return on equity
 
 		save "$dirdata/val_est_with_rates", replace
+
+		save "$sharedata/rates_export", replace 
 
 		*************************************************************
 		* LOOP THROUGH 6 SCENARIOS                                 **

@@ -34,4 +34,16 @@ di _n "Running hp_analysis.do..."
 do "$dirdofiles/hp_analysis.do"
 
 *************************************************************
+* 4. County Geographic Crosswalk
+*************************************************************
+di _n "Running county_crosswalk.do..."
+do "$dirdofiles/county_crosswalk.do"
+
+*************************************************************
+* 5. State Tax Rates Panel
+*************************************************************
+di _n "Running state_tax_rates.do..."
+do "$dirdofiles/state_tax_rates.do"
+
+*************************************************************
 di _n "Master file completed successfully."

@@ -54,3 +54,9 @@ The main do-file (`interest_rates.do`) uses global step flags to control executi
 - The main analysis is executed via Stata using `dofiles/interest_rates.do`
 - Output paths are configured via global macros to point to `/data` and `/graphs` directories
 - The analysis replicates academic work on equity valuation and extends it with forward-looking estimates
+
+# Revision of Manuscript
+- Original manuscript is original_manuscript.pdf 
+- Suggested revisions are revised_text.txt
+- Referee reports are in ref_report
+- Notes on ref reports are letter_notes.docx 
