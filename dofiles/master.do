@@ -46,4 +46,10 @@ di _n "Running state_tax_rates.do..."
 do "$dirdofiles/state_tax_rates.do"
 
 *************************************************************
+* 6. State Estate & Inheritance Tax Panel
+*************************************************************
+di _n "Running state_estate_tax.do..."
+do "$dirdofiles/state_estate_tax.do"
+
+*************************************************************
 di _n "Master file completed successfully."
