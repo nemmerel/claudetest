@@ -141,21 +141,21 @@ Our primary data source is internal individual and business tax records from 200
 
 The starting point for our analysis is the Distributional National Accounts of PSZ, which we replicate with internal tax records. We add to this our own estimates of individual level capital gains, estimated via a three-step procedure: (i) link individuals to their specifc portfolio holdings (ii) estimate the market value of the portfolio through capitalization income flows (iii) multiply portfolio value by price appreciation to derive capital gains.
 
-Capitalization estimates the market value of assets from observed income flows by multiplying the flows by a capitalization factor. For a general asset class $j$, individual $i$, and year $t$, the value of the asset is estimated by
-\be
-Value^j_{it} = \text{Capital flow}^j_{it} \cdot \text{Cap factor}_^j_{it}
-\ee
-The capitalization factor is allowed to vary by individual, allowing differences across income, wealth, and demographic groups. Table YYY summarizes the capitalization factors used by each asset class.
+Our capitalization procedure follows PSZ and SZZ: observed tax return income flows are used to estimate asset values by multiplying the flows by a capitalization factor. While this is noisy at the individual level, when averaged at the group level (for example, the top 1\% income share, the top 1\% wealth share) average wealth will be unbiased as long as, conditional on the group, our estimate of the average capitalization factor is unbiased. A key difference in this paper is we allow for greater heterogeneity in capitalization factors, and thus can account for finer differences in cap factors across income and wealth groups. Table YYY summarizes the capitalization factors used we use for each asset class. For our estimate of capital gains to be unbiased, the same condition for returns must hold: for each income and wealth group, our estimate of average return must be unbiased. Table ZZZ, column B, summarizes the returns used for each asset class. 
 
-A key output of our estimation procedure will be the share of capital gains received by income (or wealth) group $g$; for example, the share held by the top 1\% of the income distribution. Denoting group size by $n_g$ and total population by $n$, this share can be written as
-\be
-\frac{ n_g E[KG_g]}{nE[KG]} = \frac{ n_g E[W_g]E[r_g]}{nE[KG]}
-\ee
-where $E[W_g]$ is mean wealth for group $g$ and $E[r_g]$ is the value-weighted rate of price appreciation for the group. For our estimates to be unbiased, a sufficient condition is that our cap factors and return series are unbiased conditional on the grouping variable. While our individual level estimates of capital gains will contain measurement error, aggregate statistics by group will be unbiased. 
+%A key output of our estimation procedure will be the share of capital gains received by income (or wealth) group $g$; for example, the share held by the top 1\% of the income distribution. Denoting group size by $n_g$ and total population by $n$, this share can be written as
+%\be
+%\frac{ n_g E[KG_g]}{nE[KG]} = \frac{ n_g E[W_g]E[r_g]}{nE[KG]}
+%\ee
+%where $E[W_g]$ is mean wealth for group $g$ and $E[r_g]$ is the value-weighted rate of price appreciation for the group. For our estimates to be unbiased, a sufficient condition is that our cap factors and return series are unbiased conditional on the grouping variable. While our individual level estimates of capital gains will contain measurement error, aggregate statistics by group will be unbiased. 
 
-We now summarize our estimation procedure for each asset class, with the details provided in appendix J. 
+We now summarize our estimation procedure for each asset class, with details provided in Appendix J. 
 
 \subsection{Public equities}
+
+Prior work capitalizes dividends and/or realized capital gains with a homogeneous cap factor. We use account-level brokerage data from Barber \& Odean (2000) to estimate heterogeneous dividend yields \textit{and} portfolio betas by 25 cells of age and income. Dividend yields increase linearly in age, with the 65+ group averaging 20\% higher yields than the under-35 group; conditional on age, they are weakly correlated with income. 
+
+Because the brokerage data spans 1991--1996, we estimate yields \textit{relative} to the market average and apply these ratios to current-year aggregate yields. Individual public equity wealth is then estimated as nonqualified dividends divided by the group-specific yield. Table~NN compares distributional statistics from our heterogeneous yields with the homogeneous-yield approaches of PSZ and SZZ. For capital gain yields, we estimate cell-level portfolio alphas and betas from a CAPM-style regression of portfolio returns on the market, allowing returns to differ by both average excess return and market exposure. We scale aggregate public equity wealth to match the Financial Accounts.
 
 We estimate heterogeneous dividend capitalization rates using a sample of account-level data from a large discount broker, provided by Barber \& Odean (2000). Following Chodorow Recih et al and Graham and Kumar (2006), we merge the account level information on holdings with CRSP stock and mutual fund data to calculate individual level dividend yields. We then compute average dividend yields by 25 cells of age and income groups. 
 

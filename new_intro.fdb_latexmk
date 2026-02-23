@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex new_intro"] 1771806186 "new_intro.aux" "new_intro.bbl" "new_intro" 1771806445 2
+["bibtex new_intro"] 1771807168 "new_intro.aux" "new_intro.bbl" "new_intro" 1771807581 2
   "./References.bib" 1771002805 137868 a787bf5217e09a3a1def7adece04e492 ""
   "./aea.bst" 1242827686 23105 ced7c75addb710fdb85503a64b9bafa7 ""
-  "new_intro.aux" 1771806444 5740 61f5fac51630b3324b6595e96bc9b84e "pdflatex"
+  "new_intro.aux" 1771807581 5739 a62c56c4bbcdeaa999524e42b5ae4edc "pdflatex"
   (generated)
   "new_intro.bbl"
   "new_intro.blg"
   (rewritten before read)
-["pdflatex"] 1771806444 "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" "new_intro.pdf" "new_intro" 1771806445 2
-  "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" 1771806443 54655 bf295c07d9d09c15275291c4c69dd26c ""
+["pdflatex"] 1771807580 "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" "new_intro.pdf" "new_intro" 1771807581 2
+  "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" 1771807579 55541 15fbf30d90c1501b2dcdc10d1f1152e8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -157,10 +157,10 @@
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
   "graphs/kg_age_profile.png" 0 -1 0 ""
   "graphs/kg_map_total.png" 0 -1 0 ""
-  "new_intro.aux" 1771806444 5740 61f5fac51630b3324b6595e96bc9b84e "pdflatex"
-  "new_intro.bbl" 1771806186 0 d41d8cd98f00b204e9800998ecf8427e "bibtex new_intro"
-  "new_intro.out" 1771806444 1693 b80f9c8e3949796808ab9d11cde60c7a "pdflatex"
-  "new_intro.tex" 1771806443 54655 bf295c07d9d09c15275291c4c69dd26c ""
+  "new_intro.aux" 1771807581 5739 a62c56c4bbcdeaa999524e42b5ae4edc "pdflatex"
+  "new_intro.bbl" 1771807168 0 d41d8cd98f00b204e9800998ecf8427e "bibtex new_intro"
+  "new_intro.out" 1771807581 1693 b80f9c8e3949796808ab9d11cde60c7a "pdflatex"
+  "new_intro.tex" 1771807579 55541 15fbf30d90c1501b2dcdc10d1f1152e8 ""
   (generated)
   "new_intro.aux"
   "new_intro.log"
