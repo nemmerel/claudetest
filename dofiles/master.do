@@ -52,4 +52,10 @@ di _n "Running state_estate_tax.do..."
 do "$dirdofiles/state_estate_tax.do"
 
 *************************************************************
+* 7. Step-Up in Basis Estimation
+*************************************************************
+di _n "Running step_up_basis.do..."
+do "$dirdofiles/step_up_basis.do"
+
+*************************************************************
 di _n "Master file completed successfully."

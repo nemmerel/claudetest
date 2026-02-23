@@ -91,27 +91,186 @@ The primary goal of this paper is to estimate the distribution of capital gains 
 
 We do so using internal tax data from 2002-2021. The advantage of tax data is its comprehensiveness, spanning the entire income and wealth distribution. The disadvantage is that only realized sales of assets directly show up on tax forms, which are only a small fraction of total appreciation (the sum of unrealized and realized). Prior research has found only about 1/3rd of the stock of capital gains have been realized.\footnote{See \citet{msall2025never} for Norway, \citet{fox2025role} and \citet{sabelhaus2025taxing} for the United States.}
 
-To estimate total (unrealized and realized) gains at the individual level, we use a three step procedure: (i) link individuals to their specific portfolio holdings (ii) capitalize income (using heterogenoeus capitalization factors when available) to estimate wealth (iii) estimate capital appreciation by multiplying wealth by asset class specific returns (using heterogeneous returns when available). In doing so, we exploit never before used tax forms, new data sources, and improved estimation techniques to provide the most accurate available measures of wealth and capital gains at the individual level. We highlight three innovations here: (i) we use techniques from the network economic literature to better track partnership wealth through network chains of ownership, which allows us to trace 90\% of partnership assets to their ultimate owners (ii) we use never before used tax forms to link 100\% of rental real estate assets to their ultimate owner, which allows for a more accurate estimate of real estate wealth and capital gains (iii) we use a new data source on private business sales to better estimate business valuations and capital gains. 
+To estimate total (unrealized and realized) gains at the individual level, we use a three step procedure: (i) link individuals to their specific portfolio holdings (ii) capitalize income to estimate wealth (iii) estimate capital appreciation by multiplying wealth by asset class specific returns. In doing so, we exploit never before used tax forms, new data sources, and improved estimation techniques to provide the most accurate available measures of wealth and capital gains at the individual level. For all asset classes we capitalize wealth with heterogeneous cap rates and estimate gains with heterogeneous returns. We highlight four innovations here: (i) we use techniques from the network economic literature to better track partnership wealth through network chains of ownership, which allows us to trace 90\% of partnership assets to their ultimate owners (ii) we use never before used tax forms to link 100\% of rental real estate assets to their ultimate owner, which allows for a more accurate estimate of real estate wealth and capital gains (iii) we use a new data source on private business sales to better estimate business valuations and capital gains (iv) we use heterogeneous dividend yields and stock market betas from a large sample of discount brokerages to estimate public equity capital gains. 
+
 
 We document several new empirical facts. First, comparing taxable realized gains and aggregate revaluations, we find less than 20\% of total gains were subject to taxation. This low rate is driven primarily by individuals delaying realization, as well as a growing share of assets held in tax exempt accounts. The correlation of capital gains and tax realizations is only XXX. Demographically, capital gains concentrated amongst the elderly, with gains rising linearly in age. As the population ages across our sample period, so does the concentration of capital gains in the aged. Amongst individual filers, men have substantially higher gains than women. Across geography, [states that have high KGs]. Their correlation with labor income, capital income, wealth, etc. 
 
 The distribution of capital gains is right-skewed, with higher concentration than any other form of income: the top 1\% of the distribution received 45\% of gains over the sample period. They are concentrated amongst the upper tails of the income and wealth distribution: the top 1\% (10\%) received 45.3\% (75.7\%) of total revaluations over our sample period. The wealthiest 1\% received 90\% of capital gains, while holding only 60\% of wealth. 
 
-We estimate the distribution of a comprehensive measure of Haig-Simons income that is inclusive of capital gains. Because capital gains are highly concentrated, they increase measured income inequality. The top 1\% (10\%) of individuals received 21.0\% (47.9\%) of Haig-Simons income; their share without capital gains is 18\% (45\%). Capital gains on public and private equity are the main driver of the increased concentration, while housing and pension capital gains lead to a more equal distribution of income. 
+We estimate the distribution of a comprehensive measure of Haig-Simons income that is inclusive of capital gains. Because capital gains are highly concentrated, they increase measured income inequality. The top 1\% (10\%) of individuals accrued 21.0\% (47.9\%) of Haig-Simons income; their share without capital gains is 18\% (45\%). Capital gains on public and private equity are the main driver of the increased concentration, while housing and pension capital gains lead to a more equal distribution of income. 
 
-We estimate the effective tax rate on aggregate capital gains and Haig-Simons ncome. Althought the average marginal statutory tax rate on realized gains was 18\%, due to low realization rates the the average effective nominal tax rate on total gains was just 3\% and 5\% for real gains.  Low tax rates on capital gains in turn lower the tax rate on Haig-Simons income. Surprisingly, high income and wealth groups realize gains at a someone higher rate, and this combined with higher statutory rates lead to higher tax rates on total capital gains. However, since high income and wealth groups have a larger share of gains, their Haig-Simons tax rate is pulled down.  As a result, the tax-system is substantially less progressive when measured by Haig-Simons income, with tax rates roughly flat across the income distribution. 
+We estimate the effective tax rate on aggregate capital gains and Haig-Simons income. Althought the average marginal statutory tax rate on realized gains was 18\%, due to low realization rates the the average effective nominal tax rate on total gains was just 3\% and 5\% for real gains.  Low tax rates on capital gains in turn lower the tax rate on Haig-Simons income. Surprisingly, high income and wealth groups realize gains at a someone higher rate, and this combined with higher statutory rates lead to higher tax rates on total capital gains. However, since high income and wealth groups have a larger share of gains, their Haig-Simons tax rate is pulled down.  As a result, the tax-system is substantially less progressive when measured by Haig-Simons income, with tax rates roughly flat across the income distribution. 
 
 Our results on the effects of income concentration and tax progressivity are robust to a variety of alternative assumptions about the allocation of labor and capital income, as well as the incidence of taxes and government spending. While the \textit{level} of income concentration depends on whether we distribute non-capital gain income according to \citet{piketty2016distributional} or \citet{auten2024income}, capital gains always substantially raises measured income inequality. Our results are also robust to a variety of alternative measurement assumptions for capitalization rates, returns, and unmeasured income.
-
 
 %While the primary contribution of this paper is to study the distribution of capital gains, our distributional measures are affected by our assumptions about the allocation of labor and capital income, as well as the incidence of taxes and government spending.  Overall, our results on income concetration and tax progressivity are robust to a variety of assumptions of alternative measurement assumptions for cap rates, heterogeneous returns, and unmeasured income. While the level of income contration may change (sometimes substantially), the effect of adding capital gains always substantially raises measured inequality. 
 
 Finally, we show that the secular increases in stock prices, business values, and housing prices substantially increased the welfare of asset holders over our time period. A long-standing criticism of Haig-Simons income is that when asset price changes are caused by declining interest rates and/or changes in discount rates, individual welfare cannot be computed from the change in asset prices, since in addition to the endowment effect of higher asset values there is an offsetting effect of future lower returns. In a series of robustness exercises, we show, consistent with prior research, the majority of long-run capital gains over the sample period were caused by changes in dividend flows rather than interest rate changes and/or discount rate changes. In addition, we construct capital gains series purged of interest rate and discount rate variation, and show that the resulting distributional series are largely unchanged.
 
 
-\section{The Demographics of Capital Gains}
+\section{Realizations}
 
-Capital gains are concentrated among older individuals, reflecting the cumulative nature of asset accumulation over the life cycle. Figure~\ref{fig:kg_age} displays average capital gains by age, which rise steadily from young adulthood through retirement. The age-gains profile is approximately linear through working ages before leveling off after age 70. Notably, capital gains do not decline substantially among the oldest age groups, consistent with the well-documented failure of wealth to decumulate in retirement as predicted by standard life-cycle models \citep{denardi2004wealth}. Bequest motives, precautionary saving against health and longevity risk, and the concentration of wealth among households with low marginal propensities to consume all contribute to the persistence of wealth---and hence capital gains---into advanced ages. 
+ Capital gains are a relatively widespread form of income, with 80\% of the sample having a non-zero gain. Realizations, however, are relatively rare: 83\% of individuals report exactly zero gains, and an additional 7\% reporting capital losses (of which 4.2\% are the maximum deductible amount). The correlation of total and realized capital gains at the individual level is .40, which is surprisingly high given the lumpiness of realizations and the measurement error for total gains. After aggregation across individuals to smooth realization and measurement variation, the correlaiton is even higher: by age the correlation is .7, by income decile .8. 
+
+
+
+\section{Theoretical Framework}
+
+Traditional national accounting defines output and income the production of goods and services.
+
+We begin with a simple model of output, production, and income. GDP $Y_t$ is produced with capital $K_t$, labor $L_t according to the production function $Y_t = F(K_t,I_t,L_t)$. Firms own the capital stock, and make accounting profits  $\Pi_t = Y_t - w_t L_t$. 
+
+Accounting profits are a function of the return on capital held, equal to the rental rate of capital times the firm's profits, and income which does not derive from the factors of production: we refer to this as `pure profits' or factorless income. 
+
+The market value of firms is equal to the value of its capital stock, $K_t$, plus the present discounted value of its pure profits: $V_t = K_t + E_t \sum_{s=0}^{infty}\Pi_{t+s} D_{t+s}$, where $D_{t+s}$ is the stochastic discount rate.  
+
+Capital gains are defined as the change in market value of firms: $V_{t+1} - V_t$. Given our set up, they can be a function of:
+\begin{itemize}
+\item A change in the expected value of future profits $\Pi_t$
+\item Retained earnings that is reinvested in the firm: 
+\item Changes in the discount rate on future profits
+\end{itemize}
+As defined, capital gains include retained earnings, which are included in national income. We therefore define pure capital gains $KG_t^{pure} = V_{t+1} - V_t - RE_t$. 
+
+
+
+\section{Data \& Methodology}
+
+Our primary data source is internal individual and business tax records from 2002-2021, provided by the Internal Revenue Service through the Joint Statistical Research Program. We use a 0.2\% weighted sample of individual returns (approximately 300,000 observations per year) and 100\% samples of business and rental property returns. We supplement the tax data with aggregate series from the Financial Accounts, NIPA, and the Survey of Consumer Finances (SCF). Table 1 presents summary statistics.Table 1 presents summary statistics. 
+
+The starting point for our analysis is the Distributional National Accounts of PSZ, which we replicate with internal tax records. We add to this our own estimates of individual level capital gains, estimated via a three-step procedure: (i) link individuals to their specifc portfolio holdings (ii) estimate the market value of the portfolio through capitalization income flows (iii) multiply portfolio value by price appreciation to derive capital gains.
+
+Capitalization estimates the market value of assets from observed income flows by multiplying the flows by a capitalization factor. For a general asset class $j$, individual $i$, and year $t$, the value of the asset is estimated by
+\be
+Value^j_{it} = \text{Capital flow}^j_{it} \cdot \text{Cap factor}_^j_{it}
+\ee
+The capitalization factor is allowed to vary by individual, allowing differences across income, wealth, and demographic groups. Table YYY summarizes the capitalization factors used by each asset class.
+
+A key output of our estimation procedure will be the share of capital gains received by income (or wealth) group $g$; for example, the share held by the top 1\% of the income distribution. Denoting group size by $n_g$ and total population by $n$, this share can be written as
+\be
+\frac{ n_g E[KG_g]}{nE[KG]} = \frac{ n_g E[W_g]E[r_g]}{nE[KG]}
+\ee
+where $E[W_g]$ is mean wealth for group $g$ and $E[r_g]$ is the value-weighted rate of price appreciation for the group. For our estimates to be unbiased, a sufficient condition is that our cap factors and return series are unbiased conditional on the grouping variable. While our individual level estimates of capital gains will contain measurement error, aggregate statistics by group will be unbiased. 
+
+We now summarize our estimation procedure for each asset class, with the details provided in appendix J. 
+
+\subsection{Public equities}
+
+We estimate heterogeneous dividend capitalization rates using a sample of account-level data from a large discount broker, provided by Barber \& Odean (2000). Following Chodorow Recih et al and Graham and Kumar (2006), we merge the account level information on holdings with CRSP stock and mutual fund data to calculate individual level dividend yields. We then compute average dividend yields by 25 cells of age and income groups. 
+
+Appendix Figure J shows the slope of dividend yield by age and income. Dividend yields increase linearly in age, with aged 65+ showing a distinct preference for income rather than growth stocks: the average yield for this group is 20\% larger than the under 35 age group. Splitting by income, the lowest quartile of income in the sample have slightly elevated yields compared to the rest of the distribuion. 
+
+The B\&O data contains dividend yields from the years 1991-1996. To operationalize these for our sample period of 2002-2021, where average stock yields are somewhat lower, we use the data to estimate dividend yields \textit{relative} to the value-weighted average yield of the market. For each cell $c$, we estimate relative yield $\rho_c = \bar{d}_c / \bar{d}$, where $\bar{d}_c$ and $\bar{d}$ are, respectiively,  the value weighted mean yield for cell $c$ the overall market. Dividend yields in year $t$ and then computed as the cell level as $\bar{d}_{ct} = \rho_c \cdot \bar{d}_t$. Finally, we scale aggregate public equity wealth to match the FA aggregate. 
+
+We estimate individual level public equity wealth by dividing nonqualified dividends by group specific dividend yield: $W^{equ}_{it} = div_{it}/\bar{d}_{c(i)t}$. Table NN presents distributional statistics for public equity wealth shares across the income distribution, and compares them with two alternative methods: those of PSZ and SZZ, both of which use homogeneous yields. 
+
+In estiimating capital gain yields, we allow for two degrees of return heterogeneity: difference in average excess return ($\alpha_c$) and market exposure ($\beta_c$). We estimate these parameteres by cell $c$ through a CAPM style regression of portfolio return on the market excess return:
+\be
+R^c_t = \alpha_c + R^f_t + b^c_t (R^m_t - R^f_t) + \epsilon_{ct}.
+\ee
+To go from total returns to real capital gain yield $\gamma$, the dividend yield and inflation rate are subtracted: $\gamma_{it} = \hat{R}_{c(i)t} -  d_{c(i),t} - \pi_{t}$. 
+
+%The mean $\beta$ for the sample is slightly above 1 (1.04), with $\alpha$ close to zero. 
+
+\subsection{Private business wealth} 
+
+To estimate private business wealth at the individual level, we first value the businesses, and then allocate them relative to their direct and indirect ownership shares. Business enterprise values\footnote{We first estimate enterprise values, which do not include the net value of financial assets, since the business transaction data strips financial assets from the data. We describe the process from moving from enterprise to market values below.} are estimated by capitalizing EBITDA (constructed as net income plus interest plus amortization plus depreciation) and sales. We do so using valuation ratios derived from two datasets on non-public business sales from Business Valuation Resources, LLC, a firm that specializes in providing data, information, and tools to appraisers who value private firms. The data is described in detail in Appendix J and a companion paper, Campbell and Robbins (2025). This is the first time the data has been used to estimate firm level business values. 
+
+We estimate capilization rates for EBITDA ($\beta_{ct}^{EB})$, and sales ($\beta_{ct}^{SA}$) by year by averaging transaction multiples by cell, for cells defined by two-digit NAICS industry, firm size (measured by sales), and legal form of organization. Table NN explores how business cap rate by these cell variables by regressing EV/SA and EV/EBITDA ratio on firm size, legal form of organization, and NAICS industry.  Firm size is a particularly important predictor of valuation multiples. Being in the top decile of size is associated with an increase in EV/EB of 1.3 and EV/SA of.11 compared with being in the 5th decile. 
+
+We value individual businesses by multiplying sales and EBITDA from their tax returns by the two cap rates, and taking an average of the two as the final valuation:
+\begin{align}
+\text{Sales EV}_{ft} = \text{Sales}_{ft} \cdot \beta_{ct}^{SA}  \label{eq:sav} \\
+\text{EBITDA EV}_{ft} =   \text{EBITDA}_{ft} \cdot \beta_{ct}^{EB}  \label{eq:ebv}\\
+\text{Final EV}_{ft} = (\text{Sales EV}_{ft} + \text{EBITDA EV}_{ft}) / 2.
+\end{align}
+To go from enterprise to market values, we use data from Schedule L of business tax returns to add back net financial assets. 
+
+Table NN presents our estimates of aggregate private business wealth, showing a total of \$17 T in 2017, more than \$6 T greater than SZZ and PSZ, both of who scale their totals to the FA. Our valuations for partnerships, \$8T, is substantially larger than the SZZ and FA values (\$4T). The reason for this difference is a difference in methodology: the FA values partnerships based on book value, and do not apply market based multiples.\footnote{We argue that the FA is substantially undervaluing partnership businesses by not applying market multiples. While a simplified book-value approach to valuation was less of a problem when partnerships were a small fraction of aggregate business income, as shown by \citet{smith2019capitalists} and \citet{smith2022rise}, over the past two decades pass through activity has exploded. The rise of pass-through business fundamentally altered the partnership landscape from predominantly small professional business to larger enterprises.\footnote{See \citet{chrisman2009llcs} and \citet{friedman2004silent}.} In addition, the growing importance of intangible capital -- as shown in \citet{bhandari2021sweat} in a small business context and \citet{corrado2009intangible} more generally -- has widened the gap between book and market values, as many intangible assets remain unrecorded on balance sheets.} 
+
+Individual business wealth equals the value of their underlying businesses times the fraction of the share they own: $W^{\text{Pr. Bus}}_{it} = \sum_f MV_{ft} sh_{ift}$. Allocation of S-corps and soleproprietorship value is straightforward. S-corps can only (with a few exceptions) be held by individuals, and ownership shares are listed directly on Schedule 1120 K1 information returns. Sole proprietorships returns are inherently linked to their owners, because their tax return (Schedule C) is included as part of 1040. 
+
+Allocating partnership business wealth is more difficult since partnerships can be owned by not only by individuals, but by other legal forms of organization (such as other partnerships, trusts, or corporations) that ultimately may be controlled by individuals. Prior work has traced business ownership solely through direct holdings reported on Form 1065 K1. In this paper, we will attempt to cut through the chain of ownership and allocate valuation to their ultimate owner. 
+
+We do so by applying a theoretical result from the network economics literature. A network of partnership ownership is denoted by matrix $C$, where $C_{ij} is the fraction of partnership $j$ that partnership i$$ owns. The value of partnership $i$ is the value of its fundamental assets, $a_i$, plus the value of the shares of other firms it owns: $V_i = a_i + \sum_j C_{ij} V_j$. The vector describing the market value of all partnerships is then given by V = a + C \cdot V$. Solving for the total value of the firm, $V = (I − C)^{-1} \cdot a$. 
+
+We estimate the $a$ vector as described above, by capitalizing business level EBITDA and sales. We estimate the partnership ownership matrix $C$ using Form 1065-K1, which lists the percentage of each partnership that is owned by other partnerships. Table NN provides the results of this analysis. For partnership operating businesses, the aggregate enterprise business value was \$7 T in 2017. Of this, \$6 T can be traced back to some K1 owner, of which
+ultimately \$2.7 T flows to individual ownership. The remaining values are held by C-corporations, trusts/estates, foreign owners, and 10\% by unidentified entities. 
+
+Table K compares the share of private business wealth by the top 10\% and top 1\% using our valuation method, and compares it to SZZ and PSZ. Concentration is substantially higher in our estimates as compared to prior work. This is a function of (i) heterogeous capitalization rates, values richer individual's businesses, which are larger, at higher multiples (ii) the fact that indirectly owned businesses are much more concentrated than directly owned businesses. 
+
+For partnerships and S-corporations, we estimate nominal capital gains between time $t-1$ and $t$ as the change in the market value of the business, minus any change in invested capital. Change in capital is equal to the change in paid in capital plus retained earnings for S-corps, and the change in the capital account for partnerships:
+\begin{align}
+KG_{ft}^{Scorp} = \Delta MV_{it}  - \Delta \text{Paid in capital}_{ft} - \Delta \text{Retained earnings}_{ft} \label{eq:kgcomputation} \\
+KG_{ft}^{Part} = \Delta EV_{ft}  - \Delta \text{Partners Capital Accounts}_{ft}
+\end{align}
+For private C-corporations and sole proprietorships, there is no comparable data for basis changes, and thus we estimate gains using price indexes from public corporations, specifically the S\&P 500. 
+
+\subsection{Tenant occupied housing}
+
+Both PSZ and SZZ allocate the total value of tenant occupied real estate, \textit{including real estate owned by partnerships and S-corps} by capitalizing rental income from Part I of Schedule E \textit{from properties that individuals directly own}, i.e. not including rental income from indirectly owned properties. This procedure is problematic, because by capitalizing only Part I Schedule E income only they impute all the value of partnership and S-corp owned housing to the individuals that directly own properties, and none to the individuals that actually own and control this housing. 
+
+We fix this error by capitalizing property.tax payments both directly owned by individuals, and indirectly owned through partnerships and S-corps, using data from Form 8825. These data contain property level tax payments, the location of the real estate, and the type of property, which we separate into three broad categories: single family, multifamily, and commercial. We estimate real estate values by capitalizing property tax payments using average county-level property tax rates by property type. Data on effective tax rates is taken from the Lincoln Institute of Land Policy and the Minnesota Center for Fiscal Excellence.
+
+Table NN displays results for 2021. About \textit{half} of t.o. housing is owned by partnerships, which implies that prior estimates were incorrectly allocating a substantial fraction of wealth: the correlaiton of our housing wealth measure and the PSZ/SZZ version is only .45. In addition, our measure is substantially more concentrated than PSZ, since indirectly owned real-estate is concentrated in the upper percentiles of the distribution. 
+
+
+
+
+\subsection{Owner occupied housing}
+
+For tax units that are itemizers, we identify homeowners through property tax deductions listed on Schedule A, and the specifc location of the home through the zip code address listed on the tax return. We estimate home values by capitalizing property tax payments, with a capitalization factor equal to the inverse average property tax rate for the county county of residence, estimated from the American Community Survey and Decennial Census for the year. Estimated home value then eqquals $W_{it}^{O.O housing} = \text{Property tax payment}_{it} / \text{Average property tax rate}_{c(i)t}$, where $c$ indexes county. 
+
+Appendix Figure A.1 shows that this procedure captures about 80\% of the aggregate value of owner-occupied housing from the Financial Accounts. Following PSZ, we scale the value of itemizers to exactly equal 80\% of FA values, and
+allocate the remaining 20\% to nonitemizers and non-flers by assuming this group holds the average housing wealth, by income decile and age X married cell, from the SCF. 
+
+The Tax Cut and Jobs Act (TCJA) of 2018 increased the standard deduction from \$6,500 to \$12,500 for single flers (and likewise close to double for other fling statuses as well), which correspondingly reduced the percentage of
+itemized tax returns from 30\% to 11\%, hindering our ability to capture real estate wealth. In 2017, capitalized itemizers’ property tax payments accounted for 77\% of Financial Accounts housing wealth, dropping to 40\% in 2018. 
+
+To accurately estimate housing wealth from 2018 onwards for non-itemizers, we use the following procedure. First, we take the address of the tax filer post 2018, and see if that same address (not necessarily owned by the same household) filed a tax return in 2017. If they did, and itemized a property tax deduction, we can estimate the 2017 value of the house, then update the value to the current year using the FHFA house price indices for the
+area. This procedure increases the percentage of Financial Accounts housing wealth accounted for to 75\%. For the residual 25\%, we again allocate the wealth using averages (by income and ageXmarried cell) using the most recent post-TCAJ SCF year. 
+
+
+%The capital gain is estimated as the change in the price index after netting out price changes due to retained earnings.\footnote{Let $P_t$ be the price index at the end of period $t$, and $RE_t$ the retained earnings during period $t$. We estimate the ex-retained earnings price change as $\frac{P_t}{P_{t-1}} \frac{1}{(1+RE_t/P_{t-1})}$. Data is from Robert Shiller. } The real yield equals the nominal yield divided by net national product inflation. 
+
+
+
+
+% Ownership shares of S-corps are calculated from the universe of 1120 K1 information returns. For individual i, S-corp wealth equals the value of their underlying businesses times the fraction of the share they own: $W^{\text{S-corp}}_{it} = \sum_f MV_{ft} sh_{ift}$. Not all wealth estimated at the business level can be traced to individuals.  In 2017, $7T in S-corp business wealth is passed down to the K-1 level, where we capture \$6 T in value. The loss of $1 T is due to (i) some companies not fling K1s (ii) insuffcient data on business ownership on the K1s. A total of \$5.5 T in value is accounted for at the individual level. This may be due to (i) some S-Corps being owned by nonprofts / estates / trusts (ii) foreign shareholders (iii) sampling error. For our default series we re-allocate the missing missing S-corp to individuals in proportion to their S-corp holdings. 
+
+
+%For example, in 2018 we estimate the value of partnership businesses in the warehouse industry by multiply its EBITDA by a 8.5 capitalization factor. The cap factor was estimated from a database of sales of partnership businesses in the same year that were in the same industry and a similar size. 
+
+\begin{table}[H]
+\centering
+\caption{Summary of Wealth and Capital Gains Estimation Methods}
+\label{tab:estimation_methods}
+\small
+\begin{tabularx}{\textwidth}{lXX}
+\toprule
+Asset Class & Wealth Capitalization & Capital Gains Return \\
+\midrule
+Public equity & Het. yields (Barber \& Odean (2000)) & Het. portfolio $\alpha$ and $\beta$ (Barber \& Odean (2000)) \\[6pt]
+Private equity & Het. EV/EBITDA and EV/Sales (DealStats) & Het. returns calculated as change in EV minus investment \\[6pt]
+Owner-occupied housing & Het. property tax rates (ACS/Census) & Het. returns (FHFA price indices) \\[6pt]
+Tenant-occupied housing & Het. property tax rates (Lincoln Institute) & Het. returns (Freddie Mac and CoStar (commercial)) \\[6pt]
+Fixed income & Het. yields (SZZ) & Excluded \\[6pt]
+Pension & Capitalize 60\% taxable pensions, 30\% wages, 10\% tax-exempt pensions (PSZ) & Homogeneous (Financial Accounts) \\
+\bottomrule
+\end{tabularx}
+\begin{minipage}{0.95\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table summarizes the capitalization method used to estimate wealth and the return method used to estimate capital gains for each asset class. ``Homogeneous return'' denotes that aggregate Financial Accounts capital gains are divided by aggregate wealth to form a common yield applied to all individuals. ``Heterogeneous'' denotes that capitalization factors or returns vary across individuals based on asset or location characteristics. SZZ refers to \citet{smith2023}; PSZ refers to \citet{piketty2016distributional}. Fixed income capital gains are excluded from the analysis. See text for details.
+\end{minipage}
+\end{table}
+
+\section{Demographic and Geographic Concentration}
+
+Capital gains are concentrated among older individuals, reflecting the cumulative nature of asset accumulation over the life cycle and the nature of gains to compound due to low realization rates. Figure~\ref{fig:kg_age} displays average capital gains by age, which rise steadily from young adulthood through retirement. The age-gains profile is approximately linear through working ages before leveling off after age 70, and fairly tracks the estimated wealth profile. Notably, capital gains do not decline substantially among the oldest age groups, consistent with the well-documented failure of wealth to decumulate in retirement as predicted by standard life-cycle models \citep{denardi2004wealth}. Bequest motives, precautionary saving against health and longevity risk, and the concentration of wealth among households with low marginal propensities to consume all contribute to the persistence of wealth---and hence capital gains---into advanced ages. 
+
+Figure~\ref{fig:kg_age} also displays capital gain realizations, scaled as a percentage of total gains for that age group. Realization rates are low throughout adulthood and rise slowly until retirement, where they plateau at 65\% of total gains. Notably, realization rates never exceed total gains, consistent with evidence on high savings rates out of capital gains and low marginal propensities to consume among wealthy households \citep{dimaggio2020stock,fagereng2019saving,bach2020rich}. Table~\ref{tab:kg_age} summarizes the distribution of capital gains across age groups. Given the strong age-relationship documented above, capital gains are concentrated amongst retirees: individuals aged 65 and over received 36\% of total capital gains while comprising only 18\% of the adult population. The aging of the U.S. population has contributed to increased concentration of capital gains among the elderly over our sample period. Between 2002 and 2021, the share of capital gains received by individuals aged 65 and over rose from 23\% to 36\%. 
 
 \begin{figure}[H]
 \centering
@@ -124,7 +283,6 @@ Capital gains are concentrated among older individuals, reflecting the cumulativ
 \end{minipage}
 \end{figure}
 
-Table~\ref{tab:kg_age} summarizes the distribution of capital gains across three broad age groups. Given the strong age-relationship documented above, capital gains are concentrated amongst retirees: individuals aged 65 and over received 36\% of total capital gains while comprising only 18\% of the adult population. Individuals aged 20-44 comprise 48\% of the population, but received only 20\% of the gains. The average age of individuals in the top 1\% of capital gains recipients is [XX] years, compared to [YY] years for the median recipient. Among the top 0.1\%, the average age rises further to [XX] years. The concentration of capital gains among the elderly is driven primarily by stock market wealth. Individuals aged 65 and over received 45\% of stock gains---far exceeding their [XX]\% population share. By contrast, the elderly are only modestly overrepresented amongst real estate and private business gains. 
 
 \begin{table}[H]
 \centering
@@ -151,7 +309,14 @@ All       & [XX]  & 100\%  & 100\%  & 100\%  & 100\%  & 100\% \\
 \end{minipage}
 \end{table}
 
-Table~\ref{tab:kg_percentile} reports the average age and capital gains for individuals at different points in the capital gains distribution. Average age rises monotonically with capital gains: the top 10\% of capital gains recipients are [XX] years old on average, compared to [XX] years for the top 0.01\%. This pattern reflects both life-cycle wealth accumulation and cohort effects in stock market participation.
+Capital gains are geographically concentrated in states with concentrations of financial assets appreciating housing markets. Figure~\ref{fig:kg_map_total} displays capital gains per capita by state, averaged over 2002--2021. The geographic distribution is highly uneven: residents of the District of Columbia received an average of \$[19,500] in annual capital gains -- more than double the national average -- while residents of West Virginia received just \$3,500. The top five states---the U.S. Virgin Islands, the District of Columbia, California, New York, and Florida---combine high concentrations of financial wealth (New York), appreciated housing markets (California, New York, Florida), and favorable tax treatment (the Virgin Islands, Florida). The bottom five states---West Virginia, Mississippi, Indiana, Kentucky, and Alabama---share characteristics of lower household wealth and below average housing returns. 
+
+State-level capital gains tax rates and the presence of an estate tax are only moderately correlated with individual-level capital gains, with an important exception for the top .1\% of the distribution. Table YY regresses state-level top capital gains tax rates on an individual's rank in the capital gains distribution. Column (1) includes only year fixed effects, while Column (2) adds controls for labor income and age. In both specifications, there is a moderate positive correlation between capital gains and tax rates, suggesting other locational characteristics may dominate the location choices. Column (3) adds dummy variables for the 99-99.9th and 99.9th-100th percentile of the capital gains distribution. For the top capital gain group, there is an economically and statistically significant negative coefficient: the average state tax rate of this group is .92 percentage points lower, compared to an average top-state capital gains tax rate of 5.29\%.  Columns (4)-(6) consider the relationship between capital gains and the presence of an estate tax, with the regression restricted to retirees (age 65+). The results show that the very largest capital gain holders (top .01\%) are 9.5\% less like to reside in a state with an estate tax, compared to a sample mean of 25\%. 
+
+\section{Appendix}
+
+
+\subsection{Demographic and Geographic}
 
 \begin{table}[H]
 \centering
@@ -175,7 +340,6 @@ Top 0.01\% & [XX] & [XX] \\
 \end{minipage}
 \end{table}
 
-The aging of the U.S. population has contributed to increased concentration of capital gains among the elderly over our sample period. Between 2002 and 2021, the share of capital gains received by individuals aged 65 and over rose from 23\% to 37\%, tracking the growth in this age group's share of total wealth. This demographic shift has implications for both the aggregate consumption response to asset price changes---as older households have lower marginal propensities to consume---and the design of capital gains taxation, particularly provisions such as the step-up in basis at death.
 
 Table~\ref{tab:kg_gender} shows the breakdown of gains for married versus unmarried filers, and amongst the unmarried, female versus male. Average capital gains are substantially higher for married filers than for unmarried filers, reflecting large differences in income and wealth. Among unmarried filers, men have moderately higher average capital gains than women, again reflecting differences in wealth: [XX] compared to [YY]. The largest differences in gains between men and women concern private businesses, with average male capital gains double that of females. This pattern reflects the well-documented gender gap in entrepreneurship: men are roughly twice as likely as women to start and own businesses \citep{kacperczyk2019gender}.
 
@@ -200,9 +364,29 @@ Unmarried Female & [XX] & [XX] & [XX] \\
 \end{minipage}
 \end{table}
 
-\subsection{Geography}
+\begin{table}[H]
+\centering
+\caption{Top 5 States for Capital Gains Per Capita by Asset Class}
+\label{tab:kg_state_asset}
+\small
+\begin{tabular}{cllll}
+\toprule
+Rank & Overall & Equity & Real Estate & Business \\
+\midrule
+1 & Virgin Islands & DC          & DC          & Wyoming \\
+2 & DC             & Connecticut & California  & American Samoa \\
+3 & California     & Wyoming     & Hawaii      & DC \\
+4 & New York       & New York    & Washington  & Connecticut \\
+5 & Florida        & Massachusetts & Florida   & New York \\
+\bottomrule
+\end{tabular}
+\begin{minipage}{0.9\textwidth}
+\vspace{0.5em}
+\footnotesize
+\textit{Notes:} Table reports states and territories with highest capital gains per capita by asset class, pooled over 2002--2021. Equity includes public stocks and mutual funds. Real estate includes owner-occupied and rental property. Business includes partnerships, S-corps, and private C-corps.
+\end{minipage}
+\end{table}
 
-Capital gains are geographically concentrated in states with concentrations of financial assets appreciating housing markets. Figure~\ref{fig:kg_map_total} displays capital gains per capita by state, averaged over 2002--2021. The geographic distribution is highly uneven: residents of the District of Columbia received an average of \$[19,500] in annual capital gains -- more than double the national average -- while residents of West Virginia received just \$3,500. The top five states---the U.S. Virgin Islands, the District of Columbia, California, New York, and Florida---combine high concentrations of financial wealth (New York), appreciated housing markets (California, New York, Florida), and favorable tax treatment (the Virgin Islands, Florida). The bottom five states---West Virginia, Mississippi, Indiana, Kentucky, and Alabama---share characteristics of lower household wealth and below average housing returns. 
 
 Looking at a more granular level, Table~\ref{tab:kg_cz} presents population-weighted OLS regressions of capital gains per capita on commuting-zone characteristics, with each correlate entered individually (columns 1--8) and jointly (column 9). Several patterns emerge. Capital gains are [higher/lower] in more urbanized commuting zones, with a one-standard-deviation increase in metro share associated with \$[XX] higher gains per capita (column 1). The ``superstar city'' premium \citep{gyourko2013superstar} is particularly pronounced: gains are \$[XX] higher per capita in CZs containing superstar cities (column 2), [and this premium remains large after conditioning on metro share in column 9, indicating that it is not urbanization per se but specifically high-cost metros that concentrate gains]. Commuting zones with a larger elderly population share have significantly higher capital gains (column 3), consistent with the life-cycle patterns documented above. Gains are negatively correlated with the \citet{chetty2014land} causal measure of intergenerational mobility (column 4): commuting zones where children from low-income families have the worst outcomes tend to have the highest capital gains, consistent with gains accruing disproportionately to areas marked by high wealth concentration and residential segregation. Housing supply elasticity \citep{saiz2010geographic} is [negatively] associated with gains (column 5), consistent with supply constraints capitalizing into asset values [---though this correlation is substantially attenuated once superstar status is controlled for in column 9]. Larger commuting zones have [higher] per capita gains (column 6). The share of Black residents is [positively/negatively] associated with capital gains per capita (column 7), consistent with [gains concentrating in diverse metropolitan areas / the racial wealth gap limiting gains in majority-Black communities]. The share of college-educated adults is [positively] associated with gains (column 8), consistent with higher rates of stock market participation and wealth accumulation among college-educated populations. The joint specification in column 9 explains [XX]\% of the cross-CZ variation in gains, with [superstar status/elderly share] as the strongest predictors.
 
@@ -254,30 +438,6 @@ $R^2$                & [XX]   & [XX]   & [XX]   & [XX]   & [XX]   & [XX]   & [XX
 \end{minipage}
 \end{table}
 
-% The composition of capital gains varies substantially across states. Table~\ref{tab:kg_state_asset} reports the top five states by asset class. Stock market gains are most concentrated in the District of Columbia, Connecticut, Wyoming, New York, and Massachusetts---reflecting concentrations of financial sector wealth and, in the case of Wyoming, favorable tax treatment of investment income. Real estate gains are dominated by areas with constrained housing supply: the District of Columbia, California, Hawaii, Washington, and Florida. Private business gains are highest in Wyoming and the District of Columbia, with Wyoming's dominance reflecting the prevalence of pass-through entities registered in the state.
-
-\begin{table}[H]
-\centering
-\caption{Top 5 States for Capital Gains Per Capita by Asset Class}
-\label{tab:kg_state_asset}
-\small
-\begin{tabular}{cllll}
-\toprule
-Rank & Overall & Equity & Real Estate & Business \\
-\midrule
-1 & Virgin Islands & DC          & DC          & Wyoming \\
-2 & DC             & Connecticut & California  & American Samoa \\
-3 & California     & Wyoming     & Hawaii      & DC \\
-4 & New York       & New York    & Washington  & Connecticut \\
-5 & Florida        & Massachusetts & Florida   & New York \\
-\bottomrule
-\end{tabular}
-\begin{minipage}{0.9\textwidth}
-\vspace{0.5em}
-\footnotesize
-\textit{Notes:} Table reports states and territories with highest capital gains per capita by asset class, pooled over 2002--2021. Equity includes public stocks and mutual funds. Real estate includes owner-occupied and rental property. Business includes partnerships, S-corps, and private C-corps.
-\end{minipage}
-\end{table}
 
 The geographic concentration of capital gains has important implications for state tax revenues. Because most states tax capital gains as ordinary income, states with large concentrations of capital gains experience pronounced revenue volatility tied to asset market performance. California's Legislative Analyst's Office estimates that capital gains are nearly three times as volatile as the state's overall personal income tax base, and account for roughly 40\% of total income tax volatility \citep{lao2017volatility}. More broadly, personal income tax revenue volatility has increased across the majority of states in recent years, driven in significant part by greater reliance on increasingly volatile capital gains realizations \citep{robyn2024volatility}. California and New York---the two states with the largest concentrations of capital gains---accounted for the majority of the national decline in state income tax revenues in fiscal year 2023 \citep{robyn2024volatility}. 
 %The high elasticity of capital gains realizations with respect to tax rates \citep{agersnap2021elasticity} further complicates state revenue forecasting, as federal and state tax policy changes can induce large timing shifts in when gains are realized.

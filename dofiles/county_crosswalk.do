@@ -268,11 +268,15 @@ capture rename *, lower
 
 * Create 5-digit FIPS string
 * May be imported as numeric or string
-
-    * Already string -- pad to 5 digits
+capture confirm numeric variable fips_raw
+if _rc == 0 {
+    gen str5 county_fips = string(fips_raw, "%05.0f")
+}
+else {
     gen str5 county_fips = fips_raw
     replace county_fips = "0" + county_fips if strlen(county_fips) == 4
     replace county_fips = "00" + county_fips if strlen(county_fips) == 3
+}
 
 
 * Ensure rucc_2013 is numeric
@@ -297,7 +301,14 @@ label define rucc_lbl ///
 label values rucc_2013 rucc_lbl
 
 * Keep relevant variables
-keep county_fips rucc_2013 metro pop_2010
+capture confirm variable pop_2010
+if _rc == 0 {
+    keep county_fips rucc_2013 metro pop_2010
+}
+else {
+    di as text "Note: pop_2010 not found in RUCC data; continuing without it."
+    keep county_fips rucc_2013 metro
+}
 
 * Drop rows with missing FIPS (state-level summary rows or header artifacts)
 drop if missing(county_fips) | county_fips == "" | county_fips == "     "
@@ -330,6 +341,14 @@ describe
 capture rename FIPSCode fips_raw
 capture rename FIPS fips_raw
 
+* Verify that fips_raw was created by one of the renames above
+capture confirm variable fips_raw
+if _rc != 0 {
+    di as error "Could not find FIPS variable in education data. Listing variables:"
+    describe
+    exit 198
+}
+
 * Convert FIPS to string if numeric
 capture confirm numeric variable fips_raw
 if _rc == 0 {
@@ -352,7 +371,8 @@ drop if missing(county_fips) | county_fips == "" | county_fips == "     "
 capture rename Percentofadultswitha pct_college
 capture rename Percentofadultswithab pct_college
 capture rename Percentofadultscompl pct_college
-* Try looking for a variable containing "bachelors" and "201721" or "2017"
+* Check whether any of the above succeeded
+capture confirm variable pct_college
 if _rc != 0 {
     * Use a broader approach: list variables containing relevant keywords
     describe, varlist
@@ -663,9 +683,17 @@ capture label var share_college "Share adults with bachelor's degree+ (ACS 2017-
 capture label var share_black   "Share Black population (2019 Census est.)"
 
 * Order variables
-order county_fips county_name state_abbr cz czname county_pop2019 ///
-    rucc_2013 metro pop_2010 cbsa_code cbsatitle msa centraloutlyingcounty ///
-    share_college share_black
+capture confirm variable pop_2010
+if _rc == 0 {
+    order county_fips county_name state_abbr cz czname county_pop2019 ///
+        rucc_2013 metro pop_2010 cbsa_code cbsatitle msa centraloutlyingcounty ///
+        share_college share_black
+}
+else {
+    order county_fips county_name state_abbr cz czname county_pop2019 ///
+        rucc_2013 metro cbsa_code cbsatitle msa centraloutlyingcounty ///
+        share_college share_black
+}
 
 * Final integrity check
 isid county_fips

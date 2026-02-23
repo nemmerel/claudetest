@@ -1,0 +1,55 @@
+RESTAT EDITOR 
+
+1. First, there is broad concern about various assumptions that you make about equity returns.
+2. Second, multiple reviewers are skeptical of the size of the marginal contribution of the paper relative to
+existing work. 
+3. Third, there are a range of more diverse comments and questions about the technical details of your analysis.
+
+
+1.	RESTAT_1 
+a.	Double counting of income -- DONE 
+b.	Haig-Simons income means removing taxes & adding transfers -- go into more detail on my measure, noting that it is pre-tax and pre-transfer. 
+    i.	Traditional Haig-Simons is a pre-tax rate. It is traditionally described as “consumption plus change in net worth”, but that isn’t correct --- it should also add back taxes. It is an ability to pay measure. And it also includes transfers. 
+    ii.	What I should do --- rename my income source to be “comprehensive income.” This is a pre-tax comprehensive income --- 
+    iii.	For Haig-Simons  --- ability to pay --- which adds back transfers 
+iv.	And then a post-tax income. 
+v.	Larrimore is wrong in saying that Haig-Simons income is pre-tax 
+c.	Issues with baseline PSZ estimates
+d.	Effective tax rate
+i.	Include transfers in the income denominator, and deduct refundable tax credits in the numerator
+e.	Fixed income assets and removing inflation. 
+f.	Unclear contribution
+i.	Heterogeneous returns --- already done in SZZ
+ii.	How it improves in Larrimore? 
+g.	Differences with Larrimore --- our spike is earlier (in 2003) 
+
+2.	Letter 2
+a. My concern is that, currently, it comes across as an accounting exercise – I’d like to see the empirical results more closely integrated to the underlying economics (where do gains come from, what does this mean for how we
+should tax them). 
+b. The precise quantitative results depend crucially on some key assumptions (e.g. return homogeneity). 
+Minor Notes:
+a.	Conceptual framework – Mirless Review about taxation of normal vs excess returns. Reference to the Aguiar  And how volatility is related to the ability to tax it.
+b.	Introduction --- hard going. Clearer structure, figure too much detail.
+c.	Contribution --- what is the idea here? That capital gains are skewed? That income inequality is even higher?  It would also be useful to have a clearer statement of the contribution relative to the DINA and SZZ papers – what does the current paper do that aligns with the previous papers, and what does it do differently?
+d.	Owner occupied housing --- better describe non-itemizers 
+e.	Business wealth --- compare with estimates in SZZ
+f. One thing that might be really helpful is a summary table that describes
+the different components in the computation of total cap gains, the data used to estimate
+them, the key assumptions underpinning them (and whether these are new or standard).
+g.	Taxation --- what to make of these? Should we be taxing all unrealized gains? Behavioural responses would be huge. PF / optmal tax discussions. 
+g.	Tax form in key paper not necessary. Reconciliation with the first sentence of the paper with Figure 1. 
+3.	Letter 3
+a.	Heterogeneous returns to equity
+b.	Incidence of tenant-occupied residential real estate
+c.	Use of tax return addresses
+d.	Focusing the paper --- too many results
+e.	Interest driven revaluations of equity and housing. 
+4.	Letter 4
+a.	Highlight differences relative to SZZ --- showing that our method is different or more accurate. Bottom line is that readers deserve a more explicit explanation. 
+b.	Possible to do simulations assuming heterogeneous returns on equity? 
+5.	Letter 5 
+a.	Sensitivity Analysis --- how do the results change if we assume different cap factors or het returns?
+i.	Can we do business heterogeneous returns?
+b.	We don’t fully describe how partnerships are related to individuals. 
+c.	Additional issues, details with partnerships. 
+d.	Defense of capital gains in Haig-Simons is half-baked --- DOUBLE COUNTING. 
