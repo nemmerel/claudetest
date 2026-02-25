@@ -114,24 +114,41 @@ Finally, we show that the secular increases in stock prices, business values, an
  Capital gains are a relatively widespread form of income, with 80\% of the sample having a non-zero gain. Realizations, however, are relatively rare: 83\% of individuals report exactly zero gains, and an additional 7\% reporting capital losses (of which 4.2\% are the maximum deductible amount). The correlation of total and realized capital gains at the individual level is .40, which is surprisingly high given the lumpiness of realizations and the measurement error for total gains. After aggregation across individuals to smooth realization and measurement variation, the correlaiton is even higher: by age the correlation is .7, by income decile .8. 
 
 
-
 \section{Theoretical Framework}
 
-Traditional national accounting defines output and income the production of goods and services.
+Before measuring capital gains and Haig-Simons income, we formally define them and explore how they are related to traditional national accounting concepts. 
 
-We begin with a simple model of output, production, and income. GDP $Y_t$ is produced with capital $K_t$, labor $L_t according to the production function $Y_t = F(K_t,I_t,L_t)$. Firms own the capital stock, and make accounting profits  $\Pi_t = Y_t - w_t L_t$. 
+%Traditional national accounting defines output and income as the production of goods and services, with no role for capital gains. 
 
-Accounting profits are a function of the return on capital held, equal to the rental rate of capital times the firm's profits, and income which does not derive from the factors of production: we refer to this as `pure profits' or factorless income. 
+Output $Y_t$ is produced by final goods firms with capital $K_t$ and labor $L_t$ with production function $Y_t = F(K_t,L_t)$. Firms produce output by hiring labor and capital, making profits of $\Pi_t = Y_t - w_t L_t - \rho_t K_t$. All capital is owned by the business sector, but individual firms rent the capital used in their own production from other firms. 
 
-The market value of firms is equal to the value of its capital stock, $K_t$, plus the present discounted value of its pure profits: $V_t = K_t + E_t \sum_{s=0}^{infty}\Pi_{t+s} D_{t+s}$, where $D_{t+s}$ is the stochastic discount rate.  
+Firms make revenue from profits $\Pi_t$ and renting capital, $\rho_t K_t$. Out of this revenue, they pay a dividend $D_t$, and retain earnings $RE_t$, which which they use to invest in the capital stock. 
 
-Capital gains are defined as the change in market value of firms: $V_{t+1} - V_t$. Given our set up, they can be a function of:
+The capital stock evolves according to $K_{t+1} = (1-\delta)K_t + I_t$. Investment equals retained earnings (corporate savings) plus personal saving, $S_t^p = w_t L_t + D_t - C_t$. Personal saving is invested in firms through new equity issuances $EQ_t$. 
+
 \begin{itemize}
-\item A change in the expected value of future profits $\Pi_t$
-\item Retained earnings that is reinvested in the firm: 
-\item Changes in the discount rate on future profits
+\item GDP $Y_t$ equals National Income, which equal the sum of wages, rental income, and profits: $NI_t = w_t L_t + \rho_t K_t + \Pi_t$. 
+\item Business income, defined as pure profits plus rental income is either paid out as dividends or retained within the firm: $\rho_t K_t + \Pi_t = RE_t + D_t$. 
+\item Output equals consumption plus investment, and investment equals the sum of personal and corporate savings: $Y_t = C_t + I_t = C_t + RE_t + S_t$. 
 \end{itemize}
+
+The market value of firms $V_t$ equals the value of the capital stock, $K_t$, plus the market value of the present discounted value of pure profits: $V_t = K_t + E_t \sum_{s=0}^{infty}\Pi_{t+s} D_{t+s}$, where $D_{t+s}$ is the stochastic discount rate.
+
+Capital gains are defined as the change in market value of firms minus net equity issuances: $V_{t+1} - V_t - EQ_t$. They can be a function of:
+\begin{itemize}
+\item A change in the expected value of future profits $\Pi_{t+s}$
+\item Retained earnings $RE_t$ reinvested in the firm
+\item Changes in the stochastic discount rate $D_{t+s}$
+\end{itemize}
+
+
+
+
 As defined, capital gains include retained earnings, which are included in national income. We therefore define pure capital gains $KG_t^{pure} = V_{t+1} - V_t - RE_t$. 
+%Accounting profits are a function of the return on capital held, equal to the rental rate of capital times the firm's profits, and income which does not derive from the factors of production: we refer to this as `pure profits' or factorless income. 
+
+
+
 
 
 
@@ -153,85 +170,50 @@ We now summarize our estimation procedure for each asset class, with details pro
 
 \subsection{Public equities}
 
-Prior work capitalizes dividends and/or realized capital gains with a homogeneous cap factor. We use account-level brokerage data from Barber \& Odean (2000) to estimate heterogeneous dividend yields \textit{and} portfolio betas by 25 cells of age and income. Dividend yields increase linearly in age, with the 65+ group averaging 20\% higher yields than the under-35 group; conditional on age, they are weakly correlated with income. 
+Prior work capitalizes dividends and/or realized capital gains with a homogeneous cap factor. We use account-level brokerage data a large discount brokerage, provided by Barber \& Odean (2000), which contains trading records and portfolio holdings for approximately 78,000 households. We use the data to estimate heterogeneous dividend yields portfolio betas by 25 cells of age and income. Dividend yields increase linearly in age, with the 65+ group averaging 20\% higher yields than the under-35 group; conditional on age, they are weakly correlated with income. 
 
-Because the brokerage data spans 1991--1996, we estimate yields \textit{relative} to the market average and apply these ratios to current-year aggregate yields. Individual public equity wealth is then estimated as nonqualified dividends divided by the group-specific yield. Table~NN compares distributional statistics from our heterogeneous yields with the homogeneous-yield approaches of PSZ and SZZ. For capital gain yields, we estimate cell-level portfolio alphas and betas from a CAPM-style regression of portfolio returns on the market, allowing returns to differ by both average excess return and market exposure. We scale aggregate public equity wealth to match the Financial Accounts.
+Because the brokerage data spans 1991--1996, we estimate yields \textit{relative} to the market average and apply these ratios to current-year aggregate yields. Individual public equity wealth is then estimated as nonqualified dividends divided by the group-specific yield. Table~NN compares distributional statistics from our heterogeneous yields with the homogeneous-yield approaches of PSZ and SZZ. 
 
-We estimate heterogeneous dividend capitalization rates using a sample of account-level data from a large discount broker, provided by Barber \& Odean (2000). Following Chodorow Recih et al and Graham and Kumar (2006), we merge the account level information on holdings with CRSP stock and mutual fund data to calculate individual level dividend yields. We then compute average dividend yields by 25 cells of age and income groups. 
+For capital gain yields, we estimate cell-level portfolio alphas and betas from a CAPM-style regression of portfolio returns on the market, allowing returns to differ by both average excess return and market exposure. We then scale aggregate public equity wealth to match the Financial Accounts.
 
-Appendix Figure J shows the slope of dividend yield by age and income. Dividend yields increase linearly in age, with aged 65+ showing a distinct preference for income rather than growth stocks: the average yield for this group is 20\% larger than the under 35 age group. Splitting by income, the lowest quartile of income in the sample have slightly elevated yields compared to the rest of the distribuion. 
-
-The B\&O data contains dividend yields from the years 1991-1996. To operationalize these for our sample period of 2002-2021, where average stock yields are somewhat lower, we use the data to estimate dividend yields \textit{relative} to the value-weighted average yield of the market. For each cell $c$, we estimate relative yield $\rho_c = \bar{d}_c / \bar{d}$, where $\bar{d}_c$ and $\bar{d}$ are, respectiively,  the value weighted mean yield for cell $c$ the overall market. Dividend yields in year $t$ and then computed as the cell level as $\bar{d}_{ct} = \rho_c \cdot \bar{d}_t$. Finally, we scale aggregate public equity wealth to match the FA aggregate. 
-
-We estimate individual level public equity wealth by dividing nonqualified dividends by group specific dividend yield: $W^{equ}_{it} = div_{it}/\bar{d}_{c(i)t}$. Table NN presents distributional statistics for public equity wealth shares across the income distribution, and compares them with two alternative methods: those of PSZ and SZZ, both of which use homogeneous yields. 
-
-In estiimating capital gain yields, we allow for two degrees of return heterogeneity: difference in average excess return ($\alpha_c$) and market exposure ($\beta_c$). We estimate these parameteres by cell $c$ through a CAPM style regression of portfolio return on the market excess return:
-\be
-R^c_t = \alpha_c + R^f_t + b^c_t (R^m_t - R^f_t) + \epsilon_{ct}.
-\ee
-To go from total returns to real capital gain yield $\gamma$, the dividend yield and inflation rate are subtracted: $\gamma_{it} = \hat{R}_{c(i)t} -  d_{c(i),t} - \pi_{t}$. 
 
 %The mean $\beta$ for the sample is slightly above 1 (1.04), with $\alpha$ close to zero. 
 
 \subsection{Private business wealth} 
 
-To estimate private business wealth at the individual level, we first value the businesses, and then allocate them relative to their direct and indirect ownership shares. Business enterprise values\footnote{We first estimate enterprise values, which do not include the net value of financial assets, since the business transaction data strips financial assets from the data. We describe the process from moving from enterprise to market values below.} are estimated by capitalizing EBITDA (constructed as net income plus interest plus amortization plus depreciation) and sales. We do so using valuation ratios derived from two datasets on non-public business sales from Business Valuation Resources, LLC, a firm that specializes in providing data, information, and tools to appraisers who value private firms. The data is described in detail in Appendix J and a companion paper, Campbell and Robbins (2025). This is the first time the data has been used to estimate firm level business values. 
+\textbf{Valuation.} We estimate firm-level enterprise values by capitalizing EBITDA and sales using valuation ratios derived from two large databases of private business transaction data, the first use of these data for distributional wealth estimation. We estimate capitalization rates by year, two-digit NAICS industry, firm size, and legal form; final enterprise value is the average of sales-based and EBITDA-based valuations. Net financial assets from Schedule~L are added to convert enterprise values to market values. Details on the BVR data and capitalization rate estimation are in Appendix~J and a companion paper \citep{campbell2025value}.
 
-We estimate capilization rates for EBITDA ($\beta_{ct}^{EB})$, and sales ($\beta_{ct}^{SA}$) by year by averaging transaction multiples by cell, for cells defined by two-digit NAICS industry, firm size (measured by sales), and legal form of organization. Table NN explores how business cap rate by these cell variables by regressing EV/SA and EV/EBITDA ratio on firm size, legal form of organization, and NAICS industry.  Firm size is a particularly important predictor of valuation multiples. Being in the top decile of size is associated with an increase in EV/EB of 1.3 and EV/SA of.11 compared with being in the 5th decile. 
+\textbf{Aggregate results.} Our estimates yield \$17T in aggregate private business wealth in 2017, more than \$6T above SZZ and PSZ, who scale to the Financial Accounts. The gap is largest for partnerships (\$8T vs.\ \$4T), because the FA values partnerships at book value and does not apply market multiples. We argue that the FA likely understates partnership wealth, as intangible capital has risen \citep{bhandari2021sweat,corrado2009intangible} and pass-through activity has expanded \citep{smith2019capitalists,smith2022rise}. Concentration is also substantially higher in our estimates, driven by heterogeneous capitalization rates that value larger businesses at higher multiples and by the high concentration of indirectly owned partnership wealth.
 
-We value individual businesses by multiplying sales and EBITDA from their tax returns by the two cap rates, and taking an average of the two as the final valuation:
-\begin{align}
-\text{Sales EV}_{ft} = \text{Sales}_{ft} \cdot \beta_{ct}^{SA}  \label{eq:sav} \\
-\text{EBITDA EV}_{ft} =   \text{EBITDA}_{ft} \cdot \beta_{ct}^{EB}  \label{eq:ebv}\\
-\text{Final EV}_{ft} = (\text{Sales EV}_{ft} + \text{EBITDA EV}_{ft}) / 2.
-\end{align}
-To go from enterprise to market values, we use data from Schedule L of business tax returns to add back net financial assets. 
+\textbf{Ownership allocation.} S-corp and sole proprietorship wealth is allocated directly from Schedule K-1 and Schedule~C returns. Partnership allocation is more complex because partnerships can be owned by other partnerships, trusts, or corporations. Prior work has traced business ownership solely through direct holdings reported on Form 1065 K1. 
 
-Table NN presents our estimates of aggregate private business wealth, showing a total of \$17 T in 2017, more than \$6 T greater than SZZ and PSZ, both of who scale their totals to the FA. Our valuations for partnerships, \$8T, is substantially larger than the SZZ and FA values (\$4T). The reason for this difference is a difference in methodology: the FA values partnerships based on book value, and do not apply market based multiples.\footnote{We argue that the FA is substantially undervaluing partnership businesses by not applying market multiples. While a simplified book-value approach to valuation was less of a problem when partnerships were a small fraction of aggregate business income, as shown by \citet{smith2019capitalists} and \citet{smith2022rise}, over the past two decades pass through activity has exploded. The rise of pass-through business fundamentally altered the partnership landscape from predominantly small professional business to larger enterprises.\footnote{See \citet{chrisman2009llcs} and \citet{friedman2004silent}.} In addition, the growing importance of intangible capital -- as shown in \citet{bhandari2021sweat} in a small business context and \citet{corrado2009intangible} more generally -- has widened the gap between book and market values, as many intangible assets remain unrecorded on balance sheets.} 
-
-Individual business wealth equals the value of their underlying businesses times the fraction of the share they own: $W^{\text{Pr. Bus}}_{it} = \sum_f MV_{ft} sh_{ift}$. Allocation of S-corps and soleproprietorship value is straightforward. S-corps can only (with a few exceptions) be held by individuals, and ownership shares are listed directly on Schedule 1120 K1 information returns. Sole proprietorships returns are inherently linked to their owners, because their tax return (Schedule C) is included as part of 1040. 
-
-Allocating partnership business wealth is more difficult since partnerships can be owned by not only by individuals, but by other legal forms of organization (such as other partnerships, trusts, or corporations) that ultimately may be controlled by individuals. Prior work has traced business ownership solely through direct holdings reported on Form 1065 K1. In this paper, we will attempt to cut through the chain of ownership and allocate valuation to their ultimate owner. 
-
-We do so by applying a theoretical result from the network economics literature. A network of partnership ownership is denoted by matrix $C$, where $C_{ij} is the fraction of partnership $j$ that partnership i$$ owns. The value of partnership $i$ is the value of its fundamental assets, $a_i$, plus the value of the shares of other firms it owns: $V_i = a_i + \sum_j C_{ij} V_j$. The vector describing the market value of all partnerships is then given by V = a + C \cdot V$. Solving for the total value of the firm, $V = (I − C)^{-1} \cdot a$. 
-
-We estimate the $a$ vector as described above, by capitalizing business level EBITDA and sales. We estimate the partnership ownership matrix $C$ using Form 1065-K1, which lists the percentage of each partnership that is owned by other partnerships. Table NN provides the results of this analysis. For partnership operating businesses, the aggregate enterprise business value was \$7 T in 2017. Of this, \$6 T can be traced back to some K1 owner, of which
-ultimately \$2.7 T flows to individual ownership. The remaining values are held by C-corporations, trusts/estates, foreign owners, and 10\% by unidentified entities. 
+To allocate this wealth to individuals, we apply a result from the network economics literature. Let $C$ denote the partnership ownership matrix, where $C_{ij}$ is the fraction of partnership $j$ owned by partnership $i$, and let $a$ be the vector of fundamental asset values estimated above. The total market value vector satisfies $V = a + C \cdot V$, yielding:
+\be
+V = (I - C)^{-1} \cdot a
+\label{eq:network}
+\ee
+We estimate $C$ from the universe of Form 1065-K1 returns. Of \$7T in partnership enterprise value in 2017, \$6T can be traced to a K1 owner, of which \$2.7T flows to individuals; the remainder is held by C-corporations, trusts, foreign owners, and 10\% by unidentified entities. 
 
 Table K compares the share of private business wealth by the top 10\% and top 1\% using our valuation method, and compares it to SZZ and PSZ. Concentration is substantially higher in our estimates as compared to prior work. This is a function of (i) heterogeous capitalization rates, values richer individual's businesses, which are larger, at higher multiples (ii) the fact that indirectly owned businesses are much more concentrated than directly owned businesses. 
 
-For partnerships and S-corporations, we estimate nominal capital gains between time $t-1$ and $t$ as the change in the market value of the business, minus any change in invested capital. Change in capital is equal to the change in paid in capital plus retained earnings for S-corps, and the change in the capital account for partnerships:
-\begin{align}
-KG_{ft}^{Scorp} = \Delta MV_{it}  - \Delta \text{Paid in capital}_{ft} - \Delta \text{Retained earnings}_{ft} \label{eq:kgcomputation} \\
-KG_{ft}^{Part} = \Delta EV_{ft}  - \Delta \text{Partners Capital Accounts}_{ft}
-\end{align}
-For private C-corporations and sole proprietorships, there is no comparable data for basis changes, and thus we estimate gains using price indexes from public corporations, specifically the S\&P 500. 
 
 \subsection{Tenant occupied housing}
 
-Both PSZ and SZZ allocate the total value of tenant occupied real estate, \textit{including real estate owned by partnerships and S-corps} by capitalizing rental income from Part I of Schedule E \textit{from properties that individuals directly own}, i.e. not including rental income from indirectly owned properties. This procedure is problematic, because by capitalizing only Part I Schedule E income only they impute all the value of partnership and S-corp owned housing to the individuals that directly own properties, and none to the individuals that actually own and control this housing. 
+Both PSZ and SZZ allocate the total value of tenant occupied real estate, \textit{including real estate owned by partnerships and S-corps} by capitalizing rental income from Part I of Schedule E \textit{from properties that individuals directly own}, i.e. not including rental income from indirectly owned properties. This procedure is potentially problematic, because by capitalizing only Part I Schedule E income only they impute all the value of partnership and S-corp owned housing to the individuals that directly own properties, and none to the individuals that actually own and control this housing. 
 
-We fix this error by capitalizing property.tax payments both directly owned by individuals, and indirectly owned through partnerships and S-corps, using data from Form 8825. These data contain property level tax payments, the location of the real estate, and the type of property, which we separate into three broad categories: single family, multifamily, and commercial. We estimate real estate values by capitalizing property tax payments using average county-level property tax rates by property type. Data on effective tax rates is taken from the Lincoln Institute of Land Policy and the Minnesota Center for Fiscal Excellence.
+In this paper we capitalize property.tax payments both directly owned by individuals and indirectly owned through partnerships and S-corps, using data from Form 8825. These data contain property level tax payments, the location of the real estate, and the type of property, which we separate into three broad categories: single family, multifamily, and commercial. We estimate real estate values by capitalizing property tax payments using average county-level property tax rates by property type. Data on effective tax rates is taken from the Lincoln Institute of Land Policy and the Minnesota Center for Fiscal Excellence.
 
 Table NN displays results for 2021. About \textit{half} of t.o. housing is owned by partnerships, which implies that prior estimates were incorrectly allocating a substantial fraction of wealth: the correlaiton of our housing wealth measure and the PSZ/SZZ version is only .45. In addition, our measure is substantially more concentrated than PSZ, since indirectly owned real-estate is concentrated in the upper percentiles of the distribution. 
 
-
-
-
 \subsection{Owner occupied housing}
+Following \citet{larrimore2021recent}, we capitalize property tax deductions from Schedule~A using county-level effective tax rates from the ACS and Decennial Census. This procedure captures approximately 80\% of Financial Accounts housing wealth; following PSZ, we allocate the residual to non-itemizers using SCF averages by income decile and age-by-marital-status cell. Capital gains are computed using 5-digit zip code level housing price indices from the FHFA. 
 
-For tax units that are itemizers, we identify homeowners through property tax deductions listed on Schedule A, and the specifc location of the home through the zip code address listed on the tax return. We estimate home values by capitalizing property tax payments, with a capitalization factor equal to the inverse average property tax rate for the county county of residence, estimated from the American Community Survey and Decennial Census for the year. Estimated home value then eqquals $W_{it}^{O.O housing} = \text{Property tax payment}_{it} / \text{Average property tax rate}_{c(i)t}$, where $c$ indexes county. 
+The TCJA of 2018 reduced itemization rates from 30\% to 11\%, dropping our coverage from 77\% to 40\% of FA housing wealth. To recover non-itemizers' housing values post-2018, we match current-year addresses to 2017 returns where property taxes were itemized and update values using FHFA house price indices, raising coverage back to 75\%. The remaining 25\% is allocated via SCF averages from post-TCJA survey years.
 
-Appendix Figure A.1 shows that this procedure captures about 80\% of the aggregate value of owner-occupied housing from the Financial Accounts. Following PSZ, we scale the value of itemizers to exactly equal 80\% of FA values, and
-allocate the remaining 20\% to nonitemizers and non-flers by assuming this group holds the average housing wealth, by income decile and age X married cell, from the SCF. 
+\subsection{Other asset classes}
 
-The Tax Cut and Jobs Act (TCJA) of 2018 increased the standard deduction from \$6,500 to \$12,500 for single flers (and likewise close to double for other fling statuses as well), which correspondingly reduced the percentage of
-itemized tax returns from 30\% to 11\%, hindering our ability to capture real estate wealth. In 2017, capitalized itemizers’ property tax payments accounted for 77\% of Financial Accounts housing wealth, dropping to 40\% in 2018. 
-
-To accurately estimate housing wealth from 2018 onwards for non-itemizers, we use the following procedure. First, we take the address of the tax filer post 2018, and see if that same address (not necessarily owned by the same household) filed a tax return in 2017. If they did, and itemized a property tax deduction, we can estimate the 2017 value of the house, then update the value to the current year using the FHFA house price indices for the
-area. This procedure increases the percentage of Financial Accounts housing wealth accounted for to 75\%. For the residual 25\%, we again allocate the wealth using averages (by income and ageXmarried cell) using the most recent post-TCAJ SCF year. 
-
-
+To estimate taxable bond wealth, we use data from SZZ on the average fxed income yield by quantile in the wealth
+distribution (by year) to capitalize taxable interest fows: 0-99th percentile, 99th-99.9th, 99.9-99.99, and top 01\%. For indirectly held bonds held through mutual funds, money-market funds, ETFs, and closed-end funds, we capitalize non-qualifed dividends under an equal returns assumption using Financial Accounts totals. For munis, we capitalize tax-exempt interest. For currency, we follow PSZ and allocate Financial Account wealth by income rank using SCF data.
 %The capital gain is estimated as the change in the price index after netting out price changes due to retained earnings.\footnote{Let $P_t$ be the price index at the end of period $t$, and $RE_t$ the retained earnings during period $t$. We estimate the ex-retained earnings price change as $\frac{P_t}{P_{t-1}} \frac{1}{(1+RE_t/P_{t-1})}$. Data is from Robert Shiller. } The real yield equals the nominal yield divided by net national product inflation. 
 
 
@@ -451,6 +433,58 @@ The spatial distribution of capital gains also intersects with intergenerational
 The geographic concentration of capital gains may itself be partly endogenous to state tax policy. States without income taxes---including Florida, Texas, Nevada, Wyoming, Tennessee, and South Dakota---attract high-wealth individuals seeking to minimize their tax burden on realized gains. \citet{moretti2017effect} document that state taxes significantly affect the location decisions of ``star'' scientists and inventors, with a 1 percent increase in the top tax rate reducing the stock of star scientists by 1.6 percent. \citet{young2016millionaire} find that millionaire tax migration, while modest in aggregate, is concentrated among the highest-income households and responsive to cross-state tax differentials. This sorting behavior reinforces the geographic concentration of capital gains: Florida's appearance in the top five states for overall gains is likely driven in part by the in-migration of high-wealth retirees attracted by the absence of state income taxes, rather than solely by local asset appreciation.
 
 Finally, the geographic concentration of capital gains creates heterogeneous local wealth effects that amplify regional business cycle asymmetries. \citet{mian2013household} show that declines in housing wealth during the Great Recession had large effects on household consumption, with a marginal propensity to consume out of housing wealth of approximately 5--7 cents per dollar. Because capital gains---and the underlying asset holdings---are geographically concentrated, asset price booms disproportionately stimulate consumption and employment in already-prosperous areas, while busts devastate less-diversified regions. The experience of Nevada and Arizona during the 2008 housing crash illustrates this vulnerability: states with outsized exposure to real estate gains experienced the most severe contractions when prices reversed. The time-series volatility of capital gains at the state level thus represents a significant source of asymmetric regional risk, with implications for both macroeconomic stabilization policy and the design of fiscal federalism.
+
+
+\subsection{Private Business Details}
+
+
+
+We estimate capilization rates for EBITDA ($\beta_{ct}^{EB})$, and sales ($\beta_{ct}^{SA}$) by year by averaging transaction multiples by cell, for cells defined by two-digit NAICS industry, firm size (measured by sales), and legal form of organization. Table NN explores how business cap rate by these cell variables by regressing EV/SA and EV/EBITDA ratio on firm size, legal form of organization, and NAICS industry.  Firm size is a particularly important predictor of valuation multiples. Being in the top decile of size is associated with an increase in EV/EB of 1.3 and EV/SA of.11 compared with being in the 5th decile. 
+
+We value individual businesses by multiplying sales and EBITDA from their tax returns by the two cap rates, and taking an average of the two as the final valuation:
+\begin{align}
+\text{Sales EV}_{ft} = \text{Sales}_{ft} \cdot \beta_{ct}^{SA}  \label{eq:sav} \\
+\text{EBITDA EV}_{ft} =   \text{EBITDA}_{ft} \cdot \beta_{ct}^{EB}  \label{eq:ebv}\\
+\text{Final EV}_{ft} = (\text{Sales EV}_{ft} + \text{EBITDA EV}_{ft}) / 2.
+\end{align}
+To go from enterprise to market values, we use data from Schedule L of business tax returns to add back net financial assets. 
+
+Table NN presents our estimates of aggregate private business wealth, showing a total of \$17 T in 2017, more than \$6 T greater than SZZ and PSZ, both of who scale their totals to the FA. Our valuations for partnerships, \$8T, is substantially larger than the SZZ and FA values (\$4T). The reason for this difference is a difference in methodology: the FA values partnerships based on book value, and do not apply market based multiples.\footnote{We argue that the FA is substantially undervaluing partnership businesses by not applying market multiples. While a simplified book-value approach to valuation was less of a problem when partnerships were a small fraction of aggregate business income, as shown by \citet{smith2019capitalists} and \citet{smith2022rise}, over the past two decades pass through activity has exploded. The rise of pass-through business fundamentally altered the partnership landscape from predominantly small professional business to larger enterprises.\footnote{See \citet{chrisman2009llcs} and \citet{friedman2004silent}.} In addition, the growing importance of intangible capital -- as shown in \citet{bhandari2021sweat} in a small business context and \citet{corrado2009intangible} more generally -- has widened the gap between book and market values, as many intangible assets remain unrecorded on balance sheets.} 
+
+Individual business wealth equals the value of their underlying businesses times the fraction of the share they own: $W^{\text{Pr. Bus}}_{it} = \sum_f MV_{ft} sh_{ift}$. Allocation of S-corps and soleproprietorship value is straightforward. S-corps can only (with a few exceptions) be held by individuals, and ownership shares are listed directly on Schedule 1120 K1 information returns. Sole proprietorships returns are inherently linked to their owners, because their tax return (Schedule C) is included as part of 1040. 
+
+Allocating partnership business wealth is more difficult since partnerships can be owned by not only by individuals, but by other legal forms of organization (such as other partnerships, trusts, or corporations) that ultimately may be controlled by individuals. Prior work has traced business ownership solely through direct holdings reported on Form 1065 K1. In this paper, we will attempt to cut through the chain of ownership and allocate valuation to their ultimate owner. 
+
+We do so by applying a theoretical result from the network economics literature. A network of partnership ownership is denoted by matrix $C$, where $C_{ij} is the fraction of partnership $j$ that partnership i$$ owns. The value of partnership $i$ is the value of its fundamental assets, $a_i$, plus the value of the shares of other firms it owns: $V_i = a_i + \sum_j C_{ij} V_j$. The vector describing the market value of all partnerships is then given by V = a + C \cdot V$. Solving for the total value of the firm, $V = (I − C)^{-1} \cdot a$. 
+
+We estimate the $a$ vector as described above, by capitalizing business level EBITDA and sales. We estimate the partnership ownership matrix $C$ using Form 1065-K1, which lists the percentage of each partnership that is owned by other partnerships. Table NN provides the results of this analysis. For partnership operating businesses, the aggregate enterprise business value was \$7 T in 2017. Of this, \$6 T can be traced back to some K1 owner, of which
+ultimately \$2.7 T flows to individual ownership. The remaining values are held by C-corporations, trusts/estates, foreign owners, and 10\% by unidentified entities. 
+
+Table K compares the share of private business wealth by the top 10\% and top 1\% using our valuation method, and compares it to SZZ and PSZ. Concentration is substantially higher in our estimates as compared to prior work. This is a function of (i) heterogeous capitalization rates, values richer individual's businesses, which are larger, at higher multiples (ii) the fact that indirectly owned businesses are much more concentrated than directly owned businesses. 
+
+For partnerships and S-corporations, we estimate nominal capital gains between time $t-1$ and $t$ as the change in the market value of the business, minus any change in invested capital. Change in capital is equal to the change in paid in capital plus retained earnings for S-corps, and the change in the capital account for partnerships:
+\begin{align}
+KG_{ft}^{Scorp} = \Delta MV_{it}  - \Delta \text{Paid in capital}_{ft} - \Delta \text{Retained earnings}_{ft} \label{eq:kgcomputation} \\
+KG_{ft}^{Part} = \Delta EV_{ft}  - \Delta \text{Partners Capital Accounts}_{ft}
+\end{align}
+For private C-corporations and sole proprietorships, there is no comparable data for basis changes, and thus we estimate gains using price indexes from public corporations, specifically the S\&P 500. 
+
+
+\subsection{Public Equity Details}
+
+We estimate heterogeneous dividend capitalization rates using a sample of account-level data from a large discount broker, provided by Barber \& Odean (2000). Following Chodorow Recih et al and Graham and Kumar (2006), we merge the account level information on holdings with CRSP stock and mutual fund data to calculate individual level dividend yields. We then compute average dividend yields by 25 cells of age and income groups. 
+
+Appendix Figure J shows the slope of dividend yield by age and income. Dividend yields increase linearly in age, with aged 65+ showing a distinct preference for income rather than growth stocks: the average yield for this group is 20\% larger than the under 35 age group. Splitting by income, the lowest quartile of income in the sample have slightly elevated yields compared to the rest of the distribuion. 
+
+The B\&O data contains dividend yields from the years 1991-1996. To operationalize these for our sample period of 2002-2021, where average stock yields are somewhat lower, we use the data to estimate dividend yields \textit{relative} to the value-weighted average yield of the market. For each cell $c$, we estimate relative yield $\rho_c = \bar{d}_c / \bar{d}$, where $\bar{d}_c$ and $\bar{d}$ are, respectiively,  the value weighted mean yield for cell $c$ the overall market. Dividend yields in year $t$ and then computed as the cell level as $\bar{d}_{ct} = \rho_c \cdot \bar{d}_t$. Finally, we scale aggregate public equity wealth to match the FA aggregate. 
+
+We estimate individual level public equity wealth by dividing nonqualified dividends by group specific dividend yield: $W^{equ}_{it} = div_{it}/\bar{d}_{c(i)t}$. Table NN presents distributional statistics for public equity wealth shares across the income distribution, and compares them with two alternative methods: those of PSZ and SZZ, both of which use homogeneous yields. 
+
+In estiimating capital gain yields, we allow for two degrees of return heterogeneity: difference in average excess return ($\alpha_c$) and market exposure ($\beta_c$). We estimate these parameteres by cell $c$ through a CAPM style regression of portfolio return on the market excess return:
+\be
+R^c_t = \alpha_c + R^f_t + b^c_t (R^m_t - R^f_t) + \epsilon_{ct}.
+\ee
+To go from total returns to real capital gain yield $\gamma$, the dividend yield and inflation rate are subtracted: $\gamma_{it} = \hat{R}_{c(i)t} -  d_{c(i),t} - \pi_{t}$. 
 
 \clearpage
 

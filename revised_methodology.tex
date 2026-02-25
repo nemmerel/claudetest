@@ -15,7 +15,7 @@ For our estimates to be unbiased, a sufficient condition is that capitalization 
 
 \subsection{Public equities}
 
-Prior work capitalizes dividends with a common yield \citep{piketty2016distributional} or allows heterogeneous yields by fixed-income type \citep{smith2023}. We use account-level brokerage data from Barber \& Odean (2000) to estimate heterogeneous dividend yields \textit{and} portfolio betas by 25 cells of age and income. Dividend yields increase linearly in age, with the 65+ group averaging 20\% higher yields than the under-35 group.
+Prior work capitalizes dividends with a common yield \citep{piketty2016distributional} or allows heterogeneous yields by fixed-income type \citep{smith2023}. We use account-level data from a large discount brokerage, provided by Barber \& Odean (2000), which contains trading records and portfolio holdings for approximately 78,000 households over 1991--1996. Following Chodorow-Reich et al.\ and Graham and Kumar (2006), we merge account-level holdings with CRSP stock and mutual fund data to calculate individual-level dividend yields and portfolio returns. We then compute average dividend yields and portfolio betas by 25 cells of age and income. Dividend yields increase linearly in age, with the 65+ group averaging 20\% higher yields than the under-35 group; conditional on age, yields are weakly correlated with income.
 
 Because the brokerage data spans 1991--1996, we estimate yields \textit{relative} to the market average and apply these ratios to current-year aggregate yields. Individual public equity wealth is then estimated as nonqualified dividends divided by the group-specific yield. Table~NN compares distributional statistics from our heterogeneous yields with the homogeneous-yield approaches of PSZ and SZZ. For capital gain yields, we estimate cell-level portfolio alphas and betas from a CAPM-style regression of portfolio returns on the market, allowing returns to differ by both average excess return and market exposure. We scale aggregate public equity wealth to match the Financial Accounts.
 
@@ -38,9 +38,17 @@ Following \citet{larrimore2021recent}, we capitalize property tax deductions fro
 
 The TCJA of 2018 reduced itemization rates from 30\% to 11\%, dropping our coverage from 77\% to 40\% of FA housing wealth. To recover non-itemizers' housing values post-2018, we match current-year addresses to 2017 returns where property taxes were itemized and update values using FHFA house price indices, raising coverage back to 75\%. The remaining 25\% is allocated via SCF averages from post-TCJA survey years.
 
+\subsection{Tenant-occupied housing}
+
+Both PSZ and SZZ allocate the total value of tenant-occupied real estate, \textit{including real estate owned by partnerships and S-corps}, by capitalizing rental income from Part~I of Schedule~E \textit{from properties that individuals directly own}, i.e.\ not including rental income from indirectly owned properties. This procedure is potentially problematic, because by capitalizing only Part~I Schedule~E income they impute all the value of partnership- and S-corp-owned housing to the individuals that directly own properties, and none to the individuals that actually own and control this housing.
+
+In this paper we capitalize property tax payments from properties both directly owned by individuals and indirectly owned through partnerships and S-corps, using data from Form~8825. These data contain property-level tax payments, the location of the real estate, and the type of property, which we separate into three broad categories: single family, multifamily, and commercial. We estimate real estate values by capitalizing property tax payments using average county-level property tax rates by property type. Data on effective tax rates are taken from the Lincoln Institute of Land Policy and the Minnesota Center for Fiscal Excellence.
+
+Table~NN displays results for 2021. About \textit{half} of tenant-occupied housing is owned by partnerships, which implies that prior estimates were incorrectly allocating a substantial fraction of wealth: the correlation of our housing wealth measure and the PSZ/SZZ version is only 0.45. In addition, our measure is substantially more concentrated than PSZ, since indirectly owned real estate is concentrated in the upper percentiles of the distribution.
+
 \subsection{Other asset classes}
 
-Tenant-occupied housing is valued using property tax data from the Lincoln Institute, with returns from Freddie Mac (residential) and CoStar (commercial) price indices. Fixed-income capital gains are excluded, as real fixed-income returns are frequently negative and contribute minimal distributional variation. Pension wealth is capitalized following PSZ, using a weighted combination of taxable pensions, wages, and tax-exempt pension income, with homogeneous Financial Accounts returns.
+Fixed-income capital gains are excluded, as real fixed-income returns are frequently negative and contribute minimal distributional variation. Pension wealth is capitalized following PSZ, using a weighted combination of taxable pensions, wages, and tax-exempt pension income, with homogeneous Financial Accounts returns.
 
 \begin{table}[H]
 \centering
