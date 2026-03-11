@@ -37,7 +37,9 @@ f. One thing that might be really helpful is a summary table that describes
 the different components in the computation of total cap gains, the data used to estimate
 them, the key assumptions underpinning them (and whether these are new or standard).
 g.	Taxation --- what to make of these? Should we be taxing all unrealized gains? Behavioural responses would be huge. PF / optmal tax discussions. 
-g.	Tax form in key paper not necessary. Reconciliation with the first sentence of the paper with Figure 1. 
+g.	Tax form in key paper not necessary. Reconciliation with the first sentence of the paper with Figure 1.
+
+
 3.	Letter 3
 a.	Heterogeneous returns to equity
 b.	Incidence of tenant-occupied residential real estate

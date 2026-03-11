@@ -4,6 +4,70 @@
 
 %Traditional national accounting defines output and income as the production of goods and services, with no role for capital gains. 
 
+%Before measuring capital gains in the data, we formally define them and explore how they relate to the income concept in the national accounts. We will show there is a close theoretical connection between capital gains, welfare, and wealth. 
+
+An agent born at time $\tau$, with a lifespan of $M$ years, optimizes lifetime utility $U(c_\tau, c_{\tau+1},...,c_{\tau+M-1})$, with $U(\cdot)$ concave and increasing. Her flow budget constraint is given by equation \ref{eq:agent_bc}. At each time $t$, the agent chooses between consumption $c_t$ and purchasing two types of assets. The first is a capital asset, $K_{t+1}$, which is purchased at price $q_t$, depreciates at rate $\delta$, and yields a rental rate $\rho_t$. The second asset is a financial asset, $S_{t+1}$, purchased at price $X_t$, which pays a dividend of $d_t$. The agent works, and receives labor income of $w_t l_t$. Initial asset holdings are zero, and the agent leaves no bequests. 
+
+\begin{align}
+\label{eq:agent_bc}
+c_t + q_tK_{t+1} + X_t S_{t+1}=  q_t(1-\delta)K_t + S_t (X_t + d_t)  + \rho_tK_t +  w_t l_t 
+%\forall \tau \leq t \leq \tau + M -1 \nonumber \\
+%K_{\tau} = S_{\tau} = K_{\tau+M} = S_{\tau+M}=0 \nonumber
+\end{align}
+
+\noindent There are two distinct types of income implicit in this budget constraint. 
+
+\begin{definition} \label{def:nat_inc} National income is equal to income from wages plus rental income from capital plus dividends from securities, minus depreciation.
+
+\be
+\label{eq:nat}
+Y^n_t = w_t l_t + \rho_t K_t - \delta q_{t-1}K_t + d_t S_t.
+\ee
+
+\end{definition}
+
+National income is income received from production. If we sum equation \ref{eq:nat} over all US residents,  definition \ref{def:nat_inc} is in line with the BEA definition of national income, which, absent measurement errors, equals the national production of output.\footnote{See the BEA Handbook, \citet{fox2009concepts}.}
+
+\begin{definition} \label{def:kg} Capital gains equal the return on the price index times the value of the asset held.  Then $KG^S_t \equiv S_t X_{t-1} \frac{X_t - X_{t-1}}{x_{t-1}}$. \end{definition}
+
+We include capital gains as part of the income measure because they affect the stock of resources individuals have available to consume, save, or pass on as bequests. Capital gains enable higher spending directly through asset sales and indirectly by relaxing collateral and borrowing constraints. It is straightforward to show that \textit{holding returns constant}, capital gains increase welfare by the marginal utility of consumption. 
+
+Equally important to accounting for capital gains is that it better distinguishes welfare differences between investors who have preferences for different asset types. If not, the Dividend Stock holder will (incorrectly) be regarded as better off than an investor in Growth Stocks, and a coupon-clipper who only holds bonds will be seen as better off as as a company founder who grows its share value. 
+
+The BEA definition of National Income explicitly excludes capital gains, which are not earned in production. Indirectly, however, capital gains are present through the retained earnings of corporations. Under a standard Miller and Modigliani (1961) assumption, a firm that retains a dollar of earnings increases its market value by \$1. Indirectly, then, at least some capital gain income is accounted for in the national accounts income measure.
+
+To isolate capital gains from other income flows, we define ordinary factor income as national income minus the retained earnings of corporations. Capital gains for year $t$ are the real increase in the market value of an individual's financial and nonfinancial assets over the period caused by changes in asset prices. Pure capital gains are capital gains that do not include any national income component, and equal total capital gains minus retained earnings.
+
+Figure 2 compares capital gains to other capital income sources in the post-war era. Pure capital gains are large, especially in the post-1980 period, where they average 10\% of national income. Retained earnings, the component present in national income, averaged 4\% of national income for the same period. 
+
+What are the source of these pure capital gains? In Appendix G, we theoretically show that even absent any shocks positive capital gains will be present in a growing economy. In addition, changes in earnings driven by an increase in monopoly power, a growing share of earnings to the corporate sector, or unmeasured intangible investment can drive revaluations. 
+
+
+
+
+the positive capital gains will be always be present in a growing economy, 
+
+can be caused by changes in the growth rate of earnings, monopoly rents, intangible 
+
+
+
+
+
+OLD 
+
+What is the ultimate source of capital gains? GDP $Y_t$ is produced by firms that produce output by hiring labor and capital, making profits of $\Pi_t = Y_t - w_t L_t - \rho_t K_t$.\footnote{These are thus `pure' or factorless profits.} All capital is owned by the business sector, but individual firms rent the capital used in their own production from other firms. Net business income ($BI_t$) equals rental income plus profits minus depreciation: $BI_t \equiv \Pi_t + \rho_t K_t - \delta K_t$. 
+
+The market value of firms $V_t$ equals the value of the capital stock, $K_t$, plus the market value of the present discounted value of pure profits: 
+
+\begin{align}
+V_t = K_t + E_t\left[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}\right]$,
+\end{align}
+where $M_{t,t+s}$ is the stochastic discount factor. 
+
+identical consumption plus change in wealth: 
+
+
+
 GDP $Y_t$ is produced by firms that produce output by hiring labor and capital, making profits of $\Pi_t = Y_t - w_t L_t - \rho_t K_t$.\footnote{These are thus `pure' or factorless profits.} All capital is owned by the business sector, but individual firms rent the capital used in their own production from other firms. Net business income ($BI_t$) equals rental income plus profits minus depreciation: $BI_t \equiv \Pi_t + \rho_t K_t - \delta K_t$. 
 
 National income $NI_t$ equals wages plus business income plus depreciation, and is (theoretically) equal to GDP. It does not contain any explicit capital gain component. 

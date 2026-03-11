@@ -115,23 +115,20 @@ Studies on the income distribution that include realized capital gains include F
 
 Several recent studies have estimated tax-rates inclusive of total capital gains on high networth individuals, including \citet{yagan2023average} and \citet{balkir2025much} for the U.S. Forbes 400 and \citet{bach2025billionaires} for France. A key finding from these studies, also emphasized by {fox2025role} and \citet{msall2025never}, is that the stock of unrealized gains is large relative to taxable income, particularly for wealthy individuals. Compared to these papers, we use aggregate data on capital gain accruals (from the Financial Accounts) and compare them with yearly realizations to create flows (and stocks) of unrealized gains. This analysis gives us a base from which to estimate new macro-level tax rates, as well as study the effects of the rise of nontaxable accounts and tax exclusions on this tax rate. 
 
-
-
-
 % Compared to these studies, we estimate comprehensive tax-rates for the entire US income distribution. \citet{fox2025role} and \citet{msall2025never} compute stocks of unrealized capital gains, and show that they are large in comparison to realized 
 %The paper closest in scope to this study is Larrimore et al. (2021) (LBAA henceforth), who also use tax data to estimate the distribution of Haig-Simons income. There are three primary difference with LBAA. First, this study estimates wealth by capitalizing capital income on tax returns, while LBAA statistically match tax returns to the SCF by constructing average wealth by percentile by age by capital income cell. As shown in Section J, a key problem with this method is \textit{cell sparsity}: given SCF sample sizes of ~5,000 unique housholds, with LBAA's 1,200 cells the average cell size is ~5 households. This problem is amplified for private business wealth: each cell contains on average 1.1 households with positive business wealth. The result of this procedure is not only statistical noise, but bias as the same household can be present in multiple cells. In this paper, we estimate bootstrap standard errors for all inequality measures, and given our large sample produces tight confidence intervals. A second difference is our measures of capital gains is more comprehensive than LBAA, since we include capital gains on private S and C corporations and defined contribution pension wealth. As shown in Section J, this is not simply an omission but an error, since LBAA include these assets as part of their SCF wealth series but do not include the capital gains in the return series they apply to them. A final difference is that our baseline pre-tax pre-transfer income measure is more comprehensive that LBAA since (following PSZ) it scales all income sources to 100\% of national income, while LBAA only scale estimated benefits and transfers to national income aggregates. The result of all three differences reduces both the level and trend of income inequality compared to this paper. 
 
 Our estimates of private business wealth (and capital gains) build on methods developed by Smith, Zidar and Zwick (2023) (henceforth SZZ) and Smith et al. (2019). Compared with SZZ, we value businesses using valuation multiples from two database of \textit{private} business transactions, while SZZ use multiples from \textit{public} firms, with additional valuation adjustments for the illiquidity of the private sector. In addition, SZZ ultimately scale their wealth estimates to totals from the Financial Accounts, while we leave ours unadjusted, arguing that the Financial Accounts understates partnership wealth since their valuations are taken largely at book value. 
 
+Our esimates of partnership wealth contribute to a literature that attempts to disentangle the ownership networks of pass-through business entities. Building on work by May (2012), Cooper et al. (2016) match partnership income to their ultimate owners using a recursive matching algorithm, and successfully allocate 77\% of total income. Love (2021), using additional data, succesfully tracks 99\% of partnership income. Our paper tackles a separate but related question. Rather than trying to account for the proportion of partnership income flowing to different types of partners (which is mainly a question of identifying what entity the partners are), our problem is to track specifc assets through the partnership networks and to their ultimate owners. 
 
-Our esimates of partnership wealth contribute to a literature that attempts to disentangle the ownership networks of pass-through business entities. Building on work by May (2012), Cooper et al. (2016) match partnership income to their ultimate owners using a recursive matching algorithm, and successfully allocate 77\% of total income. Love (2021), using additional data, succesfully tracks 99\% of partnership income. Our paper tackles a separate but related question. Rather than trying to account for the proportion of partnership income flowing to different types of partners (which is mainly a question of identifying what entity the partners are), our problem is to track specifc assets through the partnership networks and to their ultimate owners.
+Finally, our results on heterogeneous returns across the income distribution is related to Bach, Calvet and Sodini (2020) and Fagereng et al. (2020), who document persistent return disparities in Sweden and Norway, respectively. In the US context, the lack of asset registers has led to focus on return disparities driven by portfolio composition, including Feiveson and Sabelhaus (2023) and Xavier (2023). There is key exceptions include SZZ (for fixed income). This paper contains new evidence on within-asset class heterogeneity for owner occupied real estate, rental real estate, private businesses, and public equities. 
 
-Our work on heterogeneous returns across the income distribution is related to Bach, Calvet and Sodini (2020) and Fagereng et al. (2020), who document persistent return disparities in Sweden and Norway, respectively. In the US context, the lack of asset registers has led to a paucity of evidence: exceptions include SZZ (for fixed income). This paper contains new evidence on within-asset class heterogeneity for owner occupied real estate, rental real estate, private businesses, and public equities. 
+\section{Theoretical framework}
 
-Our work on realized vs unrealized capital gains 
+Before measuring capital gains in the data, we formally define them and explore how they relate to the income concept in the national accounts. We will show there is a close theoretical connection between capital gains, welfare, and wealth. 
 
 
-\section{Income and wealth concepts}
 
 National income, as defined by the Bureau of Economic Analysis, consists of the total labor and capital income earned in production. This definition explicitly excludes capital gains (which are not earned by production). Indirectly, however, capital gains are present through the retained earnings of corporations. Under a standard Miller and Modigliani (1961) assumption, a firm that retains a dollar of earnings increases its market value by \$1. Indirectly, then, at least some capital gain income is accounted for in the national accounts income measure.
 
@@ -143,9 +140,12 @@ Haig-Simons income is a comprehensive income concept that includes changes in as
 \be
 Y^{HS}_{it} = Y^{ordinary factor}_{it} + KG_{it} = C_{it} + \Delta W_{it}
 \ee
-where $KG_{it}$ is total capital gains, $C_{it}$ is consumption, and $\Delta W_{it}$ is the change in net worth. Equivalently,Haig-Simons income equals national income plus pure capital gains.
+where $KG_{it}$ is total capital gains, $C_{it}$ is consumption, and $\Delta W_{it}$ is the change in net worth. Equivalently, Haig-Simons income equals national income plus pure capital gains.
 
-The large magnitude and persistence of capital gains in the post-1980 period is the primary motivation for this study's focus on Haig-Simons income. We include capital gains as part of the income measure because they affect the stock of resources individuals have available to consume, save, or pass on as bequests. Capital gains enable higher spending directly through asset sales and indirectly by relaxing collateral and borrowing constraints. As shown by \citet{balkir2025much}, the majority of economic income from the top .0002\% of the distribution comes from capital gains. Of the top 10 richest members of the Forbes 400, 9 are founders of technological companies whose wealth was generated by capital gains on their business. The tenth, Warren Buffet, also owes his fortune to capital gains: Berkshire Hathaway has paid exactly one dividend in it's entire history. In addition, as shown in \citet{campbell2025value}, the rise in private business wealth was also driven by capital gains. From a theoretical perspective, ceterus paribus (importantly, holding constant expected returns), an increase in the value of an individual's assets increases their utility by the value of the capital gains times the marginal utility of wealth. In addition, to the extent that individuals value wealth directly, capital gains also contribute to welfare. 
+The large magnitude and persistence of capital gains in the post-1980 period is the primary motivation for this study's focus on Haig-Simons income. We include capital gains as part of the income measure because they affect the stock of resources individuals have available to consume, save, or pass on as bequests. Capital gains enable higher spending directly through asset sales and indirectly by relaxing collateral and borrowing constraints. 
+
+
+% As shown by \citet{balkir2025much}, the majority of economic income from the top .0002\% of the distribution comes from capital gains. Of the top 10 richest members of the Forbes 400, 9 are founders of technological companies whose wealth was generated by capital gains on their business. The tenth, Warren Buffet, also owes his fortune to capital gains: Berkshire Hathaway has paid exactly one dividend in it's entire history. In addition, as shown in \citet{campbell2025value}, the rise in private business wealth was also driven by capital gains. From a theoretical perspective, ceterus paribus (importantly, holding constant expected returns), an increase in the value of an individual's assets increases their utility by the value of the capital gains times the marginal utility of wealth. In addition, to the extent that individuals value wealth directly, capital gains also contribute to welfare. 
 
 An important case of capital gains driven by changes in returns is the secular decline in real interest rates since the 1980s, both in the United States \citep{eggertsson2019model} and globally \citep{rachel2019secular}. Lower interest rates generate higher asset prices (and positive capital gains), since future dividends are discounted at lower rates. Capital gains driven by changes in interest rates are potentially problematic for our income measure, since the change in welfare from an interest rate change is not proportional to the change in asset values. Auclert (2019) shows that for a temporary change in interest rates, the welfare effect is proportional to a household’s unhedged interest rate exposure. More generally than interest rate changes, asset prices may be driven by variations in \textit{discount rates}, defined as anything that changes the price of an asset without affecting its present or future cash flow. In a series of papers, \citet{fagereng2025asset} and \citet{aguiar2024putting} show that discount rates affect welfare both through capital gains as well as changing effective future returns, and argue (citing the classical finance results of \citet{shiller1981stock} and \citet{campbell1988dividend}) that the majority of asset price changes are due to the discount changes.
 
@@ -252,6 +252,62 @@ Pension & Capitalize 60\% taxable pensions, 30\% wages, 10\% tax-exempt pensions
 \textit{Notes:} Table summarizes the capitalization method used to estimate wealth and the return method used to estimate capital gains for each asset class. ``Homogeneous return'' denotes that aggregate Financial Accounts capital gains are divided by aggregate wealth to form a common yield applied to all individuals. ``Heterogeneous'' denotes that capitalization factors or returns vary across individuals based on asset or location characteristics. SZZ refers to \citet{smith2023}; PSZ refers to \citet{piketty2016distributional}. Fixed income capital gains are excluded from the analysis. See text for details.
 \end{minipage}
 \end{table}
+
+
+\section{Robustness}
+
+A key condition for our distributional results to be accurate is that average capitalization rates and returns, conditional on income percentile, are unbiased. To assess sensitivity of our results to possible biases in our return and/or capitalization estimation, in Table J we conduct an exercise where we estimate the distributional results under assumed level of biases. We focus on the top 1\% share, and estimate distributional results under various assumption about our bias in the cap rate / return difference of the top 1\%.  For all results we rescale aggregate gains (by asset class) so that only capital gain shares (and not levels) are affected. Finally, we also estimate results under an assumption of equal returns; equal capitalization rates; both equal returns and equal cap rates; and business valuations scaled to FA aggregates. 
+
+ While our baseline series uses a pre-tax income definition from the DINAs, as shown by Auten et al. (and others), distributional estimates can be sensitive to alternative assumptions about the allocation of non-tax return income. To show that our results are robust to different income definitions, we re-estimate  distributional and tax rate series by adding our capital gain measure to the following income concepts: Piketty and Saez (2003), LBBA comprehensive income (2021), and Auten and Splinter (2023). We do so by using the original author provided code to replicate their series on internal data, and then add adding our capital gain estimates. 
+
+ \subsection{Interest rate driven capital gains}
+
+ Capital gains driven by interest rate changes are potentially problematic to measures of Haig-Simons income that aim to capture changes in welfare, since asset owners are not necessarily better off with lower rates even if their asset values increase. While interest rates have declined substantially since the 1980s, we note that the majority of the decline  occurred in the 1980s and 1990s, prior to the beginning in our sample period of 2002. From 2002-2021, the 10-year real treasury rate declined by 2.1\%, while the natural rate of interest declined by 1.0\%.  
+
+We  quantify the effects of the observed decline in interest rates on capital gains in equity markets through a discounted cash flow model of equity prices, through which declines in interest rates affect equity valuations through lower discount rates on future profits. By feeding in observed changes in interest rates into the valuation model, we can quantify the degree to which they have driven observed changes in valuations. We model equity prices of the S\&P 500 using a multi-stage free-cash-flow to equity model in the spirit of \citet{damodaran2020equity} and Panigirtzoglou and Leoys (2005). Cash flows are defined as dividends plus net share repurchases, and are estimated for the five years using analysts’ earnings forecasts from I.B.E.S. 
+\begin{align}
+P_t(r^f_t) = \sum_{j=1}^{5} \frac{CF_{t+j}}{(1 + r^f_{t} + ERP_{t})^{j}} + \frac{\text{Terminal Value}_{t+5}}{(1 + r^f_{t} + ERP_{t})^{5}}
+\end{align}
+To estimate capital gains from interest rate changes, we calculate
+\begin{align}
+\text{Interest rate return}_t = \frac{P_t(r^f_{t+1})}{P_t(r^f_t)} - 1.
+\end{align}
+
+Table 2 shows the results of this exercise. From 2002-2001, the S\&P 500 index grew an average of 1.6\% per year due to declines in real interest rates. This growth rate is about one fourth the size of the average revaluation return of 6.14\% over the time period. In other words, interest rate changes were responsible for 25\% of aggregate capital gains in the stock market. This is similar in magnitude to the estimates of \citet{eeckhout2024value}, who estimate that in the US changes in dividends can explain 80\% of the rise in capital gains, while discount rate changes explain 20\%. 
+
+\begin{table}[h!]
+    \centering
+    \caption{Summary of S\&P 500 Growth and Revaluation Returns (2002-2021)}
+    \label{tab:results_three_col}
+    \begin{tabular}{lll}
+        \hline
+        \textbf{Metric} & \textbf{Annual Value} & \textbf{\% S\&P 500 Growth} \\
+        \hline
+        \\
+          \multicolumn{3}{c}{\textbf{Panel A: $\Delta g = \frac{1}{2}\Delta r$}} \\
+        \hline
+        S\&P 500 Real Price Growth & $6.14\%$ & $ 100\%$ \\
+        Index Interest Rate Growth (C. Fed) & $1.58\%$ & $26\%$ \\
+        Index Interest Rate Growth (L\&Ws) & .77\% & $13\%$ \\
+        \\
+          \multicolumn{3}{c}{\textbf{Panel B: $\Delta g = 0$}} \\
+        \hline
+        Index Interest Rate Growth (C. Fed) & $2.3\%$ & $37\%$ \\
+        Index Interest Rate Growth (L\&Ws) & 1.1\% & $18\%$ \\
+        \\
+        \hline
+    \end{tabular}
+\end{table}
+
+To quantify the effect of interest rates on the housing market, we use a combination of two valuation models: a user-cost-of-capital model from Kuttner, and a semi-elasticity model.
+
+We use these estimates to estimate a distributional series with capital gains with interest rate changes purged from the return measure. For business and equity capital gains, we estimate $r_t^n = r^o_t - r^i_t$, and for owner and tenant occupied hosuing $r_t^n = r^o_t - r^i_t$. 
+
+\subsection{Discount rate changes} 
+
+More generally than interest rate changes, asset prices may be driven by variations in \textit{discount rates}, defined as anything that changes the price of an asset without affecting its present or future cash flow ( see \citet{fagereng2025asset} and \citet{aguiar2024putting}). Figure 2 shows that real capital gains have been large and positive in the U.S. since the 1980s. A `discount rate' explanation has to account for this long-run secular rise in asset prices (above and beyond our interest rate analysis above). We note that the finance literature studying discount rate changes for equities, such as \citet{shiller1981stock} and \citet{campbell1988dividend}, explicitly exclude long-run changes from their analysis by de-trending their data. In fact, taking seriously their assumption of a stationary price to dividend ratio supports the notion that no long-run real asset price changes are caused by discount rate variation. To see this, Figure N reproduces the analysis of \citet{shiller1981stock}, which decomposed asset price changes into earnings and discount rate variation. Stock-prices for the S\&P 500 are given by $P$, while $P^*$ shows the present discounted value of earnings.\footnote{In this figure we use earnings, but the results are similar for dividends.} The left panel, using demeaned data, shows that stock prices have much more volatility than earnings in the short and medium run. The right panel shows the undemeaned data, showing in the long-run price and earnings share a common trend. Over the entire time period, real prices increased by a factor of 22, driven by an 11 fold increase in earnings and a 2 fold increase in the price to earnings ratio.
+
+For U.S. equity markets, three recent papers (\citet{eeckhout2024value} (80\%), \citet{greenwald2025wealth} \citet{atkeson2025reconciling}) have explicitly estimated earnings versus discount rate changes, with all finding that it has been earnings changes that have driven the majority of value, with discount rate changes explaining approximately 25\% of long-run variation. These results are similar to our estimate above for interest rate changes, suggesting that it is this long-run secular change has driven discount rate asset price changes. While it is possible that the U.S. equity market is in a long-term bubble or that prices diverged from fundamentals, this is not reflective in the current state of the literature. 
 
 \section{Realizations}
 
