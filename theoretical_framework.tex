@@ -1,83 +1,126 @@
+\documentclass[12pt]{article}
+\newcommand{\eco}{econom\'\i a}
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\usepackage{amsmath,amsthm,amssymb}
+\usepackage{graphicx}
+\usepackage{subfig}
+\usepackage[left=1.6in,right=1.6in, top=1in,bottom=1in]{geometry}
+\usepackage{float}
+\usepackage{times}
+\usepackage{multicol}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{breqn}
+\usepackage{stackengine}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{pdflscape}
+\makeatletter
+\newcommand*{\centerfloat}{%
+  \parindent \z@
+  \leftskip \z@ \@plus 1fil \@minus \textwidth
+  \rightskip\leftskip
+  \parfillskip \z@skip}
+\makeatother
+\pagestyle{fancy}   
+
+%\chead{\sc{\textcolor{red}{PRELIMINARY: DO NOT DISTRIBUTE}}}   
+\rhead{}
+\lhead{}
+
+\titleformat*{\section}{\Large\bfseries\sffamily}
+\titleformat*{\subsection}{\large\bfseries\sffamily}
+\titleformat*{\subsubsection}{\large\bfseries\sffamily}
+\titleformat*{\paragraph}{\bfseries\sffamily}
+\titleformat*{\subparagraph}{\bfseries\sffamily}
+
+\newtheorem{prop}{Proposition}
+\newtheorem{cor}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+
+
+\begin{document}
+\title{ \sc{Haig-Simons Income\footnote{\baselineskip=11pt Many thanks to Many People.}}}
+%
+\author {Jacob A. Robbins\footnote{\baselineskip=11pt University of Illinois at Chicago, e-mail: jake.a.robbins@gmail.com}  }
+
+\date{\today}
+ \maketitle
+\thispagestyle{empty}
+ 
+
+ \begin{abstract}  
+TBD
+
+
+
+\end{abstract}
+
+\vspace{50pt}
+%\vspace{90pt}
+Keywords: Business, inequality
+
+\vspace{0pt}
+JEL Classification: E12, E21, E52
+\vspace{10pt}
+
+\pagebreak
+\addtocounter{page}{-1}
+
+\newpage
+ 
+ \thispagestyle{fancy}
+ 
 \section{Theoretical Framework}
 
-%Before measuring capital gains and Haig-Simons income, we formally define them and explore how they are related to traditional national accounting concepts. 
+Aggregate output $Y_t$ is produced by a representative firm with a production function $F(K,L)$, where $K$ is capital and $L$ is labor. Firm profits equal $\Pi_t = Y_t - w_t L_t - \rho_t K_t$, where $w_t$ is the wage rate, and $\rho_t$ the rental rate of capital.\footnote{These are thus `pure' or factorless profits.} All capital is owned by the business sector, thus the business income ($BI_t$) includes both (implicit) capital rental income as well as profits: $BI_t \equiv \Pi_t + \rho_t K_t - \delta K_t$. Out of business income, firms either pay dividends $d_t$ or retain earnings $RE_t$: $BI_t = RE_t + d_t$. 
 
-%Traditional national accounting defines output and income as the production of goods and services, with no role for capital gains. 
+%: $K_{t} = (1-\delta)K_{t-1} + RE_t$. 
 
-%Before measuring capital gains in the data, we formally define them and explore how they relate to the income concept in the national accounts. We will show there is a close theoretical connection between capital gains, welfare, and wealth. 
+The market price of the firm $P_t$ equals the value of its capital stock, accumulated through retained earnings, plus the present discounted value of future profits:
+\be
+P_t = K_t + E_t[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}],
+\ee
+where $M_{t,t+s}$ is the stochastic discount factor. Implicit in this definition is that a dollar of retained earnings invested in the capital stock increases the value of the firm by a dollar, as in \citet{miller1961dividend}.
 
-An agent born at time $\tau$, with a lifespan of $M$ years, optimizes lifetime utility $U(c_\tau, c_{\tau+1},...,c_{\tau+M-1})$, with $U(\cdot)$ concave and increasing. Her flow budget constraint is given by equation \ref{eq:agent_bc}. At each time $t$, the agent chooses between consumption $c_t$ and purchasing two types of assets. The first is a capital asset, $K_{t+1}$, which is purchased at price $q_t$, depreciates at rate $\delta$, and yields a rental rate $\rho_t$. The second asset is a financial asset, $S_{t+1}$, purchased at price $X_t$, which pays a dividend of $d_t$. The agent works, and receives labor income of $w_t l_t$. Initial asset holdings are zero, and the agent leaves no bequests. 
+There are two distinct types of income present in this economy. 
 
-\begin{align}
-\label{eq:agent_bc}
-c_t + q_tK_{t+1} + X_t S_{t+1}=  q_t(1-\delta)K_t + S_t (X_t + d_t)  + \rho_tK_t +  w_t l_t 
-%\forall \tau \leq t \leq \tau + M -1 \nonumber \\
-%K_{\tau} = S_{\tau} = K_{\tau+M} = S_{\tau+M}=0 \nonumber
-\end{align}
-
-\noindent There are two distinct types of income implicit in this budget constraint. 
-
-\begin{definition} \label{def:nat_inc} National income is equal to income from wages plus rental income from capital plus dividends from securities, minus depreciation.
-
+\begin{definition} \label{def:nat_inc} (Net of depreciation) National Income is equal to income from wages plus rental plus dividends from securities plus retained earnings.
 \be
 \label{eq:nat}
-Y^n_t = w_t l_t + \rho_t K_t - \delta q_{t-1}K_t + d_t S_t.
+Y^n_t =  w_t L_t + d_t + RE_t 
 \ee
-
 \end{definition}
 
-National income is income received from production. If we sum equation \ref{eq:nat} over all US residents,  definition \ref{def:nat_inc} is in line with the BEA definition of national income, which, absent measurement errors, equals the national production of output.\footnote{See the BEA Handbook, \citet{fox2009concepts}.}
+National income is income received from production. Definition \ref{def:nat_inc} is in line with the BEA definition of national income, which, absent measurement errors, equals the net national production of output: $Y^n_t   = Y_t - \delta K_t$.\footnote{See the BEA Handbook, \citet{fox2009concepts}.}
 
-\begin{definition} \label{def:kg} Capital gains equal the return on the price index times the value of the asset held.  Then $KG^S_t \equiv S_t X_{t-1} \frac{X_t - X_{t-1}}{x_{t-1}}$. \end{definition}
+\begin{definition} \label{def:kg} Capital gains equal the real increase in firm value: $KG_t = P_t - P_{t-1}$.
+\end{definition}
 
-We include capital gains as part of the income measure because they affect the stock of resources individuals have available to consume, save, or pass on as bequests. Capital gains enable higher spending directly through asset sales and indirectly by relaxing collateral and borrowing constraints. It is straightforward to show that \textit{holding returns constant}, capital gains increase welfare by the marginal utility of consumption. 
+The BEA definition of National Income explicitly excludes capital gains, which are not earned in production. Indirectly, however, capital gains are present through the retained earnings of corporations. To isolate capital gains from other income flows, we define ordinary factor income as national income minus the retained earnings of corporations: $Y^{o}_t = Y^n_t - RE_t$, and \textit{pure} capital gains as capital gains minus retained earnings, $KG^p_t = KG_t - RE_t$. 
 
-Equally important to accounting for capital gains is that it better distinguishes welfare differences between investors who have preferences for different asset types. If not, the Dividend Stock holder will (incorrectly) be regarded as better off than an investor in Growth Stocks, and a Coupon Clipper who holds only bonds will be seen as better off as as a company founder who grows its share value. 
+Figure 2 compares capital gains to other capital income sources in the post-war era, using data from the Financial Accounts. Pure capital gains are large, especially in the post-1980 period, where they average 10\% of national income. Retained earnings, the component present in national income, averaged 4\% of national income for the same period. The large magnitude and persistence of pure capital gains suggests that analyses that do not include this income source (such as the DINAs) provide an incomplete picture of inequality in recent times.
 
-The BEA definition of National Income explicitly excludes capital gains, which are not earned in production. Indirectly, however, capital gains are present through the retained earnings of corporations. Under a standard Miller and Modigliani (1961) assumption, a firm that retains a dollar of earnings increases its market value by \$1. Indirectly, then, at least some capital gain income is accounted for in the national accounts income measure.
+The growth in the economic importance of capital gains motivates a comprehensive income definition that includes changes in asset prices as well as standard income components. 
+\begin{definition} Haig-Simons income \citep{haig1921concept, simons1938personal} equals ordinary national income plus capital gains: $HS_t = Y_t^{o} + KG_t$. \end{definition} 
 
-To isolate capital gains from other income flows, we define ordinary factor income as national income minus the retained earnings of corporations, and \textit{pure} capital gains as capital gains minus retained earnings. 
+\noindent As described by \citet{hicks1939value}, Haig-Simons income ''is what [one] can consume during the week and still expect to be as well off at the end of the week as at the beginning.''  When measured on a post-tax post-transfer basis, it equals an individual's consumption plus their change in wealth. 
 
-Figure 2 compares capital gains to other capital income sources in the post-war era. Pure capital gains are large, especially in the post-1980 period, where they average 10\% of national income. Retained earnings, the component present in national income, averaged 4\% of national income for the same period. 
+Capital gains are closely related to consumer welfare. In Appendix J, we show that from the household's budget constraint, capital gains and dividends are interchangeable: a dollar of gains expands the agent's feasible consumption set identically to a dollar of dividends. Holding expected returns constant, a dollar of capital gains increases welfare by the marginal utility of consumption. 
 
-What are the source of pure capital gains? In Appendix G, we theoretically show that even absent any shocks positive capital gains will be present in a growing economy. In addition, changes in earnings driven by an increase in monopoly power, a growing share of earnings to the corporate sector, or unmeasured intangible investment can drive revaluations. A final source of variation in capital gains is changes in interest rates. Lower interest rates generate higher asset prices (and positive capital gains), since future dividends are discounted at lower rates. We discuss the impact of lower interest rates (and more generally, changes in discount rates) in Section J. 
+Accounting for capital gains helps to distinguish welfare not only between asset holders and non-asset holders, but between investors who hold different types of assets. Consider two investors with identical wealth invested in assets earning the same total return. Investor A holds a bond paying a 5\% coupon; Investor B holds a growth stock that pays no dividend but appreciates 5\% per year. Under national income, Investor A earns \$5 per \$100 invested, while Investor B earns zero — despite being economically identical. More broadly, any income measure that excludes capital gains will systematically understate the income of growth stock holders relative to dividend stock holders, equity holders relative to bond holders, and business founders relative to salaried executives.
 
-Haig-Simons income is a comprehensive income concept that includes changes in asset values as well as standard income components. We measure this here as ordinary factor income plus pure capital gains. When measured on a post-tax post-transfer basis, it equals an individual's consumption plus their change in wealth. Formally, Haig-Simons income for individual $i$ in year $t$ is:
-\be
-Y^{HS}_{it} = Y^{ordinary factor}_{it} + KG_{it} = C_{it} + \Delta W_{it}
-\ee
-where $KG_{it}$ is total capital gains, $C_{it}$ is consumption, and $\Delta W_{it}$ is the change in net worth. Equivalently, Haig-Simons income equals national income plus pure capital gains.
-
-At the individual level, income differs based on whether it is pre or post tax. `Pre-Tax' Haig-Simons income, following PSZ, is income before the tax and transfer system, with the exception of the operation of private and public pensions, as well as disability and unemployment insurance. `Post-tax' Haig-Simons income equals pre-tax income, minus taxes, plus all forms of government spending: cash-transfers, in-kind transfers, and collective consumption expenditures. The Pre-Tax Haig-Simons income is useful for measuring the effective tax rate faced by individuals, while post-tax Haig-Simons income is closest to approximating an individual's consumption plus change in networth. In addition to these income concepts, we explore the robustness of our results by adding our capital gains series to other income measures: the \textit{market income} of PSZ, the comprehensive income of Larrimore et al., expanded income of the IRS, and AGI minus realized capital gains. 
-
-Household wealth is the market value of fnancial and nonfnancial assets held by households, minus the market value of their liabilities. We largely follow the Financial Accounts in determining the asset and liability composition of the balance sheet, with the exception of two asset classes where we provide bespoke estimates: private business wealth and tenant occupied real estate. Our primary measure (excepting private business and tenant real estate) is equal to the Financial Accounts net worth for households and nonprofts, minus the net worth of nonproft organizations, minus consumer durables.
-
-Following PSZ, our basic unit of analysis is the individual, with income split equally across spouses. 
-
-What is the ultimate source of capital gains? GDP $Y_t$ is produced by firms that produce output by hiring labor and capital, making profits of $\Pi_t = Y_t - w_t L_t - \rho_t K_t$.\footnote{These are thus `pure' or factorless profits.} All capital is owned by the business sector, but individual firms rent the capital used in their own production from other firms. Net business income ($BI_t$) equals rental income plus profits minus depreciation: $BI_t \equiv \Pi_t + \rho_t K_t - \delta K_t$. 
-
-The market value of firms $V_t$ equals the value of the capital stock, $K_t$, plus the market value of the present discounted value of pure profits: 
-
-\begin{align}
-V_t = K_t + E_t\left[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}\right]$,
-\end{align}
-where $M_{t,t+s}$ is the stochastic discount factor. 
-
-identical consumption plus change in wealth: 
+ This distinction is quantitatively important. As seen in Figure 2, capital gain income has grown relative to other capital income sources. Over our sample period, for all asset classes, capital gain income averages 14\% of national income, with pure capital gains 10\% of national income. At the top of the wealth distribution, this bias is especially pronounced: nine of the ten wealthiest Americans in the Forbes 400 are founders of technology companies whose wealth was generated almost entirely through capital gains on their businesses. The tenth, Warren Buffett, also owes his fortune to capital gains: Berkshire Hathaway has paid exactly one dividend in its history.
+ 
+What are the sources of aggregate capital gains, and why have they grown over time? One source is economic growth. Under a balanced growth path in which all macroeconomic variables grow at rate $g$, the ratio of capital gains to GDP will be $\frac{P}{Y}g$. Using the value of public and private equities held by US households for $P$ and a real GDP growth rate of 2\% yields a back-of-the envelope estimation of 5\% of national income in capital gains per year. In addition, changes in earnings driven by an increase in monopoly power, a growing share of earnings to the corporate sector, or unmeasured intangible investment can drive revaluations. A final source of variation in capital gains is changes in interest rates. Lower interest rates generate higher asset prices (and positive capital gains), since future dividends are discounted at lower rates. We discuss the impact of lower interest rates (and more generally, changes in discount rates) in Section J. 
 
 
 
-GDP $Y_t$ is produced by firms that produce output by hiring labor and capital, making profits of $\Pi_t = Y_t - w_t L_t - \rho_t K_t$.\footnote{These are thus `pure' or factorless profits.} All capital is owned by the business sector, but individual firms rent the capital used in their own production from other firms. Net business income ($BI_t$) equals rental income plus profits minus depreciation: $BI_t \equiv \Pi_t + \rho_t K_t - \delta K_t$. 
 
-National income $NI_t$ equals wages plus business income plus depreciation, and is (theoretically) equal to GDP. It does not contain any explicit capital gain component. 
-
-The market value of firms $V_t$ equals the value of the capital stock, $K_t$, plus the market value of the present discounted value of pure profits: $V_t = K_t + E_t\left[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}\right]$, where $M_{t,t+s}$ is the stochastic discount factor. 
-
-The capital stock evolves with the law of motion $K_{t+1} = (1-\delta)K_t + I_t$. Investment equals corporate savings (retained earnings $RE_t$), plus depreciation, plus personal savings $S_t$. Retained earnings equal business income minus dividends, $RE_t = BI_t - D_t$. Personal savings equals wages plus dividends minus consumption, $S_t = w_t L_t + D_t - C_t$. Since the capital stock is owned by the business sector, personal savings are invested through net equity issunces $EQ_t = S_t$. 
-
-Capital gains are defined as the change in market value of firms minus net equity issuances: $V_{t+1} - V_t - EQ_t$. They can be a function of:
-\begin{itemize}
-\item A change in the expected value of future profits $\Pi_{t+s}$
-\item Retained earnings $RE_t$ reinvested in the firm
-\item Changes in the stochastic discount rate $M_{t+s}$
-\end{itemize}
+\end{document} 
