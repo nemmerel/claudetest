@@ -83,9 +83,10 @@ Aggregate output $Y_t$ is produced by a representative firm with a production fu
 
 %: $K_{t} = (1-\delta)K_{t-1} + RE_t$. 
 
-The market price of the firm $P_t$ equals the value of its capital stock, accumulated through retained earnings, plus the present discounted value of future profits:
+The market price of the firm $P_t$ equals the value of its capital stock, accumulated through retained earnings, plus the present discounted value of future profits $V_t$:
 \be
-P_t = K_t + E_t[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}],
+\label{eq:pdef}
+P_t = K_t + E_t[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}] \equiv K_t + V_t,
 \ee
 where $M_{t,t+s}$ is the stochastic discount factor. Implicit in this definition is that a dollar of retained earnings invested in the capital stock increases the value of the firm by a dollar, as in \citet{miller1961dividend}.
 
@@ -103,7 +104,7 @@ National income is income received from production. Definition \ref{def:nat_inc}
 \begin{definition} \label{def:kg} Capital gains equal the real increase in firm value: $KG_t = P_t - P_{t-1}$.
 \end{definition}
 
-The BEA definition of National Income explicitly excludes capital gains, which are not earned in production. Indirectly, however, capital gains are present through the retained earnings of corporations. To isolate capital gains from other income flows, we define ordinary factor income as national income minus the retained earnings of corporations: $Y^{o}_t = Y^n_t - RE_t$, and \textit{pure} capital gains as capital gains minus retained earnings, $KG^p_t = KG_t - RE_t$. 
+The BEA definition of National Income explicitly excludes capital gains, which are not earned in production. As seen in Equation \ref{eq:pdef}, however, capital gains are indirectly present through the retained earnings of corporations. To isolate capital gains from other income flows, we define ordinary factor income as national income minus the retained earnings of corporations: $Y^{o}_t = Y^n_t - RE_t$, and \textit{pure} capital gains as capital gains minus retained earnings, $KG^p_t = KG_t - RE_t$. 
 
 Figure 2 compares capital gains to other capital income sources in the post-war era, using data from the Financial Accounts. Pure capital gains are large, especially in the post-1980 period, where they average 10\% of national income. Retained earnings, the component present in national income, averaged 4\% of national income for the same period. The large magnitude and persistence of pure capital gains suggests that analyses that do not include this income source (such as the DINAs) provide an incomplete picture of inequality in recent times.
 
@@ -116,9 +117,19 @@ Capital gains are closely related to consumer welfare. In Appendix J, we show th
 
 Accounting for capital gains helps to distinguish welfare not only between asset holders and non-asset holders, but between investors who hold different types of assets. Consider two investors with identical wealth invested in assets earning the same total return. Investor A holds a bond paying a 5\% coupon; Investor B holds a growth stock that pays no dividend but appreciates 5\% per year. Under national income, Investor A earns \$5 per \$100 invested, while Investor B earns zero — despite being economically identical. More broadly, any income measure that excludes capital gains will systematically understate the income of growth stock holders relative to dividend stock holders, equity holders relative to bond holders, and business founders relative to salaried executives.
 
- This distinction is quantitatively important. As seen in Figure 2, capital gain income has grown relative to other capital income sources. Over our sample period, for all asset classes, capital gain income averages 14\% of national income, with pure capital gains 10\% of national income. At the top of the wealth distribution, this bias is especially pronounced: nine of the ten wealthiest Americans in the Forbes 400 are founders of technology companies whose wealth was generated almost entirely through capital gains on their businesses. The tenth, Warren Buffett, also owes his fortune to capital gains: Berkshire Hathaway has paid exactly one dividend in its history.
+This distinction is quantitatively important. As seen in Figure 2, capital gain income has grown relative to other capital income sources. Over our sample period, for all asset classes, capital gain income averages 14\% of national income, with pure capital gains 10\% of national income. At the top of the wealth distribution, this bias is especially pronounced: nine of the ten wealthiest Americans in the Forbes 400 are founders of technology companies whose wealth was generated almost entirely through capital gains on their businesses. The tenth, Warren Buffett, also owes his fortune to capital gains: Berkshire Hathaway has paid exactly one dividend in its history.
  
-What are the sources of aggregate capital gains, and why have they grown over time? One source is economic growth. Under a balanced growth path in which all macroeconomic variables grow at rate $g$, the ratio of capital gains to GDP will be $\frac{P}{Y}g$. Using the value of public and private equities held by US households for $P$ and a real GDP growth rate of 2\% yields a back-of-the envelope estimation of 5\% of national income in capital gains per year. In addition, changes in earnings driven by an increase in monopoly power, a growing share of earnings to the corporate sector, or unmeasured intangible investment can drive revaluations. A final source of variation in capital gains is changes in interest rates. Lower interest rates generate higher asset prices (and positive capital gains), since future dividends are discounted at lower rates. We discuss the impact of lower interest rates (and more generally, changes in discount rates) in Section J. 
+What are the sources of aggregate capital gains, and why have they grown over time? As shown from Equation \ref{eq:pdef}, one important long-run driver is firm profits, which drive changes in $V_t$. In the U.S. context, a growing literature documents a secular increase in concentration and market power \citep{grullon2019us,autor2020fall}, which in turn has lead to increases in earnings and profits \citep{barkai2020declining,eeckhout2024value}. A second component of gains are changes in retained earnings. In the U.S., official corporate savings rates have been roughly flat at 3-4\% of GDP.\footnote{Globally, \citet{chen2017global} shows that corporate saving has trended upwards. } These official figures, however, are missing a large stock of \textit{intangible investment}, which are treated as expenses (rather than investments) on income statements, and thus represent unmeasured retained earnings.\footnote{Although the BEA has revised its treatment of intangible investment to include additional categories such as software, it still excludes firm-specific human capital, organization capital, brand equity, and advertising. See Corrado, Hulten and Sichel (2009) } Estimates of the unmeasured capital stock range from 30-40\% of the total capital stock
+
+
+
+
+
+Outside of secular shifts, standard trend-growth can also lead to capital gains. Under a balanced growth path in which all macroeconomic variables grow at rate $g$, from Equation \ref{eq:pdef} the ratio of capital gains to GDP will be $g \cdot \frac{P}{Y}$. Plugging in the value of public and private equities held by US households for $P$ and a real GDP growth rate of 2\% yields a back-of-the envelope estimation of 5\% of national income in capital gains per year. 
+
+
+
+In addition, changes in earnings driven by an increase in monopoly power, a growing share of earnings to the corporate sector, or unmeasured intangible investment can drive revaluations. A final source of variation in capital gains is changes in interest rates. Lower interest rates generate higher asset prices (and positive capital gains), since future dividends are discounted at lower rates. We discuss the impact of lower interest rates (and more generally, changes in discount rates) in Section J. 
 
 
 
