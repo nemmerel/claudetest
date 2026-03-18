@@ -88,7 +88,7 @@ The balance sheet evolves through the law of motion $A_t = A_{t-1} + RE_t + NE_t
 The market price of the firm $P_t$ equals the value of its assets plus the present discounted value of future profits, denoted by $V_t$:
 \be
 \label{eq:pdef}
-P_t = A_t + E_t[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}] \equiv A_t + V_t,
+P_t S_t = A_t + E_t[\sum_{s=1}^{\infty} M_{t,t+s} \Pi_{t+s}] \equiv A_t + V_t,
 \ee
 where $M_{t,t+s}$ is the stochastic discount factor. Implicit in this definition is that a dollar of retained earnings increases the value of the firm by a dollar, as in \citet{miller1961dividend}.
 
@@ -103,7 +103,7 @@ Y^n_t =  w_t L_t + d_t + RE_t
 
 National income is income received from production. Definition \ref{def:nat_inc} is in line with the BEA definition of national income, which, absent measurement errors, equals the net national product: $Y^n_t   = Y_t - \delta A_t$.\footnote{See the BEA Handbook, \citet{fox2009concepts}.}
 
-\begin{definition} \label{def:kg} Capital gains equal the real increase in firm value minus equity issuances: $KG_t = P_t - P_{t-1} - NE_t = \Delta V_t + RE_t $.
+\begin{definition} \label{def:kg} Capital gains equal the real increase in the price per share of equity times the value of equity. Defining $r_p_t = P_t / P_{t-1} - 1$, $KG_t = P_{t-1} S_[t-1} \cdot r^p_t$. Defining net equity issuances as $NE_t = P_t S_t - P_t S_{t-1}$, the change in equity equals capital gains plus changes in net equity: $P_t S_t - P_{t-1} S_{t-1} = KG_t + NE_t$. In addition, $KG_t = \Delta V_t + RE_t$.
 \end{definition}
 
 The BEA definition of National Income explicitly excludes capital gains, which are not earned in production. However, capital gains are indirectly present through the retained earnings of corporations, which increase firm value through balance sheet expansion. To isolate capital gains from other income flows, we define ordinary factor income as national income minus the retained earnings of corporations: $Y^{o}_t = Y^n_t - RE_t$, and \textit{pure} capital gains as capital gains minus retained earnings, $KG^p_t = KG_t - RE_t$. 
@@ -125,11 +125,11 @@ For this reason, when studying relative inequality, accounting for capital gains
 
 This distinction is quantitatively important. As seen in Figure 2, capital gain income has grown relative to other capital income sources. At the top of the wealth distribution, this bias is especially pronounced, since private and public equity wealth is concentrated in the top 10\% of the distribution. 
 
-
- 
 What are the sources of aggregate capital gains, and why have they grown over time? As shown from Equation \ref{eq:pdef}, one important long-run driver is firm profits, which drive changes in $V_t$. In the U.S. context, a growing literature documents a secular increase in concentration and market power \citep{grullon2019us,autor2020fall}, which in turn has lead to increases in earnings and profits \citep{barkai2020declining,eeckhout2024value}. 
 
 A second component of gains are changes in retained earnings. In the U.S., official corporate savings rates averaged 4\% of national income over our sample period.\footnote{Globally, \citet{chen2017global} shows that corporate saving has trended upwards since the 1980s.} These figures, however, are missing a large stock of \textit{intangible investment}, which are treated as expenses (rather than investments) on income statements, and thus represent unmeasured retained earnings.\footnote{Although the BEA has revised its treatment of intangible investment to include additional categories such as software, it still excludes firm-specific human capital, organization capital, brand equity, and advertising.} As documented in \citet{corrado2009intangible}, \citet{crouzet2022economics}, and \citet{peters2017intangible}, there has been a secular increase in intangible investment and capital in the U.S. 
+
+Changes in firm payout policy can affect the level of total $KG_t$, but not pure gains $KG^p_t$. Ceteris paribus, a change in stock buybacks holding dividends and issuances fixed has no effect on capital gains, since under our assumptions a fair-value repurchase leaves the price per share unchanged. If the increase in buybacks is instead matched by a decrease in dividends, however, aggregate firm value is unchanged while shares outstanding fall, leading to an increase in $KG_t$. Since pure gains net out retained earnings, $KG_t^p$ is unchanged. 
 
 Outside of these secular shifts, standard trend-growth can also lead to capital gains. Under a balanced growth path in which all macroeconomic variables grow at rate $g$, from Equation \ref{eq:pdef} the ratio of capital gains to GDP will be $g \cdot \frac{P}{Y}$. Plugging in the value of public and private equities held by US households for $P$ and a real GDP growth rate of 2\% yields a back-of-the envelope estimation of 5\% of national income in capital gains per year. 
 
