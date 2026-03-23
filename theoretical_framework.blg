@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2023)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: theoretical_framework.aux
+The style file: plainnat.bst
+Database file #1: References.bib
+Warning--empty journal in splinter2025distribution
+You've used 20 entries,
+            2773 wiz_defined-function locations,
+            724 strings with 8107 characters,
+and the built_in function-call counts, 8495 in all, are:
+= -- 777
+> -- 442
+< -- 13
++ -- 152
+- -- 132
+* -- 682
+:= -- 1336
+add.period$ -- 60
+call.type$ -- 20
+change.case$ -- 106
+chr.to.int$ -- 20
+cite$ -- 41
+duplicate$ -- 389
+empty$ -- 714
+format.name$ -- 164
+if$ -- 1746
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 18
+newline$ -- 108
+num.names$ -- 80
+pop$ -- 181
+preamble$ -- 1
+purify$ -- 84
+quote$ -- 0
+skip$ -- 291
+stack$ -- 0
+substring$ -- 353
+swap$ -- 16
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 215
+warning$ -- 1
+while$ -- 86
+width$ -- 0
+write$ -- 265
+(There was 1 warning)
