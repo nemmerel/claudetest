@@ -1,14 +1,9 @@
-\begin{thebibliography}{20}
+\begin{thebibliography}{21}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
-
-\bibitem[Allen and Michaely(2003)]{allen2003payout}
-Franklin Allen and Roni Michaely.
-\newblock Payout policy.
-\newblock \emph{Handbook of the Economics of Finance}, 1:\penalty0 337--429, 2003.
 
 \bibitem[Autor et~al.(2020)Autor, Dorn, Katz, Patterson, and Van~Reenen]{autor2020fall}
 David Autor, David Dorn, Lawrence~F Katz, Christina Patterson, and John Van~Reenen.
@@ -24,11 +19,6 @@ Simcha Barkai.
 {Canberra}.
 \newblock Final report and recommendations.
 \newblock Technical report, The Canberra Group, Ottawa, 2001.
-
-\bibitem[Chen et~al.(2017)Chen, Karabarbounis, and Neiman]{chen2017global}
-Peter Chen, Loukas Karabarbounis, and Brent Neiman.
-\newblock The global rise of corporate saving.
-\newblock \emph{Journal of monetary economics}, 89:\penalty0 1--19, 2017.
 
 \bibitem[Corrado et~al.(2009)Corrado, Hulten, and Sichel]{corrado2009intangible}
 Carol Corrado, Charles Hulten, and Daniel Sichel.
@@ -65,6 +55,11 @@ Robert~M Haig.
 \newblock The concept of income-economic and legal aspects.
 \newblock \emph{The federal income tax}, 1\penalty0 (7), 1921.
 
+\bibitem[Hall(2001)]{hall2001stock}
+Robert~E Hall.
+\newblock The stock market and capital accumulation.
+\newblock \emph{American Economic Review}, 91\penalty0 (5):\penalty0 1185--1202, 2001.
+
 \bibitem[Karabarbounis and Neiman(2019)]{karabarbounis2019accounting}
 Loukas Karabarbounis and Brent Neiman.
 \newblock Accounting for factorless income.
@@ -74,6 +69,21 @@ Loukas Karabarbounis and Brent Neiman.
 Jeff Larrimore, Richard~V Burkhauser, Gerald Auten, and Philip Armour.
 \newblock Recent trends in us income distributions in tax record data using more comprehensive measures of income including real accrued capital gains.
 \newblock \emph{Journal of Political Economy}, 129\penalty0 (5):\penalty0 1319--1360, 2021.
+
+\bibitem[Laubach and Williams(2016)]{laubach2016measuring}
+Thomas Laubach and John~C Williams.
+\newblock Measuring the natural rate of interest redux.
+\newblock \emph{Business Economics}, 51\penalty0 (2):\penalty0 57--67, 2016.
+
+\bibitem[Lev(2001)]{lev2001intangibles}
+Baruch Lev.
+\newblock \emph{Intangibles: Management, Measurement, and Reporting}.
+\newblock Brookings Institution Press, Washington, DC, 2001.
+
+\bibitem[McGrattan and Prescott(2010)]{mcgrattan2010unmeasured}
+Ellen~R McGrattan and Edward~C Prescott.
+\newblock Unmeasured investment and the puzzling us boom in the 1990s.
+\newblock \emph{American Economic Journal: Macroeconomics}, 2\penalty0 (4):\penalty0 88--123, 2010.
 
 \bibitem[Miller and Modigliani(1961)]{miller1961dividend}
 Merton~H Miller and Franco Modigliani.
@@ -94,11 +104,6 @@ Ryan~H Peters and Lucian~A Taylor.
 Henry~C Simons.
 \newblock \emph{Personal Income Taxation: The Definition of Income as a Problem of Fiscal Policy}.
 \newblock University of Chicago Press, Chicago, 1938.
-
-\bibitem[Skinner(2008)]{skinner2008evolving}
-Douglas~J Skinner.
-\newblock The evolving relation between earnings, dividends, and stock repurchases.
-\newblock \emph{Journal of financial economics}, 87\penalty0 (3):\penalty0 582--609, 2008.
 
 \bibitem[Splinter(2025)]{splinter2025distribution}
 David Splinter.

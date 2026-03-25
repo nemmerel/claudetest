@@ -1,14 +1,14 @@
 # Fdb version 4
-["bibtex new_intro"] 0 "new_intro.aux" "new_intro.bbl" "new_intro" 0 -1
-  "./References.bib" 1773756069 140202 1e6f0eef748cb912dd39a27523afc2c3 ""
+["bibtex new_intro"] 1774454489 "new_intro.aux" "new_intro.bbl" "new_intro" 1774454490 2
+  "./References.bib" 1774452224 143174 0181396c0aad1d0d07002a28dc8e2434 ""
   "./aea.bst" 1242827686 23105 ced7c75addb710fdb85503a64b9bafa7 ""
-  "new_intro.aux" 1773756246 7766 8b0d905b788c8e66a055fbb64c2e0aed "pdflatex"
+  "new_intro.aux" 1774454490 8971 ba643bf064b7a7512cb38e17d7a2946f "pdflatex"
   (generated)
   "new_intro.bbl"
   "new_intro.blg"
   (rewritten before read)
-["pdflatex"] 1773756245 "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" "new_intro.pdf" "new_intro" 1773756246 2
-  "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" 1773756245 78597 67a536b249e69a696ce053e49071603a ""
+["pdflatex"] 1774454489 "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" "new_intro.pdf" "new_intro" 1774454490 2
+  "/Users/jar88/Dropbox/research_projects/revision_analysis/claudetest/new_intro.tex" 1774454489 85382 59f7b273445fad342d20ceab1a99ec6b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/local/texlive/2023/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/tfm/adobe/courier/pcrr7t.tfm" 1136768653 960 379cc0019370a9e0208a0a3f949f847a ""
@@ -48,9 +48,11 @@
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb" 1248133631 36741 fa121aac0049305630cf160b86157ee4 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb" 1248133631 35752 024fb6c41858982481f6968b5fc26508 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb" 1248133631 32722 d7379af29a190c3f453aba36302ff5a9 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb" 1248133631 32726 0a1aea6fcd6468ee2cf64d891f5c43c8 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
+  "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb" 1136849748 45758 19968a0990191524e34e1994d4a31cb6 ""
   "/usr/local/texlive/2023/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb" 1136849748 35941 f27169cc74234d5bd5e4cca5abafaabb ""
@@ -157,10 +159,10 @@
   "/usr/local/texlive/2023/texmf.cnf" 1678822455 577 1b2b1af17af2508fb20dd85783af4050 ""
   "graphs/kg_age_profile.png" 0 -1 0 ""
   "graphs/kg_map_total.png" 0 -1 0 ""
-  "new_intro.aux" 1773756246 7766 8b0d905b788c8e66a055fbb64c2e0aed "pdflatex"
-  "new_intro.bbl" 1773756195 0 d41d8cd98f00b204e9800998ecf8427e "bibtex new_intro"
-  "new_intro.out" 1773756246 2835 2b1ca93494533c8e80d0a6f7409a375d "pdflatex"
-  "new_intro.tex" 1773756245 78597 67a536b249e69a696ce053e49071603a ""
+  "new_intro.aux" 1774454490 8971 ba643bf064b7a7512cb38e17d7a2946f "pdflatex"
+  "new_intro.bbl" 1774454489 0 d41d8cd98f00b204e9800998ecf8427e "bibtex new_intro"
+  "new_intro.out" 1774454490 2835 2b1ca93494533c8e80d0a6f7409a375d "pdflatex"
+  "new_intro.tex" 1774454489 85382 59f7b273445fad342d20ceab1a99ec6b ""
   (generated)
   "new_intro.aux"
   "new_intro.log"

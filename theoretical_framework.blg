@@ -4,45 +4,45 @@ The top-level auxiliary file: theoretical_framework.aux
 The style file: plainnat.bst
 Database file #1: References.bib
 Warning--empty journal in splinter2025distribution
-You've used 20 entries,
+You've used 21 entries,
             2773 wiz_defined-function locations,
-            724 strings with 8107 characters,
-and the built_in function-call counts, 8495 in all, are:
-= -- 777
-> -- 442
-< -- 13
-+ -- 152
+            730 strings with 8230 characters,
+and the built_in function-call counts, 8769 in all, are:
+= -- 800
+> -- 443
+< -- 15
++ -- 153
 - -- 132
-* -- 682
-:= -- 1336
-add.period$ -- 60
-call.type$ -- 20
-change.case$ -- 106
-chr.to.int$ -- 20
-cite$ -- 41
-duplicate$ -- 389
-empty$ -- 714
-format.name$ -- 164
-if$ -- 1746
+* -- 695
+:= -- 1378
+add.period$ -- 63
+call.type$ -- 21
+change.case$ -- 108
+chr.to.int$ -- 21
+cite$ -- 43
+duplicate$ -- 408
+empty$ -- 749
+format.name$ -- 167
+if$ -- 1806
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 18
-newline$ -- 108
-num.names$ -- 80
-pop$ -- 181
+missing$ -- 20
+newline$ -- 113
+num.names$ -- 84
+pop$ -- 190
 preamble$ -- 1
-purify$ -- 84
+purify$ -- 86
 quote$ -- 0
-skip$ -- 291
+skip$ -- 304
 stack$ -- 0
-substring$ -- 353
-swap$ -- 16
+substring$ -- 361
+swap$ -- 17
 text.length$ -- 0
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 215
+type$ -- 221
 warning$ -- 1
-while$ -- 86
+while$ -- 89
 width$ -- 0
-write$ -- 265
+write$ -- 278
 (There was 1 warning)
